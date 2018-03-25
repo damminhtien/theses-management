@@ -1,0 +1,21 @@
+﻿nodejs is ecosystem
+node system = nodejs + node package managent
+npm 
+bắt đầu: 
+npm init => tạo package.json
+npm install <pkg> :
+express: framework vi?t server
+ejs: view engine: embed js
+module:
+express-generator 
+Cài extension chrome: JSON formater
+-------------------------------------
+Tuần 9:  Báo cáo done :)) + tìm hiểu
++ Huyền ăn kẹo, viết báo cáo word (cố cài win nhé!!!)
++ Hương vẽ CSDL, Class.
++ Tiến tổng hợp, viết pp.
+Tuần 10: Hoàn thiện admin, hoàn thiện CSDL, nhập xuất cơ bản, trang chủ...
+Tuần 11: Version1: Hoàn thiện và rút kinh nghiệm
+Tuần 12: Phát triển tiếp, optimaze code, chỉnh sửa giao diện, chat, mail...
+Tuần 13: Version2: Hoàn thiện và rút kinh nghiệm
+Tuần 14: Hoàn thiện
