@@ -1,0 +1,8 @@
+- Công vi?c tu?n tru?c: 
++ Báo cáo dang hoàn thi?n
++ Ðang d?c v? ES6
+- Công vi?c tu?n này:
++ T?o co s? d? li?u (done)
++ Tìm template admin (done)
++ T?o template home page (done)
+- B?t d?u xây d?ng code cho admin...
