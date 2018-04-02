@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<%include layout/header%>
+</head>
+<body class="nav-md">
+    <div class="container body">
+      	<div class="main_container">
+			<%include layout/menu%>
+			<div class="right_col" role="main">
+				<div id="root"></div>
+			</div>	
+			<%include layout/footer%>
+		</div>
+	</div>
+	<%include layout/script%>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+	$('document').ready(()=>{
+		$.get('https://raw.githubusercontent.com/damminhtien/project_management/master/README.md', function(data) {
+				chuoi = marked(data);
+			console.log(chuoi);
+			$('#root').html(chuoi);
+		}, 'text');
+	})
+	</script>
+</body>
+</html>
+
