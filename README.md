@@ -21,11 +21,11 @@ In this exercise, we use node-based technology to write server, postgre as datab
 * Multer: https://github.com/expressjs/multer
 * Passport JS: http://www.passportjs.org/
 * EJS: http://ejs.co/ (Effective JavaScript templating) 
-
 * Body-parser: https://www.npmjs.com/package/body-parser
 
 ## Our team
 <p align="center"><img src="https://raw.githubusercontent.com/damminhtien/project_management/master/src/public/images/ava.png" /></p>
+
 * damminhtien https://github.com/damminhtien
 * huongmeo https://github.com/HuongMeo
 * huyenngau https://github.com/huyenngau

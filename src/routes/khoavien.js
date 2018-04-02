@@ -12,7 +12,7 @@ router.get('/danhsach', (req, res, next) => {
         const client = await pool.connect()
         try {
             const result = await client.query('SELECT * FROM khoavien')
-            res.render('./admin/layout/index')
+            res.render('./khoavien/danhsach',{khoavien: result.rows.reverse()})
         } finally {
             client.release()
         }
@@ -24,15 +24,19 @@ router.get('/them', (req, res, next) => {
 });
 
 router.post('/them', (req, res, next) => {
-    const tenkhoavien = req.body.tenkhoavien;
+    const ten_kv = req.body.ten_kv;
+    const dia_chi = req.body.dia_chi;
     console.log(req.body);
     (async() => {
         const client = await pool.connect()
         try {
-            await client.query("INSERT INTO khoavien (ten_kv,dia_chi) VALUES ('" + tenkhoavien + "','b1')");
-            res.redirect('../khoavien/danhsach');
+            await client.query("INSERT INTO khoavien (ten_kv,dia_chi) VALUES ('"+ten_kv +"','"+dia_chi+"')");       
+            req.flash("info", "Email queued");
+            res.redirect("/khoavien/danhsach");
         } finally {
             client.release()
         }
-    })().catch(e => console.log(e.stack))
+    })(res).catch((e,res) => {
+        console.log(e.stack)
+    })
 });
