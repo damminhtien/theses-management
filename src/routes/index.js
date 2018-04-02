@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const users = require('./users')
+const khoavien = require('./khoavien')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-module.exports = router;
+module.exports = (app) => {
+  app.use('/users', users)
+  app.use('/khoavien', khoavien)
+}
