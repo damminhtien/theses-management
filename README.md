@@ -1,25 +1,33 @@
-# Project_management :floppy_disk:
+# Project management 
 
-<img src="http://chemeng.hust.edu.vn/rcche2015/images/Conference/logo/hust.png" />
+<p align="center"><img src="http://chemeng.hust.edu.vn/rcche2015/images/Conference/logo/hust.png" /></p>
 
-## Description :heart_eyes: 
-System management student's project made by Hust. Student with teacher can contact, student can view older, template project, teacher can view progress of student's project then give mark.
+## Description 
+<p align="justify">In the world as well as in Vietnam, information technology has become a cutting edge technology. The development of the information technology industry is a matter of great concern for the science, education, economics, etc., the application of information technology to the field must be effective. , the choice and use of software to match and achieve good results.
+</p>
+<p align="justify">In the field of education, for the universities in general and the Hanoi University of Technology in particular, the management of the project is essential and very important. To begin with and then to finish the project is a small, multi-stage process where a teacher guides many students, so to manage the best, most effective and accurate project. Mostly, a system needs to be implemented instead of manual. Recognizing that the problem mentioned above is very necessary, with this large assignment, we decided to do analysis, design and construction project management system.
+In this exercise, we use node-based technology to write server, postgre as database management system.
+</p>
 
-## Technologies :sparkles: :sparkles: :sparkles: 
-* Node documents v9.8: https://nodejs.org/docs/latest-v7.x/api/
-* Bootstrap 3: http://getbootstrap.com/docs/3.3/
-* Bootstrap 4: http://getbootstrap.com/docs/4.0/
-* Express: https://expressjs.com/en/starter/installing.html
+## Technologies 
+* NodeJS v9.8: https://nodejs.org/
+* Express: https://expressjs.com/
+* Express promise router: https://github.com/express-promise-router/express-promise-router
 * FE checklist: https://github.com/damminhtien/Front-End-Checklist
-* PostgreSQL Database: https://www.postgresql.org/docs/manuals/
-* EJS view engine: http://ejs.co/#docs
-* Multer, Passport JS: https://www.npmjs.com/
-* jQuery: https://www.w3schools.com/jquery/default.asp
-* ExpressJS: https://expressjs.com/en/starter/installing.html
-* Express application generator: https://expressjs.com/en/starter/generator.html
-* EJS: http://ejs.co/ (Effective JavaScript templating not Embeded) 
 * PG: https://node-postgres.com/
-* Body-parser: https://www.npmjs.com/package/body-parser
-* PostgreSQL: https://docs.google.com/…/1igvk2ESAOkthvMPFjkFdNe7oTHX…/edit
+* PostgreSQL Database: https://www.postgresql.org/docs/manuals/
+* jQuery: https://jquery.com/
+* Bootstrap 4: http://getbootstrap.com/docs/4.0/
+* Multer: https://github.com/expressjs/multer
+* Passport JS: http://www.passportjs.org/
+* EJS: http://ejs.co/ (Effective JavaScript templating) 
 
-## Made by love of HUST :heart: :heart: :heart:
+* Body-parser: https://www.npmjs.com/package/body-parser
+
+## Our team
+<p align="center"><img src="https://raw.githubusercontent.com/damminhtien/project_management/master/src/public/images/ava.png" /></p>
+* damminhtien https://github.com/damminhtien
+* huongmeo https://github.com/HuongMeo
+* huyenngau https://github.com/huyenngau
+
+## Made by love of HUST <3
