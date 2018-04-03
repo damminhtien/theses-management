@@ -1,0 +1,8 @@
+<% if(messages !== null){messages.forEach(function (message) { %>
+	let n = new PNotify({
+        title: '<%=message.type.toUpperCase()%> ^_^',
+        text: '<h2><%=message.message%> !</h2>',
+        type: '<%=message.type%>',
+        styling: 'bootstrap3'
+  	});
+<% })} %>
