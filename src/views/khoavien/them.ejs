@@ -1,15 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title></title>
-	<link rel="stylesheet" href="">
-</head>
-<body>
-	<form method="post" accept-charset="utf-8">
-		<input type="text" name="tenkhoavien">
-		<button type="submit">Nhập</button>
-	</form>
-</body>
-</html>
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="themModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">Thêm khoa viện</h4>
+            </div>
+            <form data-parsley-validate class="form-horizontal form-label-left" action="/khoavien/them" method="post" accept-charset="utf-8">
+            	<div class="modal-body row">
+					<div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ten_kv">Tên khoa viện<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          	<input type="text" id="ten_kv" required="required" class="form-control col-md-7 col-xs-12" name="ten_kv">
+                    	</div>
+                	</div>	
+                	<div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ten_kv">Địa chỉ<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          	<input type="text" id="dia_chi" required="required" class="form-control col-md-7 col-xs-12" name="dia_chi">
+                    	</div>
+                	</div>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="reset" class="btn btn-default">Làm mới</button>
+	                <button type="submit" class="btn btn-primary">Xác nhận</button>
+	            </div>
+            </form>
+        </div>
+    </div>
+</div>

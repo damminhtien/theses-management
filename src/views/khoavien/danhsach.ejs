@@ -1,18 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<%include header%>
+	<%include ../admin/layout/header%>
+	<link href="/template/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+	<%include ../admin/layout/style_dbtable%>
 </head>
 <body class="nav-md">
     <div class="container body">
       	<div class="main_container">
-			<%include menu%>
+			<%include ../admin/layout/menu%>
 			<!-- your code here -->
-			
+			<div class="right_col" role="main">
+	            <div class="col-md-12 col-sm-12 col-xs-12">
+                	<div class="x_panel">
+                  		<div class="x_title">
+                    		<h1 class="label label-success">Khoa viện</h1>
+                    		<div class="clearfix"></div>
+                  		</div>
+             		 	<div class="x_content">
+            				<table id="datatable-buttons" class="table table-striped table-hover table-bordered">
+                      			<thead>
+                        			<tr>
+                          				<th class="alert-success"><h3>STT</h3></th>
+				                        <th class="alert-success"><h3>Tên khoa viện</h3></th>
+				                        <th class="alert-success"><h3>Địa chỉ</h3></th>
+				                        <th class="alert-success"><h3>Sửa / Xóa</h3></th>
+                        			</tr>
+                      			</thead>
+                      			<tbody>
+                        			<% if(khoavien != null ){ 
+										khoavien.forEach((kv,i)=>{%>
+										<tr>
+											<td><button class="btn btn-primary btn-round btn-xs"><%=i + 1%></button>
+											</td>
+											<td><h2><%=kv.ten_kv%></h2></td>
+											<td><h2><%=kv.dia_chi%></h2></td>
+											<td class="text-center">
+												<button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#suaModal<%=kv.ma_kv%>"><span class="fa fa-pencil"></span></button>
+												<a href="/khoavien/xoa/<%=kv.ma_kv%>"><button class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></button></a>
+												<%include sua%>
+											</td>
+										</tr>
+									<%})}%>
+                      			</tbody>
+                    		</table>
+                    		<button class="btn btn-info btn-lg btn-round" style="z-index: 99; right: 2%; bottom: 2%; position: fixed; width: 60px; height: 60px;" data-toggle="modal" data-target="#themModal"><span class="fa fa-plus"></span></button>
+                  		</div>
+                	</div>
+              	</div>
+			</div>	
 			<!-- your code end-->
-			<%include footer%>
+			<%include ../admin/layout/footer%>
 		</div>
 	</div>
-	<%include script%>
+	<%include them%>
+	<%include ../admin/layout/script%>
+	<%include ../admin/layout/script_dbtable%>
+	<!-- pnotify -->
+	<script src="/template/vendors/pnotify/dist/pnotify.js"></script>
+    <script src="/template/vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="/template/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+	<script>
+	   	$('document').ready(function (){
+	       $('.ui-pnotify').remove();
+	       <%- include ../flash_message %>
+	   	});
+	</script>
 </body>
 </html>
