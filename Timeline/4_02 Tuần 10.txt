@@ -1,0 +1,10 @@
+﻿Công việc tuần trước:
++ Kết thúc tìm hiểu
+Công việc trong buổi:
++ Làm thêm các chức năng thêm / sửa/ xóa/ danh sách cho các bảng dữ liệu
++ Demo đã làm: khoa viện
++ Làm giao diện admin, làm flash
+Công việc đến t6: 6/4
++ Hương: Trạng thái
++ Huyền: Loại đồ án
+ 	

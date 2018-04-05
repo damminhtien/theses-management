@@ -38,7 +38,6 @@ app.use(function(req, res, next) {
     next()
 })
 
-
 const mountRoutes = require('./routes')
 mountRoutes(app)
 
