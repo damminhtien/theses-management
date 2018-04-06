@@ -14,7 +14,7 @@
 	            <div class="col-md-12 col-sm-12 col-xs-12">
                 	<div class="x_panel">
                   		<div class="x_title">
-                    		<h1 class="label label-success">Khoa viện</h1>
+                    		<h1 class="label label-success">Loại đồ án</h1>
                     		<div class="clearfix"></div>
                   		</div>
              		 	<div class="x_content">
@@ -22,22 +22,20 @@
                       			<thead>
                         			<tr>
                           				<th class="alert-success"><h3>STT</h3></th>
-				                        <th class="alert-success"><h3>Tên khoa viện</h3></th>
-				                        <th class="alert-success"><h3>Địa chỉ</h3></th>
+				                        <th class="alert-success"><h3>Tên loại đồ án</h3></th>
 				                        <th class="alert-success"><h3>Sửa / Xóa</h3></th>
                         			</tr>
                       			</thead>
                       			<tbody>
-                        			<% if(khoavien != null ){ 
-										khoavien.forEach((kv,i)=>{%>
+                        			<% if(loaidoan != null ){ 
+										loaidoan.forEach((lda,i)=>{%>
 										<tr>
 											<td><button class="btn btn-primary btn-round btn-xs"><%=i + 1%></button>
 											</td>
-											<td><h2><%=kv.ten_kv%></h2></td>
-											<td><h2><%=kv.dia_chi%></h2></td>
+											<td><h2><%=lda.ten_lda%></h2></td>
 											<td class="text-center">
-												<button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#suaModal<%=kv.ma_kv%>"><span class="fa fa-pencil"></span></button>
-												<a href="/khoavien/xoa/<%=kv.ma_kv%>"><button class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></button></a>
+												<button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#suaModal<%=lda.ma_lda%>"><span class="fa fa-pencil"></span></button>
+												<a href="/loaidoan/xoa/<%=lda.ma_lda%>"><button class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></button></a>
 												<%include sua%>
 											</td>
 										</tr>
