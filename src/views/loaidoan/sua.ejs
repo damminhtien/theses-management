@@ -1,0 +1,28 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="suaModal<%=lda.ma_lda%>">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title">Sửa loại đồ án <%=lda.ten_lda%></h4>
+            </div>
+            <form data-parsley-validate class="form-horizontal" action="/loaidoan/sua/<%=lda.ma_lda%>" method="post" accept-charset="utf-8">
+                <div class="modal-body">
+                    <div class="container" style="width: 100%">
+                        <div class="form-group col-sm-12">
+                            <label class="control-label col-sm-2" for="ten_lda_sua_<%=lda.ma_lda%>">Tên loại đồ án<span class="required">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" id="ten_lda_sua_<%=lda.ma_lda%>" required="required" class="form-control" name="ten_lda_sua_<%=lda.ma_lda%>" value="<%=lda.ten_lda%>" style="width: 100%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-default">Làm mới</button>
+                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                </div>   
+            </form>      
+        </div>
+    </div>
+</div>
