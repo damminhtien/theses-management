@@ -3,6 +3,8 @@ const router = new Router()
 const pool = require('../model')
 var bodyParser = require('body-parser')
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var md5 = require('md5');
+
 router.use(bodyParser.urlencoded({ extended: false }))
 
 module.exports = router
@@ -36,11 +38,12 @@ router.post('/them', (req, res, next) => {
     const email = req.body.email;
     const sdt = req.body.sdt;
     const ma_kv = req.body.ma_kv;
+    const mat_khau = req.body.email;
     console.log(req.body);
     (async() => {
         const client = await pool.connect()
         try {
-            await client.query("INSERT INTO giangvien (ten_gv,email,sdt,mat_khau,ma_kv) VALUES ('"+ten_gv +"','"+email+"','"+sdt+"','"+email+"','"+ma_kv+"' )");       
+            await client.query("INSERT INTO giangvien (ten_gv,email,sdt,mat_khau,ma_kv) VALUES ('"+ten_gv +"','"+email+"','"+sdt+"','"+md5(email)+"','"+ma_kv+"' )");       
             req.flash("success", "Thêm giảng viên thành công")
             res.redirect("/giangvien/danhsach")
         } finally {
