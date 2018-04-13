@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%include admin/layout/header%>
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet/less" type="text/css" href="stylesheets/login.less" />
+</head>
+
+<body class="login">
+    <div>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+        <div class="login_wrapper animated zoomIn">
+            <div class="animate form login_form">
+                <section class="login_content">
+                    <form>
+                        <h1>Login Form</h1>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Username" required="" />
+                        </div>
+                        <div>
+                            <input type="password" class="form-control" placeholder="Password" required="" />
+                        </div>
+                        <div>
+                            <a class="btn btn-default submit" href="index.html">Log in</a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="separator">
+                            <div>
+                                <p>©2018 All Rights Reserved. H2Team - we are awesome. Privacy and Terms</p>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script src="/template/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="assets/js/jquery.backstretch-overlay.min.js"></script>
+    <script src="/javascripts/login.js"></script>
+    <script src="/javascripts/less.min.js"></script>
+</body>
+
+</html>
