@@ -14,7 +14,7 @@
 	            <div class="col-md-12 col-sm-12 col-xs-12">
                 	<div class="x_panel">
                   		<div class="x_title">
-                    		<h1 class="label label-success">Khoa viện</h1>
+                    		<h1 class="label label-success">Giảng viên</h1>
                     		<div class="clearfix"></div>
                   		</div>
              		 	<div class="x_content">
@@ -22,29 +22,34 @@
                       			<thead>
                         			<tr>
                           				<th class="alert-success"><h3>STT</h3></th>
+				                        <th class="alert-success"><h3>Tên Giảng viên</h3></th>
+				                        <th class="alert-success"><h3>Số điện thoại</h3></th>
+				                        <th class="alert-success"><h3>Email</h3></th>
 				                        <th class="alert-success"><h3>Tên khoa viện</h3></th>
 				                        <th class="alert-success"><h3>Địa chỉ</h3></th>
 				                        <th class="alert-success"><h3>Sửa / Xóa</h3></th>
                         			</tr>
                       			</thead>
                       			<tbody>
-                        			<% if(khoavien != null ){ 
-										khoavien.forEach((kv,i)=>{%>
+                        			<% if(giangvien != null ){ 
+										giangvien.forEach((gv,i)=>{%>
 										<tr>
 											<td><button class="btn btn-primary btn-round btn-xs"><%=i + 1%></button>
 											</td>
-											<td><h2><%=kv.ten_kv%></h2></td>
-											<td><h2><%=kv.dia_chi%></h2></td>
+											<td><h2><%=gv.ten_gv%></h2></td>
+											<td><h2><%=gv.sdt%></h2></td>
+											<td><h2><%=gv.email%></h2></td>
+											<td><h2><%=gv.ten_kv%></h2></td>
+											<td><h2><%=gv.dia_chi%></h2></td>
 											<td class="text-center">
-												<button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#suaModal<%=kv.ma_kv%>"><span class="fa fa-pencil"></span></button>
-												<a href="/khoavien/xoa/<%=kv.ma_kv%>"><button class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></button></a>
-												<%include sua%>
+												<a href="/giangvien/sua/<%=gv.ma_gv%>" title="Sửa <%=gv.ten_gv%>"><button class="btn btn-warning btn-xs"><span class="fa fa-pencil"></span></button></a>	
+												<a href="/giangvien/xoa/<%=gv.ma_gv%>"><button class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></button></a>
 											</td>
 										</tr>
 									<%})}%>
                       			</tbody>
                     		</table>
-                    		<button class="btn btn-info btn-lg btn-round" style="z-index: 99; right: 2%; bottom: 2%; position: fixed; width: 60px; height: 60px;" data-toggle="modal" data-target="#themModal"><span class="fa fa-plus"></span></button>
+                    		<a href="/giangvien/them" title="Thêm giảng viên"><button class="btn btn-info btn-lg btn-round" style="z-index: 99; right: 2%; bottom: 2%; position: fixed; width: 60px; height: 60px;"><span class="fa fa-plus"></span></button></a>
                   		</div>
                 	</div>
               	</div>
@@ -53,7 +58,6 @@
 			<%include ../admin/layout/footer%>
 		</div>
 	</div>
-	<%include them%>
 	<%include ../admin/layout/script%>
 	<%include ../admin/layout/script_dbtable%>
 	<!-- pnotify -->

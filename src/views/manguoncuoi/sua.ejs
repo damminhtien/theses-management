@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%include ../admin/layout/header%>
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <%include ../admin/layout/menu%>
+                <!-- your code here -->
+                <div class="right_col" role="main">
+                	<h2 class="text-center">SỬA THÔNG TIN MÃ NGUỒN CUỐI <%=manguoncuoi.ma_mnc%></h2>
+                    <form data-parsley-validate class="form-horizontal form-label-left" action="/manguoncuoi/sua/<%=manguoncuoi.ma_mnc%>" method="post" accept-charset="utf-8" encType="multipart/form-data">
+                        <div class="modal-body row">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#tep">Tệp<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <input type="file" class="form-control" name="tep" value="<%=manguoncuoi.tep%>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#che_do">Chế độ<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="che_do" class="form-control" id="che_do">
+                                        <<%if(manguoncuoi.che_do == 1){%>
+                                            <option value="<%=manguoncuoi.che_do%>">Công khai</option>
+                                            <option value="0">Riêng tư</option>
+                                        <%}else{%>
+                                            <option value="<%=manguoncuoi.che_do%>">Riêng tư</option>
+                                            <option value="1">Công khai</option>
+                                        <%}%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ghi_chu">Ghi chú<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <textarea readonly="readonly"><%=manguoncuoi.ghi_chu%></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#hinh_anh">Hình ảnh<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <input type="file" class="form-control" name="img" value="<%=manguoncuoi.hinh_anh%>">
+                                    </div>
+                                    <img id="imgPre" width="200px auto" src="/manguoncuoi/hinh_anh/<%=manguoncuoi.hinh_anh%>">
+                                </div>
+                            </div>
+                            <div class="col-md-7"></div>	
+                            <div class="form-group">
+                            	<button type="reset" class="btn btn-default">Làm mới</button>
+                            	<button type="submit" class="btn btn-primary">Xác nhận</button>
+                        	</div>
+                        </div>
+                    </form>
+                </div>
+                <!-- your code end-->
+                <%include ../admin/layout/footer%>
+        </div>
+    </div>
+    <%include ../admin/layout/script%>
+    <script type="text/javascript">
+        $(document).ready(()=>{
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#imgPre').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("input[name=img]").change(function(){
+                readURL(this);
+            });
+        })
+    </script>
+</body>
+
+</html>

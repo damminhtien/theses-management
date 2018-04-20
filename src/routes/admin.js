@@ -6,3 +6,7 @@ module.exports = router
 router.get('/', (req, res, next) => {
 	res.render('./admin/aboutus')
 });
+
+router.get('/social/facebook', (req, res, next) => {
+	res.render('./admin/facebook')
+});
