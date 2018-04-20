@@ -5,7 +5,8 @@ const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const lessMiddleware = require('less-middleware')
-var session = require('express-session')
+const session = require('express-session')
+const fileUpload = require('express-fileupload');
 const app = express()
 
 // view engine setup
@@ -37,6 +38,7 @@ app.use(function(req, res, next) {
     }, [])
     next()
 })
+app.use(fileUpload())
 
 const mountRoutes = require('./routes')
 mountRoutes(app)
