@@ -1,0 +1,44 @@
+<nav class="navbar navbar-fixed-top navbar-no-bg" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+                <span class="sr-only">H2T</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hệ thống quản lý đồ án</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="top-navbar-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Trang chủ</a></li>
+                <li><a href="#">Tính năng</a></li>
+                <li><a href="#">Đồ án</a></li>
+                <li><a href="#">Tham khảo</a></li>
+                <li><a href="#">Tin tức</a></li>
+                <li><a href="#">Faq</a></li>
+                <% if (usr == null) { -%>
+                    <li><a class="btn btn-link-3" href="/dangnhap">Đăng nhập</a></li>
+                <% } else { -%>
+                <li>
+                    <div class="dropdown">
+                        <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown"><%=usr.user.ten%><span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <% if (usr.user.id > 20000000) { -%>
+                                <li><a href="/sinhvien" class="btn"  style="color: black;float: left;"><span class="glyphicon glyphicon-user"></span> Cá nhân</li>
+                            <% } else if (usr.user.id > 100000) { -%>
+                                <li><a href="/admin" class="btn text-info" style="color: black;float: left;"><span class="glyphicon glyphicon-user"></span> Cá nhân</a></li>
+                            <% } else { -%>
+                                <li><a href="/giangvien" class="btn text-info" style="color: black;float: left;"><span class="glyphicon glyphicon-user"></span> Cá nhân</a></li>
+                            <% } -%>
+                                <li><a href="/dangxuat" class="btn text-info" style="color: black;float: left;"><span class="glyphicon glyphicon-off"></span> Đăng xuất</a></li>
+                            <% } -%>
+                        </ul>
+                    </div>    
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

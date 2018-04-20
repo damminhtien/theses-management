@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<%include layout/header%>
+</head>
+
+<body>
+    <!-- Top menu -->
+    <%include layout/menu%>
+    <!-- Top content -->
+    <%include top-content%>
+    <div class="container body">
+      	<div class="main_container">
+			<!-- your code here -->
+    		<div class="right_col" role="main">
+                <%include thongbaomoi%>
+                <%include slide%>
+                <%include noibat%>
+			</div>	
+			<!-- your code end-->
+		</div>
+	</div>
+    <!-- Features -->
+    <div class="features-container section-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 features section-description wow fadeIn">
+                    <h2>About this</h2>
+                    <div class="divider-1">
+                        <div class="line"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 features-box wow fadeInLeft">
+                    <div class="row">
+                        <div class="col-sm-3 features-box-icon">
+                            <i class="fa fa-twitter"></i>
+                        </div>
+                        <div class="col-sm-9">
+                            <h3>Ut wisi enim ad minim</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Ut wisi enim ad minim veniam, quis nostrud.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 features-box wow fadeInLeft">
+                    <div class="row">
+                        <div class="col-sm-3 features-box-icon">
+                            <i class="fa fa-instagram"></i>
+                        </div>
+                        <div class="col-sm-9">
+                            <h3>Sed do eiusmod tempor</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Ut wisi enim ad minim veniam, quis nostrud.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 features-box wow fadeInLeft">
+                    <div class="row">
+                        <div class="col-sm-3 features-box-icon">
+                            <i class="fa fa-magic"></i>
+                        </div>
+                        <div class="col-sm-9">
+                            <h3>Quis nostrud exerci tat</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Ut wisi enim ad minim veniam, quis nostrud.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 features-box wow fadeInLeft">
+                    <div class="row">
+                        <div class="col-sm-3 features-box-icon">
+                            <i class="fa fa-cloud"></i>
+                        </div>
+                        <div class="col-sm-9">
+                            <h3>Minim veniam quis nostrud</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Ut wisi enim ad minim veniam, quis nostrud.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<%include layout/footer%>
+    <%include layout/script%>
+    <script>
+        function openTab(tabName) {
+            let i, x;
+            x = $(".containerTab");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            $('#'+tabName).fadeIn(1500);
+        }
+        let coll = $(".collapsible");
+        let i;
+        coll[0].nextElementSibling.style.maxHeight = coll[0].nextElementSibling.scrollHeight + "px";
+        coll[3].nextElementSibling.style.maxHeight = coll[3].nextElementSibling.scrollHeight + "px";
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                let content = this.nextElementSibling;
+                if (content.style.maxHeight){
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } 
+            });
+        }
+    </script>
+</body>
+
+</html>
