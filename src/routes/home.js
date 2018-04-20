@@ -4,9 +4,5 @@ const router = new Router()
 module.exports = router
 
 router.get('/', (req, res, next) => {
-	res.render('./homepage/index')
-});
-
-router.get('/login', (req, res, next) => {
-	res.render('./login')
+	res.render('./homepage/index', {usr: req._passport.session})
 });

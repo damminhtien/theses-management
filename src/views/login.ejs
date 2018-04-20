@@ -14,16 +14,21 @@
         <div class="login_wrapper animated zoomIn">
             <div class="animate form login_form">
                 <section class="login_content">
-                    <form>
+                    <form method="post" accept-charset="utf-8">
                         <h1>Login Form</h1>
+                        <% if (message.length > 0) { %>
+                            <div class="alert alert-danger">
+                                <%= message %>
+                            </div>
+                        <%} %>
                         <div>
-                            <input type="text" class="form-control" placeholder="Username" required="" />
+                            <input type="text" class="form-control" placeholder="Username" required="" name="username" />
                         </div>
                         <div>
-                            <input type="password" class="form-control" placeholder="Password" required="" />
+                            <input type="password" class="form-control" placeholder="Password" required="" name="password"/>
                         </div>
                         <div>
-                            <a class="btn btn-default submit" href="index.html">Log in</a>
+                            <button class="btn btn-default submit" type="submit">Log in</button>
                         </div>
                         <div class="clearfix"></div>
                         <div class="separator">

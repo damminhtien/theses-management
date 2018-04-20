@@ -5,7 +5,9 @@ const trangthai = require('./trangthai')
 const giangvien = require('./giangvien')
 const home = require('./home')
 const sinhvien = require('./sinhvien')
-const lienhe = require('./lienhe')
+//const lienhe = require('./lienhe')
+const dangnhap = require('./dangnhap')
+const dangxuat = require('./dangxuat')
 
 module.exports = (app) => {
   app.use('/khoavien', khoavien)
@@ -15,5 +17,7 @@ module.exports = (app) => {
   app.use('/giangvien', giangvien)
   app.use('/', home)
   app.use('/sinhvien', sinhvien)
-  app.use('/lienhe', lienhe)
+  app.use('/dangnhap', dangnhap)
+  app.use('/dangxuat', dangxuat)
+  //app.use('/lienhe', lienhe)
 }
