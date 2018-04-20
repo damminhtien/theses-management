@@ -47,7 +47,7 @@ router.post('/sua/:id', (req, res, next) => {
   			}
   			if(file == undefined && img != undefined){
           if(hinh_anh != null){
-            fs.unlink('./public/manguoncuoi/hinh_anh/' + hinh_anh, (err) => {
+            fs.unlink('./public/upload/manguoncuoi/hinh_anh/' + hinh_anh, (err) => {
               if (err) throw err;
               console.log('successfully deleted');
             });
@@ -57,7 +57,7 @@ router.post('/sua/:id', (req, res, next) => {
   			}
   			if(file != undefined && img == undefined){
           if(tep != null){
-            fs.unlink('./public/manguoncuoi/tep/' + tep, (err) => {
+            fs.unlink('./public/upload/manguoncuoi/tep/' + tep, (err) => {
               if (err) throw err;
               console.log('successfully deleted');
             });
@@ -67,13 +67,13 @@ router.post('/sua/:id', (req, res, next) => {
   			}
   			if(file != undefined && img != undefined){
           if(tep != null){
-            fs.unlink('./public/manguoncuoi/tep/' + tep, (err) => {
+            fs.unlink('./public/upload/manguoncuoi/tep/' + tep, (err) => {
               if (err) throw err;
               console.log('successfully deleted');
             });
           }
           if(hinh_anh != null){
-            fs.unlink('./public/manguoncuoi/hinh_anh/' + hinh_anh, (err) => {
+            fs.unlink('./public/upload/manguoncuoi/hinh_anh/' + hinh_anh, (err) => {
               if (err) throw err;
               console.log('successfully deleted');
             });
@@ -97,7 +97,7 @@ router.post('/sua/:id', (req, res, next) => {
 function addImg(img){
 	let imgName = Date.now() + Math.floor((Math.random() * 100) + 1) + img.name
 	if(imgName.length >= 255) imgName = imgName.slice(imgName.length-100, 100)
-	img.mv('./public/manguoncuoi/hinh_anh/'+imgName, function(err) {
+	img.mv('./public/upload/manguoncuoi/hinh_anh/'+imgName, function(err) {
 		if (err) return res.status(500).send(err)
 	})
 	return imgName
@@ -106,7 +106,7 @@ function addImg(img){
 function addFile(file){
 	let fileName = Date.now() + Math.floor((Math.random() * 100) + 1) + file.name
 	if(fileName.length >= 255) fileName = fileName.slice(fileName.length-100, 100)
-	file.mv('./public/manguoncuoi/tep/'+fileName, function(err) {
+	file.mv('./public/upload/manguoncuoi/tep/'+fileName, function(err) {
 		if (err) return res.status(500).send(err)
 	})
 	return fileName
@@ -120,13 +120,13 @@ router.get('/xoa/:id', (req, res, next) => {
             hinh_anh = mnc.rows[0].hinh_anh
             tep = mnc.rows[0].tep
             if(tep != null){
-              fs.unlink('./public/manguoncuoi/tep/' + tep, (err) => {
+              fs.unlink('./public/upload/manguoncuoi/tep/' + tep, (err) => {
               if (err) throw err;
                 console.log('successfully deleted');
               });
             }
             if(hinh_anh != null){
-              fs.unlink('./public/manguoncuoi/hinh_anh/' + hinh_anh, (err) => {
+              fs.unlink('./public/upload/manguoncuoi/hinh_anh/' + hinh_anh, (err) => {
               if (err) throw err;
                 console.log('successfully deleted');
               });
