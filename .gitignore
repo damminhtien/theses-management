@@ -28,3 +28,6 @@
 
 # Debug log from npm
 /src/npm-debug.log
+
+/src/.vs
+/src/public/upload

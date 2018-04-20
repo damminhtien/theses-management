@@ -47,6 +47,7 @@ router.post('/sua/:id', (req, res, next) => {
         tep = mnc.rows[0].tep
         hinh_anh = mnc.rows[0].hinh_anh
         try {
+<<<<<<< HEAD
             if (file == undefined && img == undefined) {
                 await client.query("UPDATE manguoncuoi SET che_do='" + che_do + "' WHERE ma_mnc =" + req.params.id)
             }
@@ -87,6 +88,48 @@ router.post('/sua/:id', (req, res, next) => {
                 let fileName = addFile(file)
                 await client.query("UPDATE manguoncuoi SET tep='" + fileName + "', che_do='" + che_do + "', hinh_anh='" + imgName + "' WHERE ma_mnc =" + req.params.id)
             }
+=======
+        	if(file == undefined && img == undefined){
+  				await client.query("UPDATE manguoncuoi SET che_do='"+che_do+"' WHERE ma_mnc ="+req.params.id)
+  			}
+  			if(file == undefined && img != undefined){
+          if(hinh_anh != null){
+            fs.unlink('./public/upload/manguoncuoi/hinh_anh/' + hinh_anh, (err) => {
+              if (err) throw err;
+              console.log('successfully deleted');
+            });
+          }
+          let imgName = addImg(img)
+  				await client.query("UPDATE manguoncuoi SET che_do='"+che_do+"', hinh_anh='"+imgName+"' WHERE ma_mnc ="+req.params.id)
+  			}
+  			if(file != undefined && img == undefined){
+          if(tep != null){
+            fs.unlink('./public/upload/manguoncuoi/tep/' + tep, (err) => {
+              if (err) throw err;
+              console.log('successfully deleted');
+            });
+          }
+          let fileName = addFile(file)
+  				await client.query("UPDATE manguoncuoi SET che_do='"+che_do+"', tep='"+fileName+"' WHERE ma_mnc ="+req.params.id)
+  			}
+  			if(file != undefined && img != undefined){
+          if(tep != null){
+            fs.unlink('./public/upload/manguoncuoi/tep/' + tep, (err) => {
+              if (err) throw err;
+              console.log('successfully deleted');
+            });
+          }
+          if(hinh_anh != null){
+            fs.unlink('./public/upload/manguoncuoi/hinh_anh/' + hinh_anh, (err) => {
+              if (err) throw err;
+              console.log('successfully deleted');
+            });
+          }
+          let imgName = addImg(img)
+          let fileName = addFile(file)
+  				await client.query("UPDATE manguoncuoi SET tep='"+fileName+"', che_do='"+che_do+"', hinh_anh='"+imgName+"' WHERE ma_mnc ="+req.params.id)
+  			}
+>>>>>>> e8dfaa34554be732031c915e68b681122921ea9d
             req.flash("success", "Sửa thông tin mã nguồn cuối thành công")
             res.redirect("/manguoncuoi/danhsach")
         } finally {
@@ -100,6 +143,7 @@ router.post('/sua/:id', (req, res, next) => {
   } else res.redirect('./dangnhap')
 })
 
+<<<<<<< HEAD
 function addImg(img) {
     let imgName = Date.now() + Math.floor((Math.random() * 100) + 1) + img.name
     if (imgName.length >= 255) imgName = imgName.slice(imgName.length - 100, 100)
@@ -116,6 +160,24 @@ function addFile(file) {
         if (err) return res.status(500).send(err)
     })
     return fileName
+=======
+function addImg(img){
+	let imgName = Date.now() + Math.floor((Math.random() * 100) + 1) + img.name
+	if(imgName.length >= 255) imgName = imgName.slice(imgName.length-100, 100)
+	img.mv('./public/upload/manguoncuoi/hinh_anh/'+imgName, function(err) {
+		if (err) return res.status(500).send(err)
+	})
+	return imgName
+}
+
+function addFile(file){
+	let fileName = Date.now() + Math.floor((Math.random() * 100) + 1) + file.name
+	if(fileName.length >= 255) fileName = fileName.slice(fileName.length-100, 100)
+	file.mv('./public/upload/manguoncuoi/tep/'+fileName, function(err) {
+		if (err) return res.status(500).send(err)
+	})
+	return fileName
+>>>>>>> e8dfaa34554be732031c915e68b681122921ea9d
 }
 
 router.get('/xoa/:id', (req, res, next) => {
@@ -126,6 +188,7 @@ router.get('/xoa/:id', (req, res, next) => {
             const mnc = await client.query('SELECT hinh_anh, tep FROM manguoncuoi WHERE ma_mnc=' + req.params.id)
             hinh_anh = mnc.rows[0].hinh_anh
             tep = mnc.rows[0].tep
+<<<<<<< HEAD
             if (tep != null) {
                 fs.unlink('./public/manguoncuoi/tep/' + tep, (err) => {
                     if (err) throw err;
@@ -137,6 +200,19 @@ router.get('/xoa/:id', (req, res, next) => {
                     if (err) throw err;
                     console.log('successfully deleted');
                 });
+=======
+            if(tep != null){
+              fs.unlink('./public/upload/manguoncuoi/tep/' + tep, (err) => {
+              if (err) throw err;
+                console.log('successfully deleted');
+              });
+            }
+            if(hinh_anh != null){
+              fs.unlink('./public/upload/manguoncuoi/hinh_anh/' + hinh_anh, (err) => {
+              if (err) throw err;
+                console.log('successfully deleted');
+              });
+>>>>>>> e8dfaa34554be732031c915e68b681122921ea9d
             }
             await client.query("DELETE FROM manguoncuoi WHERE ma_mnc=" + req.params.id)
             req.flash("success", "Xoá mã nguồn cuối thành công")
