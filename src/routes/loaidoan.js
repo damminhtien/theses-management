@@ -17,7 +17,7 @@ router.get('/danhsach', (req, res, next) => {
                 client.release()
             }
         })().catch(e => console.log(e.stack))
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.post('/them', (req, res, next) => {
@@ -36,7 +36,7 @@ router.post('/them', (req, res, next) => {
             console.log(e.stack)
             req.flash("error", "Thêm loại đồ án thất bại / Lỗi: " + e.stack)
         })
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.get('/xoa/:id', (req, res, next) => {
@@ -56,7 +56,7 @@ router.get('/xoa/:id', (req, res, next) => {
             console.log(e.stack)
             req.flash("error", "Xóa loại đồ án thất bại / Lỗi: " + e.stack)
         })
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.post('/sua/:id', (req, res, next) => {
@@ -75,5 +75,5 @@ router.post('/sua/:id', (req, res, next) => {
             console.log(e.stack)
             req.flash("error", "Sửa loại đồ án "+ten_lda+" thất bại / Lỗi: " + e.stack)
         })
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })

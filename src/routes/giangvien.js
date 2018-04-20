@@ -20,7 +20,7 @@ router.get('/danhsach', (req, res, next) => {
                 client.release()
             }
         })().catch(e => console.log(e.stack))
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.get('/them', (req, res, next) => {
@@ -34,7 +34,7 @@ router.get('/them', (req, res, next) => {
                 client.release()
             }
         })().catch(e => console.log(e.stack))
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.post('/them', (req, res, next) => {
@@ -58,7 +58,7 @@ router.post('/them', (req, res, next) => {
             req.flash("error", "Thêm giảng viên thất bại / Lỗi: " + e.message)
             res.redirect("/giangvien/danhsach")
         })
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.get('/xoa/:id', (req, res, next) => {
@@ -78,7 +78,7 @@ router.get('/xoa/:id', (req, res, next) => {
             console.log(e.stack)
             req.flash("error", "Xóa giảng viên thất bại / Lỗi: " + e.stack)
         })
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.get('/sua/:id', (req, res, next) => {
@@ -93,7 +93,7 @@ router.get('/sua/:id', (req, res, next) => {
                 client.release()
             }
         })().catch(e => console.log(e.stack))
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.post('/sua/:id', (req, res, next) => {
@@ -115,5 +115,5 @@ router.post('/sua/:id', (req, res, next) => {
             console.log(e.stack)
             req.flash("error", "Sửa thông tin giảng viên thất bại / Lỗi: " + e.stack)
         })
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })

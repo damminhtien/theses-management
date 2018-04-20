@@ -97,7 +97,7 @@ passport.deserializeUser(function(user, done) {
                 return console.error('Error executing query', err.stack)
             }
             result.rows.forEach(function(usr) {
-                if (usr.ma_sv == user.ma_sv) {
+                if (usr.id == user.id) {
                     return done(null, user);
                 }    
             });

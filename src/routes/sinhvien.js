@@ -1,9 +1,9 @@
 const Router = require('express-promise-router')
 const router = new Router()
 const pool = require('../model')
-var bodyParser = require('body-parser')
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
-var md5 = require('md5');
+const bodyParser = require('body-parser')
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const md5 = require('md5');
 
 router.use(bodyParser.urlencoded({ extended: false }))
 
@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
                 client.release()
             }
         })().catch(e => console.log(e.stack))
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.get('/danhsach', (req, res, next) => {
@@ -33,7 +33,7 @@ router.get('/danhsach', (req, res, next) => {
                 client.release()
             }
         })().catch(e => console.log(e.stack))
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.get('/them', (req, res, next) => {
@@ -47,7 +47,7 @@ router.get('/them', (req, res, next) => {
                 client.release()
             }
         })().catch(e => console.log(e.stack))
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.post('/them', (req, res, next) => {
@@ -71,7 +71,7 @@ router.post('/them', (req, res, next) => {
             req.flash("error", "Thêm sinh viên thất bại / Lỗi: " + e.message)
             res.redirect("/sinhvien/danhsach")
         })
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.get('/xoa/:id', (req, res, next) => {
@@ -91,7 +91,7 @@ router.get('/xoa/:id', (req, res, next) => {
             console.log(e.stack)
             req.flash("error", "Xóa sinh viên thất bại / Lỗi: " + e.stack)
         })
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.get('/sua/:id', (req, res, next) => {
@@ -105,7 +105,7 @@ router.get('/sua/:id', (req, res, next) => {
                 client.release()
             }
         })().catch(e => console.log(e.stack))
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.post('/sua/:id', (req, res, next) => {
@@ -129,5 +129,5 @@ router.post('/sua/:id', (req, res, next) => {
             console.log(e.stack)
             req.flash("error", "Sửa thông tin sinh viên thất bại / Lỗi: " + e.stack)
         })
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })

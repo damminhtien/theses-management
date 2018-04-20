@@ -25,6 +25,6 @@ router.get('/', (req, res) => {
     req.logout()
     req.session.destroy()
     res.redirect('/')
-});
+})
 
-module.exports = router;
+module.exports = router

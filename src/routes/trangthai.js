@@ -1,8 +1,8 @@
 const Router = require('express-promise-router')
 const router = new Router()
 const pool = require('../model')
-var bodyParser = require('body-parser')
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+const bodyParser = require('body-parser')
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
 router.use(bodyParser.urlencoded({ extended: false }))
 
 module.exports = router
@@ -18,7 +18,7 @@ router.get('/danhsach', (req, res, next) => {
                 client.release()
             }
         })().catch(e => console.log(e.stack))
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.post('/them', (req, res, next) => {
@@ -38,7 +38,7 @@ router.post('/them', (req, res, next) => {
             console.log(e.stack)
             req.flash("error", "Thêm trạng thái thất bại / Lỗi: " + e.stack)
         })
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.get('/xoa/:id', (req, res, next) => {
@@ -58,7 +58,7 @@ router.get('/xoa/:id', (req, res, next) => {
             console.log(e.stack)
             req.flash("error", "Xóa trạng thái thất bại / Lỗi: " + e.stack)
         })
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.post('/sua/:id', (req, res, next) => {
@@ -77,5 +77,5 @@ router.post('/sua/:id', (req, res, next) => {
             console.log(e.stack)
             req.flash("error", "Sửa trạng thái "+ten_tt+" thất bại / Lỗi: " + e.stack)
         })
-    } else res.redirect('./dangnhap')
+    } else res.redirect('/dangnhap')
 })
