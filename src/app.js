@@ -5,10 +5,11 @@ const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const lessMiddleware = require('less-middleware')
+const session = require('express-session')
+const fileUpload = require('express-fileupload');
 const app = express()
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-const session = require('express-session')
 const pool = require(__dirname + '/model/index')
 const md5 = require('md5')
 
@@ -41,6 +42,7 @@ app.use(function(req, res, next) {
     }, [])
     next()
 })
+app.use(fileUpload())
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(passport.initialize())
