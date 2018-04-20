@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%include ../admin/layout/header%>
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <%include ../admin/layout/menu%>
+                <!-- your code here -->
+                <div class="right_col" role="main">
+                	<h2 class="text-center">THÊM THÔNG BÁO</h2>
+                    <form data-parsley-validate class="form-horizontal form-label-left" action="/thongbao/them" method="post" accept-charset="utf-8">
+                        <div class="modal-body row">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#tieu_de">Tiêu đề<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="" required="required" class="form-control col-md-7 col-xs-12" name="tieu_de">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#noi_dung">Nội dung<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <textarea style="padding: 5px" name="noi_dung">
+                                        <p style="text-align: center; font-size: 15px;"></p>
+      
+                                    </textarea>
+                                </div>
+                            </div>
+                            	
+                            <div class="col-md-7"></div>
+                            <div class="form-group">
+                            	<button type="reset" class="btn btn-default">Làm mới</button>
+                            	<button type="submit" class="btn btn-primary">Xác nhận</button>
+                        	</div>
+                        </div>
+                    </form>
+                </div>
+                <!-- your code end-->
+                <%include ../admin/layout/footer%>
+        </div>
+    </div>
+    <%include ../admin/layout/script%>
+    <script  src="/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script  src="/tinymce/tinymce.js"></script>
+
+</body>
+
+</html>
