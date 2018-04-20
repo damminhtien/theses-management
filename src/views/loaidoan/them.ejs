@@ -1,0 +1,26 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="themModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">Thêm khoa viện</h4>
+            </div>
+            <form data-parsley-validate class="form-horizontal form-label-left" action="/loaidoan/them" method="post" accept-charset="utf-8">
+                <div class="modal-body row">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ten_lda">Tên loại đồ án<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="ten_lda" required="required" class="form-control col-md-7 col-xs-12" name="ten_lda">
+                        </div>
+                    </div>  
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-default">Làm mới</button>
+                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
