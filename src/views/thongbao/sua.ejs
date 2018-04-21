@@ -11,14 +11,16 @@
             <%include ../admin/layout/menu%>
                 <!-- your code here -->
                 <div class="right_col" role="main">
-                	<h2 class="text-center">THÊM THÔNG BÁO</h2>
-                    <form data-parsley-validate class="form-horizontal form-label-left" action="/thongbao/them" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                	<h2 class="text-center">SỬA THÔNG TIN THÔNG BÁO <%=thongbao.ma_tb%></h2>
+                    <form data-parsley-validate class="form-horizontal form-label-left" action="/thongbao/sua/<%=thongbao.ma_tb%>" method="post" accept-charset="utf-8" encType="multipart/form-data">
                         <div class="modal-body row">
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#tieu_de">Tiêu đề<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="" required="required" class="form-control col-md-7 col-xs-12" name="tieu_de">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="tieu_de" value="<%=thongbao.tieu_de%>">
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -26,8 +28,9 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <input type="file" class="form-control" name="tep">
+                                        <input type="file" class="form-control" name="tep" value="<%=thongbao.tep%>">
                                     </div>
+                                    <div><%=thongbao.tep%></div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -35,8 +38,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <textarea style="padding: 5px" name="noi_dung">
-                                        <p style="text-align: center; font-size: 15px;"></p>
-      
+                                        <%=thongbao.noi_dung%>
                                     </textarea>
                                 </div>
                             </div>
@@ -45,13 +47,12 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <input type="file" class="form-control" name="img">
+                                        <input type="file" class="form-control" name="img" value="<%=thongbao.hinh_anh%>">
                                     </div>
                                     <img id="imgPre" width="200px auto" src="/upload/thongbao/hinh_anh/<%=thongbao.hinh_anh%>">
                                 </div>
                             </div>
-                            	
-                            <div class="col-md-7"></div>
+                            <div class="col-md-7"></div>	
                             <div class="form-group">
                             	<button type="reset" class="btn btn-default">Làm mới</button>
                             	<button type="submit" class="btn btn-primary">Xác nhận</button>
@@ -85,7 +86,6 @@
             });
         })
     </script>
-
 </body>
 
 </html>

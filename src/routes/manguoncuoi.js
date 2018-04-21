@@ -10,7 +10,7 @@ router.use(bodyParser.urlencoded({ extended: false }))
 module.exports = router
 
 router.get('/danhsach', (req, res, next) => {
-  if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+  // if(req.isAuthenticated() && req._passport.session.user.id > 100000){
     (async() => {
         const client = await pool.connect()
         try {
@@ -20,11 +20,11 @@ router.get('/danhsach', (req, res, next) => {
             client.release()
         }
     })().catch(e => console.log(e.stack))
-  } else res.redirect('/dangnhap')
+  // } else res.redirect('/dangnhap')
 })
 
 router.get('/sua/:id', (req, res, next) => {
-  if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+  // if(req.isAuthenticated() && req._passport.session.user.id > 100000){
     (async() => {
         const client = await pool.connect()
         try {
@@ -34,11 +34,11 @@ router.get('/sua/:id', (req, res, next) => {
             client.release()
         }
     })().catch(e => console.log(e.stack))
-  } else res.redirect('/dangnhap')
+  // } else res.redirect('/dangnhap')
 })
 
 router.post('/sua/:id', (req, res, next) => {
-  if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+  // if(req.isAuthenticated() && req._passport.session.user.id > 100000){
     const che_do = req.body.che_do
     let file = req.files.tep
     let img = req.files.img;  
@@ -98,7 +98,7 @@ router.post('/sua/:id', (req, res, next) => {
         console.log(e.stack)
         req.flash("error", "Sửa thông tin mã nguồn cuối thất bại / Lỗi: " + e.stack)
     })
-  } else res.redirect('/dangnhap')
+  // } else res.redirect('/dangnhap')
 })
 
 function addImg(img){
@@ -120,7 +120,7 @@ function addFile(file){
 }
 
 router.get('/xoa/:id', (req, res, next) => {
-  if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+  // if(req.isAuthenticated() && req._passport.session.user.id > 100000){
     (async() => {
         const client = await pool.connect()
         try {
@@ -149,5 +149,5 @@ router.get('/xoa/:id', (req, res, next) => {
         console.log(e.stack)
         req.flash("error", "Xóa mã nguồn cuối thất bại / Lỗi: " + e.stack)
     })
-  } else res.redirect('/dangnhap')
+  // } else res.redirect('/dangnhap')
 })
