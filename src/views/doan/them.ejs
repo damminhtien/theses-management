@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%include ../admin/layout/header%>
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <%include ../admin/layout/menu%>
+                <!-- your code here -->
+                <div class="right_col" role="main">
+                	<h2 class="text-center">THÊM ĐỒ ÁN</h2>
+                    <form data-parsley-validate class="form-horizontal form-label-left" action="/doan/them" method="post" accept-charset="utf-8" encType="multipart/form-data">
+                        <div class="modal-body row">
+                            
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#sinhvien">Sinh viên<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="ma_sv" class="form-control" id="sinhvien">
+                                        <% sinhvien.forEach((sv,i)=>{ %>
+                                            <option value="<%=sv.ma_sv%>"><%=sv.ten_sv%></option>
+                                        <%});%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#giangvien">Giảng viên<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="ma_gv" class="form-control" id="giangvien">
+                                        <% giangvien.forEach((gv,i)=>{ %>
+                                            <option value="<%=gv.ma_gv%>"><%=gv.ten_gv%></option>
+                                        <%});%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#trangthai">Trạng thái<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="ma_tt" class="form-control" id="trangthai">
+                                        <% trangthai.forEach((tt,i)=>{ %>
+                                            <option value="<%=tt.ma_tt%>"><%=tt.ten_tt%></option>
+                                        <%});%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#manguoncuoi">Mã nguồn cuối<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="ma_mnc" class="form-control" id="manguoncuoi">
+                                        <% manguoncuoi.forEach((mnc,i)=>{ %>
+                                            <option value="<%=mnc.ma_mnc%>"><%=mnc.ma_mnc%></option>
+                                        <%});%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ten_de_tai">Tên đề tài<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="ten_de_tai" required="required" class="form-control col-md-7 col-xs-12" name="ten_de_tai">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ki_hoc">Kì học<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="ki_hoc" required="required" class="form-control col-md-7 col-xs-12" name="ki_hoc">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#tep_bao_cao">Tệp báo cáo<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="file" id="tep_bao_cao" required="required" class="form-control col-md-7 col-xs-12" name="tep_bao_cao">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ghi_chu_sv">Ghi chú sinh viên<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="ghi_chu_sv" required="required" class="form-control col-md-7 col-xs-12" name="ghi_chu_sv">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ghi_chu_gv">Ghi chú giảng viên<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="ghi_chu_gv" required="required" class="form-control col-md-7 col-xs-12" name="ghi_chu_gv">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#loaidoan">Loại đồ án<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="ma_lda" class="form-control" id="loaidoan">
+                                    	<% loaidoan.forEach((lda,i)=>{ %>
+                                    		<option value="<%=lda.ma_lda%>"><%=lda.ten_lda%></option>
+                                    	<%});%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#diem">Điểm<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="diem" required="required" class="form-control col-md-7 col-xs-12" name="diem">
+                                </div>
+                            </div>
+                            <div class="col-md-7"></div>	
+                            <div class="form-group">
+                            	<button type="reset" class="btn btn-default">Làm mới</button>
+                            	<button type="submit" class="btn btn-primary">Xác nhận</button>
+                        	</div>
+                        </div>
+                    </form>
+                </div>
+                <!-- your code end-->
+                <%include ../admin/layout/footer%>
+        </div>
+    </div>
+    <%include ../admin/layout/script%>
+</body>
+
+</html>

@@ -9,6 +9,7 @@ const sinhvien = require('./sinhvien')
 const thongbao = require('./thongbao')
 const dangnhap = require('./dangnhap')
 const dangxuat = require('./dangxuat')
+const doan = require('./doan')
 
 module.exports = (app) => {
   app.use('/khoavien', khoavien)
@@ -22,4 +23,6 @@ module.exports = (app) => {
   app.use('/thongbao', thongbao)
   app.use('/dangnhap', dangnhap)
   app.use('/dangxuat', dangxuat)
+  app.use('/doan', doan)
+  //app.use('/lienhe', lienhe)
 }
