@@ -15,7 +15,8 @@ router.get('/danhsach', (req, res, next) => {
         (async() => {
             const client = await pool.connect()
             try {
-                const result = await client.query('SELECT * FROM doan, giangvien, sinhvien, manguoncuoi, loaidoan, trangthai WHERE (doan.ma_gv = giangvien.ma_gv) AND (doan.ma_sv = sinhvien.ma_sv) AND (doan.ma_mnc = manguoncuoi.ma_mnc) AND (doan.ma_lda = loaidoan.ma_lda) AND (doan.ma_tt = trangthai.ma_tt)')
+                const result = await client.query('SELECT * FROM doan, giangvien, sinhvien, loaidoan, trangthai WHERE (doan.ma_gv = giangvien.ma_gv) AND (doan.ma_sv = sinhvien.ma_sv) AND (doan.ma_lda = loaidoan.ma_lda) AND (doan.ma_tt = trangthai.ma_tt)')
+                console.log(result.rows)
                 res.render('./doan/danhsach', { doan: result.rows })
             } finally {
                 client.release()
@@ -47,7 +48,6 @@ router.post('/them', (req, res, next) => {
         const ma_gv = req.body.ma_gv
         const ma_sv = req.body.ma_sv
         const ma_tt = req.body.ma_tt
-        const ma_mnc = req.body.ma_mnc
         const ten_de_tai = req.body.ten_de_tai
         const ki_hoc = req.body.ki_hoc
         let file = req.files.tep_bao_cao
@@ -59,11 +59,11 @@ router.post('/them', (req, res, next) => {
             const client = await pool.connect()
             try {
                 if (file == undefined) {
-                    await client.query("INSERT INTO doan (ma_gv,ma_sv,ma_tt,ma_mnc,ten_de_tai,ki_hoc,ghi_chu_sv,ghi_chu_gv,ma_lda,diem) VALUES ('" + ma_gv + "','" + ma_sv + "','" + ma_tt + "','" + ma_mnc + "','" + ten_de_tai + "','" + ki_hoc + "','" + ghi_chu_sv + "','" + ghi_chu_gv + "','" + ma_lda + "','" + diem + "' )");
+                    await client.query("INSERT INTO doan (ma_gv,ma_sv,ma_tt,ten_de_tai,ki_hoc,ghi_chu_sv,ghi_chu_gv,ma_lda,diem) VALUES ('" + ma_gv + "','" + ma_sv + "','" + ma_tt + "','" + ten_de_tai + "','" + ki_hoc + "','" + ghi_chu_sv + "','" + ghi_chu_gv + "','" + ma_lda + "','" + diem + "' )");
                 }
                 if (file != undefined) {
                     let fileName = addFile(file)
-                    await client.query("INSERT INTO doan (ma_gv,ma_sv,ma_tt,ma_mnc,ten_de_tai,ki_hoc,tep_bao_cao,ghi_chu_sv,ghi_chu_gv,ma_lda,diem) VALUES ('" + ma_gv + "','" + ma_sv + "','" + ma_tt + "','" + ma_mnc + "','" + ten_de_tai + "','" + ki_hoc + "','" + fileName + "','" + ghi_chu_sv + "','" + ghi_chu_gv + "','" + ma_lda + "','" + diem + "' )");
+                    await client.query("INSERT INTO doan (ma_gv,ma_sv,ma_tt,ten_de_tai,ki_hoc,tep_bao_cao,ghi_chu_sv,ghi_chu_gv,ma_lda,diem) VALUES ('" + ma_gv + "','" + ma_sv + "','" + ma_tt + "','" + ten_de_tai + "','" + ki_hoc + "','" + fileName + "','" + ghi_chu_sv + "','" + ghi_chu_gv + "','" + ma_lda + "','" + diem + "' )");
                 }
                 req.flash("success", "Thêm đồ án thành công")
                 res.redirect("/doan/danhsach")
