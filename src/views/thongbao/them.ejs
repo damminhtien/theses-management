@@ -34,10 +34,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#noi_dung">Nội dung<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <textarea style="padding: 5px" name="noi_dung">
-                                        <p style="text-align: center; font-size: 15px;"></p>
-      
-                                    </textarea>
+                                    <textarea style="padding: 5px" name="noi_dung" id="productContentEditor"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -64,8 +61,19 @@
         </div>
     </div>
     <%include ../admin/layout/script%>
+    <script src="/javascripts/jquery-1.11.1.min.js"></script>
+    <script src="/javascripts/ckeditor/ckeditor.js"></script>
     <script type="text/javascript">
         $(document).ready(()=>{
+            CKEDITOR.config.extraPlugins = 'filebrowser';
+            CKEDITOR.config.language = 'en';
+            CKEDITOR.config.fillEmptyBlocks = false;
+            CKEDITOR.replace( 'productContentEditor' , {
+            filebrowserBrowseUrl: '/javascripts/ckeditor/plugins/filemanager/browser/default/browser.html?Connector=/browser/browse',
+            filebrowserUploadUrl: '/uploader/upload?Type=File',
+            filebrowserImageUploadUrl: '/uploader/upload?Type=Image',
+            filebrowserFlashUploadUrl: '/uploader/upload?Type=Flash'
+            });
             function readURL(input) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
