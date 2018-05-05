@@ -24,6 +24,7 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pg": "^7.4.1",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "~2.4.5",
+    "wysiwyg-editor-node-sdk": "^2.3.4"
   }
 }
