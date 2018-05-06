@@ -175,3 +175,44 @@ router.get('/xoa/:id', (req, res, next) => {
         })
     } else res.redirect('/dangnhap')
 });
+
+// ajax
+// lay do an theo khoa vien
+// loaidoan = 0, lay tat ca cac loai do an
+// khoavien = 0, lay tat ca khoa vien
+// d = 0, lay tat ca ban ghi
+router.get("/loaidoan=:lda/khoavien=:kv/from=:s/limit=:d", (req, res) => {
+    const lda = req.params.lda,
+        kv = req.params.kv,
+        s = req.params.s,
+        d = req.params.d;
+    let query;
+    if (lda == 0) {
+        if (kv == 0)
+            query = "SELECT * FROM doan, sinhvien, giangvien WHERE doan.ma_sv = sinhvien.ma_sv AND doan.ma_tt = 1 AND doan.ma_gv = giangvien.ma_gv"
+        else
+            query = "SELECT * FROM doan, sinhvien, giangvien WHERE doan.ma_sv = sinhvien.ma_sv AND doan.ma_tt = 1 AND doan.ma_gv = giangvien.ma_gv AND giangvien.ma_kv = '" + kv + "'"
+    } else {
+        if (kv == 0)
+            query = "SELECT * FROM doan, sinhvien, giangvien WHERE doan.ma_sv = sinhvien.ma_sv AND doan.ma_tt = 1 AND doan.ma_gv = giangvien.ma_gv AND doan.ma_lda = " + lda
+        else
+            query = "SELECT * FROM doan, sinhvien, giangvien WHERE doan.ma_sv = sinhvien.ma_sv AND doan.ma_tt = 1 AND doan.ma_gv = giangvien.ma_gv AND doan.ma_lda = " + lda + " AND giangvien.ma_kv = '" + kv + "'"
+    }
+    if(d != 0){
+        query += " OFFSET " + s + " LIMIT " + d
+    }
+    console.log(query);
+    pool.connect((err, client, release) => {
+        if (err) {
+            return console.error('Error acquiring client', err.stack);
+        }
+        client.query(query, (err, result) => {
+            release();
+            if (err) {
+                res.end();
+                return console.error('Error executing query', err.stack)
+            }
+            res.json({ doan: result.rows.reverse(), usr: req._passport.session });
+        })
+    })
+});
