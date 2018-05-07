@@ -11,7 +11,7 @@ router.use(bodyParser.urlencoded({ extended: false }))
 module.exports = router
 
 router.get('/danhsach', (req, res, next) => {
-    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    // if(req.isAuthenticated() && req._passport.session.user.id > 100000){
         (async() => {
             const client = await pool.connect()
             try {
@@ -22,12 +22,12 @@ router.get('/danhsach', (req, res, next) => {
             }
         })().catch(e => console.log(e.stack))
 
-    } else res.redirect('/dangnhap')
+    // } else res.redirect('/dangnhap')
     
 });
 
 router.get('/them', (req, res, next) => {
-    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    // if(req.isAuthenticated() && req._passport.session.user.id > 100000){
         (async() => {
             const client = await pool.connect()
             try {
@@ -36,11 +36,11 @@ router.get('/them', (req, res, next) => {
                 client.release()
             }
         })().catch(e => console.log(e.stack))
-    } else res.redirect('/dangnhap')
+    // } else res.redirect('/dangnhap')
 });
 
 router.post('/them', (req, res, next) => {
-    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    // if(req.isAuthenticated() && req._passport.session.user.id > 100000){
         const tieu_de = req.body.tieu_de
         const noi_dung = req.body.noi_dung
         let file = req.files.tep
@@ -77,12 +77,12 @@ router.post('/them', (req, res, next) => {
             res.redirect("/thongbao/danhsach")
         })
 
-    } else res.redirect('/dangnhap')
+    // } else res.redirect('/dangnhap')
     
 });
 
 router.get('/xoa/:id', (req, res, next) => {
-    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    // if(req.isAuthenticated() && req._passport.session.user.id > 100000){
         (async() => {
             const client = await pool.connect()
             try {
@@ -113,11 +113,11 @@ router.get('/xoa/:id', (req, res, next) => {
             req.flash("error", "Xóa thông báo thất bại / Lỗi: " + e.stack)
         })
 
-    } else res.redirect('/dangnhap')
+    // } else res.redirect('/dangnhap')
 });
 
 router.get('/sua/:id', (req, res, next) => {
-    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    // if(req.isAuthenticated() && req._passport.session.user.id > 100000){
         (async() => {
             const client = await pool.connect()
             try {
@@ -127,11 +127,11 @@ router.get('/sua/:id', (req, res, next) => {
                 client.release()
             }
         })().catch(e => console.log(e.stack))
-    } else res.redirect('/dangnhap')
+    // } else res.redirect('/dangnhap')
 });
 
 router.post('/sua/:id', (req, res, next) => {
-    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    // if(req.isAuthenticated() && req._passport.session.user.id > 100000){
         const tieu_de = req.body.tieu_de
         const noi_dung = req.body.noi_dung
         let file = req.files.tep
@@ -193,7 +193,7 @@ router.post('/sua/:id', (req, res, next) => {
             console.log(e.stack)
             req.flash("error", "Sửa thông tin thông báo thất bại / Lỗi: " + e.stack)
         })
-    } else res.redirect('/dangnhap')
+    // } else res.redirect('/dangnhap')
 });
 
 function addImg(img){
