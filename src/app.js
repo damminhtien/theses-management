@@ -42,12 +42,19 @@ app.use(function(req, res, next) {
     }, [])
     next()
 })
-app.use(fileUpload())
 
+app.use(fileUpload())
+app.use(logger('dev'))
+app.use(require('skipper')())
+app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(passport.initialize())
 app.use(cookieParser())
 app.use(passport.session())
+const browser = require('file-manager-js')
+app.all('/browser/browse', browser.browse)
+app.post('/uploader/upload', browser.upload)
+
 const mountRoutes = require('./routes')
 mountRoutes(app)
 

@@ -39,11 +39,11 @@ router.get('/them', (req, res, next) => {
 
 router.post('/them', (req, res, next) => {
     if(req.isAuthenticated() && req._passport.session.user.id > 100000){
-        const ten_gv = req.body.ten_gv;
+        const ten_gv = req.body.ten_gv
         const email = req.body.email
         const sdt = req.body.sdt
         const ma_kv = req.body.ma_kv
-        const mat_khau = req.body.email
+        const mat_khau = req.body.email;
         (async() => {
             const client = await pool.connect()
             try {
@@ -101,7 +101,7 @@ router.post('/sua/:id', (req, res, next) => {
         const ten_gv = req.body.ten_gv
         const email = req.body.email
         const sdt = req.body.sdt
-        const ma_kv = req.body.ma_kv
+        const ma_kv = req.body.ma_kv;
         (async() => {
             const client = await pool.connect()
             try {

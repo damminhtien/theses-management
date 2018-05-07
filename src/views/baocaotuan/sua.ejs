@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%include ../admin/layout/header%>
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <%include ../admin/layout/menu%>
+                <!-- your code here -->
+                <div class="right_col" role="main">
+                	<h2 class="text-center">SỬA THÔNG TIN BÁO CÁO TUẦN <%=baocaotuan.ma_bct%></h2>
+                    <form data-parsley-validate class="form-horizontal form-label-left" action="/baocaotuan/sua/<%=baocaotuan.ma_bct%>" method="post" accept-charset="utf-8" encType="multipart/form-data">
+                        <div class="modal-body row">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#doan">Đồ án<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="ma_da" class="form-control" id="doan">
+                                        <% for(let i=0; i<doan.length; i++){
+                                            if(baocaotuan.ma_da === doan[i].ma_da){
+                                                ma_da = doan[i].ma_da;
+                                                break;
+                                            }
+                                        }%>
+                                        <option value="<%=baocaotuan.ma_da%>"><%=ma_da%></option>
+                                        <% doan.forEach((da,i)=>{ %>
+                                            <option value="<%=da.ma_da%>"><%=da.ma_da%></option>
+                                        <%});%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#sinhvien">Sinh viên<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="ma_sv" class="form-control" id="sinhvien">
+                                        <% for(let i=0; i<sinhvien.length; i++){
+                                            if(baocaotuan.ma_sv === sinhvien[i].ma_sv){
+                                                ten_sv = sinhvien[i].ten_sv;
+                                                break;
+                                            }
+                                        }%>
+                                        <option value="<%=baocaotuan.ma_sv%>"><%=ten_sv%></option>
+                                        <% sinhvien.forEach((sv,i)=>{ %>
+                                            <option value="<%=sv.ma_sv%>"><%=sv.ten_sv%></option>
+                                        <%});%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#trangthai">Trạng thái<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="ma_tt" class="form-control" id="trangthai">
+                                        <% for(let i=0; i<trangthai.length; i++){
+                                            if(baocaotuan.ma_tt === trangthai[i].ma_tt){
+                                                ten_tt = trangthai[i].ten_tt;
+                                                break;
+                                            }
+                                        }%>
+                                        <option value="<%=baocaotuan.ma_tt%>"><%=ten_tt%></option>
+                                        <% trangthai.forEach((tt,i)=>{ %>
+                                            <option value="<%=tt.ma_tt%>"><%=tt.ten_tt%></option>
+                                        <%});%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#tep">Tệp báo cáo tuần<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <input type="file" class="form-control" name="tep" value="<%=baocaotuan.tep%>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#thoi_gian_upload">Thời gian upload<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="date" id="thoi_gian_upload" required="required" class="form-control col-md-7 col-xs-12" name="thoi_gian_upload" value="<%=baocaotuan.thoi_gian_upload%>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ghi_chu">Ghi chú<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="ghi_chu" required="required" class="form-control col-md-7 col-xs-12" name="ghi_chu" value="<%=baocaotuan.ghi_chu%>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#diem">Điểm<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="diem" required="required" class="form-control col-md-7 col-xs-12" name="diem" value="<%=baocaotuan.diem%>">
+                                </div>
+                            </div>
+                            <div class="col-md-7"></div>	
+                            <div class="form-group">
+                            	<button type="reset" class="btn btn-default">Làm mới</button>
+                            	<button type="submit" class="btn btn-primary">Xác nhận</button>
+                        	</div>
+                        </div>
+                    </form>
+                </div>
+                <!-- your code end-->
+                <%include ../admin/layout/footer%>
+        </div>
+    </div>
+    <%include ../admin/layout/script%>
+</body>
+
+</html>
