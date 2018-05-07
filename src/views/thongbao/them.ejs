@@ -61,8 +61,13 @@
         </div>
     </div>
     <%include ../admin/layout/script%>
-    <script src="/javascripts/jquery-1.11.1.min.js"></script>
-    <script src="/javascripts/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+      CKEDITOR.replace('ckeditor', {
+        "extraPlugins" : 'imagebrowser',
+        "imageBrowser_listUrl" : "/files"
+      });
+    </script>
     <script type="text/javascript">
         $(document).ready(()=>{
             CKEDITOR.config.extraPlugins = 'filebrowser';
