@@ -8,7 +8,18 @@ router.use(bodyParser.urlencoded({ extended: false }))
 module.exports = router
 
 router.get('/', (req, res, next) => {
-	res.render('./homepage/index', {usr: req._passport.session})
+    (async() => {
+        const client = await pool.connect()
+        try {
+            const result = await client.query("Select * from khoavien ");  
+            res.render('./homepage/index', {usr: req._passport.session, khoavien: result.rows })  
+        } finally {
+            client.release()
+        }
+    })(req,res).catch((e) => {
+        console.log(e.stack)
+    })
+	
 });
 
 router.post('/search', (req, res, next) => {
@@ -27,3 +38,21 @@ router.post('/search', (req, res, next) => {
         // req.flash("error", "Tìm kiếm thất bại / Lỗi: " + e.message)
     })
 })
+
+router.get('/kv/:id', (req, res, next) => {
+    
+    (async() => {
+        const client = await pool.connect()
+        try {
+            const result1 = await client.query('SELECT * FROM khoavien')
+            const result2 = await client.query('SELECT * FROM ((doan natural join giangvien) natural join khoavien) INNER JOIN sinhvien using (ma_sv) where ma_kv='+req.params.id)
+            const result3 = await client.query('SELECT * FROM khoavien where ma_kv='+req.params.id)
+            res.render('./khoavien/doan',{usr: req._passport.session, kv: result3.rows[0] , khoavien: result1.rows, doan: result2.rows})   
+        } finally {
+            client.release()
+        }
+    })(req,res).catch((e) => {
+        console.log(e.stack)
+    })
+})
+

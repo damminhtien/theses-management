@@ -13,7 +13,18 @@
         <div class="collapse navbar-collapse" id="top-navbar-1">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Trang chủ</a></li>
-                <li><a href="#">Tính năng</a></li>
+                <li class="dropdown"><a href="#" data-toggle="dropdown">Khoa viện</a>
+                        
+                    <ul class="dropdown-menu">
+                        <% if(khoavien != null ){ 
+                        khoavien.forEach((kv,i)=>{%>
+                            <li><a href="/kv/<%=kv.ma_kv%>" class="btn text-info" style="color: black;float: left;"></span><%=kv.ten_kv%></a></li>
+                        <%})}%>
+                    
+                    </ul>
+                            
+                </li>
+                    
                 <li><a href="#">Đồ án</a></li>
                 <li><a href="#">Tham khảo</a></li>
                 <li><a href="#">Tin tức</a></li>
