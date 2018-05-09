@@ -13,9 +13,9 @@ jQuery(document).ready(function() {
     */
     $('.top-content').backstretch(
         [
-            "assets/img/book.jpg",
-            "assets/img/book1.jpg",
-            "assets/img/book2.jpg"
+            "/assets/img/book.jpg",
+            "/assets/img/book1.jpg",
+            "/assets/img/book2.jpg"
         ],
         {
             transition:'pushLeft',

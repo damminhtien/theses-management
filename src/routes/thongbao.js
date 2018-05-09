@@ -21,9 +21,8 @@ router.get('/danhsach', (req, res, next) => {
                 client.release()
             }
         })().catch(e => console.log(e.stack))
-
     } else res.redirect('/dangnhap')
-
+    
 });
 
 router.get('/them', (req, res, next) => {
@@ -76,9 +75,8 @@ router.post('/them', (req, res, next) => {
             req.flash("error", "Thêm thông báo thất bại / Lỗi: " + e.message)
             res.redirect("/thongbao/danhsach")
         })
-
     } else res.redirect('/dangnhap')
-
+    
 });
 
 router.get('/xoa/:id', (req, res, next) => {
@@ -112,7 +110,6 @@ router.get('/xoa/:id', (req, res, next) => {
             console.log(e.stack)
             req.flash("error", "Xóa thông báo thất bại / Lỗi: " + e.stack)
         })
-
     } else res.redirect('/dangnhap')
 });
 
@@ -193,7 +190,7 @@ router.post('/sua/:id', (req, res, next) => {
             console.log(e.stack)
             req.flash("error", "Sửa thông tin thông báo thất bại / Lỗi: " + e.stack)
         })
-    } else res.redirect('/dangnhap')
+    // } else res.redirect('/dangnhap')
 });
 
 function addImg(img) {
@@ -205,11 +202,11 @@ function addImg(img) {
     return imgName
 }
 
-function addFile(file) {
-    let fileName = Date.now() + Math.floor((Math.random() * 100) + 1) + file.name
-    if (fileName.length >= 255) fileName = fileName.slice(fileName.length - 100, 100)
-    file.mv('./public/upload/thongbao/tep/' + fileName, function(err) {
-        if (err) return res.status(500).send(err)
-    })
-    return fileName
+function addFile(file){
+  let fileName = Date.now() + Math.floor((Math.random() * 100) + 1) + file.name
+  if(fileName.length >= 255) fileName = fileName.slice(fileName.length-100, 100)
+  file.mv('./public/upload/thongbao/tep/'+fileName, function(err) {
+    if (err) return res.status(500).send(err)
+  })
+  return fileName
 }
