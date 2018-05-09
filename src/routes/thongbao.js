@@ -190,7 +190,7 @@ router.post('/sua/:id', (req, res, next) => {
             console.log(e.stack)
             req.flash("error", "Sửa thông tin thông báo thất bại / Lỗi: " + e.stack)
         })
-    // } else res.redirect('/dangnhap')
+    } else res.redirect('/dangnhap')
 });
 
 function addImg(img) {
