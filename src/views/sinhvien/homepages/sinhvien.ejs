@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%include ../../homepage/layout/header%>
+    <link rel="stylesheet" type="text/css" href="./stylesheets/sinhvien_homepages.css">
+</head>
+
+<body>
+    <div class="container animated fadeInDown" id="wallpaper">
+        <div class="row">
+            <img src="/images/ava.jpg" alt="ava" id="ava" class="img-circle img-responsive">
+            <h1 class="text-center"><%= usr.ten_sv%></h1>
+            <h4 class="text-center"><i>"Thích du lịch, đọc sách, nghe nhạc và khám phá thế giới"</i></h4>
+        </div>
+    </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <% include sinhvien-left %>
+            <% include sinhvien-right %>
+        </div>
+    </div>
+    <%include ../../homepage/layout/footer%>
+    <%include ../../homepage/layout/script%>
+    <script src="./javascripts/sinhvien_homepages.js"></script>
+</body>
+
