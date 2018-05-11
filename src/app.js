@@ -92,7 +92,7 @@ app.use(function(req, res, next) {
 
 app.use(fileUpload())
 app.use(logger('dev'))
-app.use(require('skipper')())
+// app.use(require('skipper')())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(passport.initialize())

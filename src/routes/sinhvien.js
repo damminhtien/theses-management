@@ -10,7 +10,7 @@ router.use(bodyParser.urlencoded({ extended: false }))
 module.exports = router
 
 router.get('/', (req, res, next) => {
-    //if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
         (async() => {
             const client = await pool.connect()
             try {
@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
                 client.release()
             }
         })().catch(e => console.log(e.stack))
-    //} else res.redirect('/dangnhap')
+    } else res.redirect('/dangnhap')
 })
 
 router.get('/danhsach', (req, res, next) => {
