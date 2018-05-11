@@ -10,6 +10,21 @@ const md5 = require('md5')
 
 module.exports = router
 
+router.get('/', (req, res, next) => {
+    (async() => {
+        const client = await pool.connect()
+        try {
+            const doan = await client.query('SELECT * FROM doan, giangvien, sinhvien, loaidoan, trangthai, manguoncuoi WHERE (doan.ma_gv = giangvien.ma_gv) AND (doan.ma_sv = sinhvien.ma_sv) AND (doan.ma_lda = loaidoan.ma_lda) AND (doan.ma_tt = trangthai.ma_tt) AND trangthai.ma_tt = 1 AND manguoncuoi.ma_da = doan.ma_da AND manguoncuoi.che_do = 1')
+            const doandiemcao = await client.query('SELECT * FROM doan, giangvien, sinhvien, loaidoan, trangthai, manguoncuoi WHERE (doan.ma_gv = giangvien.ma_gv) AND (doan.ma_sv = sinhvien.ma_sv) AND (doan.ma_lda = loaidoan.ma_lda) AND (doan.ma_tt = trangthai.ma_tt) AND trangthai.ma_tt = 1 AND manguoncuoi.ma_da = doan.ma_da AND manguoncuoi.che_do = 1 ORDER BY doan.diem DESC LIMIT 10')
+            const doanmoinhat = await client.query('SELECT * FROM doan, giangvien, sinhvien, loaidoan, trangthai, manguoncuoi WHERE (doan.ma_gv = giangvien.ma_gv) AND (doan.ma_sv = sinhvien.ma_sv) AND (doan.ma_lda = loaidoan.ma_lda) AND (doan.ma_tt = trangthai.ma_tt) AND trangthai.ma_tt = 1 AND manguoncuoi.ma_da = doan.ma_da AND manguoncuoi.che_do = 1 ORDER BY doan.ma_da DESC LIMIT 10')
+            const khoavien = await client.query('SELECT * FROM khoavien')
+            res.render('./doan/homepages/index', { doan: doan.rows, doandiemcao: doandiemcao.rows, doanmoinhat: doanmoinhat.rows, khoavien: khoavien.rows, usr: req._passport.session })
+        } finally {
+            client.release()
+        }
+    })().catch(e => console.log(e.stack))
+});
+
 router.get('/danhsach', (req, res, next) => {
     if (req.isAuthenticated() && req._passport.session.user.id == 0) {
         (async() => {

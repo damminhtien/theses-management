@@ -10,6 +10,18 @@ router.use(bodyParser.urlencoded({ extended: false }))
 
 module.exports = router
 
+router.get('/', (req, res, next) => {
+    (async() => {
+        const client = await pool.connect()
+        try {
+            const result = await client.query('SELECT * FROM thongbao')
+            res.render('./thongbao/homepage/index', { thongbao: result.rows.reverse() })
+        } finally {
+            client.release()
+        }
+    })().catch(e => console.log(e.stack))
+});
+
 router.get('/danhsach', (req, res, next) => {
     if (req.isAuthenticated() && req._passport.session.user.id == 0) {
         (async() => {
