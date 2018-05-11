@@ -8,7 +8,7 @@ router.use(bodyParser.urlencoded({ extended: false }))
 module.exports = router
 
 router.get('/danhsach', (req, res, next) => {
-    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    if(req.isAuthenticated() && req._passport.session.user.id == 0){
         (async() => {
             const client = await pool.connect()
             try {
@@ -22,7 +22,7 @@ router.get('/danhsach', (req, res, next) => {
 })
 
 router.post('/them', (req, res, next) => {
-    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    if(req.isAuthenticated() && req._passport.session.user.id == 0){
         const ten_tt = req.body.ten_tt;
         console.log(req.body);
         (async() => {
@@ -42,7 +42,7 @@ router.post('/them', (req, res, next) => {
 })
 
 router.get('/xoa/:id', (req, res, next) => {
-    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    if(req.isAuthenticated() && req._passport.session.user.id == 0){
         (async() => {
             const client = await pool.connect()
             try {
@@ -62,7 +62,7 @@ router.get('/xoa/:id', (req, res, next) => {
 })
 
 router.post('/sua/:id', (req, res, next) => {
-    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    if(req.isAuthenticated() && req._passport.session.user.id == 0){
         const ten_tt = req.body['ten_tt_sua_'+req.params.id];
         (async() => {
             const client = await pool.connect()
