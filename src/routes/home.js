@@ -27,8 +27,11 @@ router.post('/search', (req, res, next) => {
     (async() => {
         const client = await pool.connect()
         try {
-            const result = await client.query("SELECT ts_headline(doan.ten_de_tai, plainto_tsquery('"+searchterm+"'), 'maxwords=1023, minwords=50') as ten_de_tai, ten_sv, ten_gv FROM doan, sinhvien, giangvien, plainto_tsquery('"+searchterm+"') query WHERE doan.ma_sv=sinhvien.ma_sv and doan.ma_gv=giangvien.ma_gv and query @@ to_tsvector(doan.ten_de_tai) ORDER BY ts_rank_cd(to_tsvector(ten_de_tai), query) DESC");  
-            res.render('./search/searchresult',{doan: result.rows, searchterm: searchterm})     
+           
+            const result1 = await client.query("SELECT ts_headline(doan.ten_de_tai, plainto_tsquery('"+searchterm+"'), 'maxwords=1023, minwords=50') as ten_de_tai, ten_sv, ten_gv FROM doan, sinhvien, giangvien, plainto_tsquery('"+searchterm+"') query WHERE doan.ma_sv=sinhvien.ma_sv and doan.ma_gv=giangvien.ma_gv and query @@ to_tsvector(doan.ten_de_tai) ORDER BY ts_rank_cd(to_tsvector(ten_de_tai), query) DESC")  
+            const result2 = await client.query("SELECT ts_headline(vn_unaccent(doan.ten_de_tai), plainto_tsquery('"+searchterm+"'), 'maxwords=1023, minwords=50') as ten_de_tai, ten_sv, ten_gv FROM doan, sinhvien, giangvien, plainto_tsquery('"+searchterm+"') query WHERE doan.ma_sv=sinhvien.ma_sv and doan.ma_gv=giangvien.ma_gv and query @@ to_tsvector(vn_unaccent(doan.ten_de_tai)) ORDER BY ts_rank_cd(to_tsvector(vn_unaccent(doan.ten_de_tai)), query) DESC")
+            const result3 = await client.query("SELECT * FROM khoavien")
+            res.render('./search/searchresult',{usr: req._passport.session, doan1: result1.rows, doan2: result2.rows, khoavien: result3.rows, searchterm: searchterm})     
         } finally {
             client.release()
             console.log("Tìm kiếm thành công")
