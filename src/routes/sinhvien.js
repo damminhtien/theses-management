@@ -10,11 +10,14 @@ router.use(bodyParser.urlencoded({ extended: false }))
 module.exports = router
 
 router.get('/', (req, res, next) => {
-    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    if(req.isAuthenticated() && req._passport.session.user.id >=  20000000){
         (async() => {
             const client = await pool.connect()
             try {
-                res.render('./sinhvien/homepage')
+                const doan = await client.query("SELECT * FROM sinhvien as sv, doan as da, giangvien as gv, trangthai as tt, loaidoan as lda WHERE da.ma_sv=sv.ma_sv AND da.ma_gv=gv.ma_gv AND da.ma_tt = tt.ma_tt AND da.ma_lda=lda.ma_lda AND da.ma_sv='"+req._passport.session.user.id+"'")
+                const sv = await client.query("SELECT * FROM sinhvien WHERE ma_sv='"+req._passport.session.user.id+"'")
+                console.log({doan: doan.rows, usr: sv.rows[0]})
+                res.render('./sinhvien/homepages/sinhvien',{doan: doan.rows, usr: sv.rows[0]})
             } finally {
                 client.release()
             }
@@ -23,7 +26,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/danhsach', (req, res, next) => {
-    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    if(req.isAuthenticated() && req._passport.session.user.id == 0){
         (async() => {
             const client = await pool.connect()
             try {
@@ -37,7 +40,7 @@ router.get('/danhsach', (req, res, next) => {
 })
 
 router.get('/them', (req, res, next) => {
-    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    if(req.isAuthenticated() && req._passport.session.user.id == 0){
         (async() => {
             const client = await pool.connect()
             try {
@@ -51,7 +54,7 @@ router.get('/them', (req, res, next) => {
 })
 
 router.post('/them', (req, res, next) => {
-    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    if(req.isAuthenticated() && req._passport.session.user.id == 0){
         const ma_sv = req.body.ma_sv;
         const ten_sv = req.body.ten_sv;
         const khoa = req.body.khoa;
@@ -75,7 +78,7 @@ router.post('/them', (req, res, next) => {
 })
 
 router.get('/xoa/:id', (req, res, next) => {
-    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    if(req.isAuthenticated() && req._passport.session.user.id == 0){
         (async() => {
             const client = await pool.connect()
             try {
@@ -95,7 +98,7 @@ router.get('/xoa/:id', (req, res, next) => {
 })
 
 router.get('/sua/:id', (req, res, next) => {
-    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    if(req.isAuthenticated() && req._passport.session.user.id == 0){
         (async() => {
             const client = await pool.connect()
             try {
@@ -109,7 +112,7 @@ router.get('/sua/:id', (req, res, next) => {
 })
 
 router.post('/sua/:id', (req, res, next) => {
-    if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+    if(req.isAuthenticated() && req._passport.session.user.id == 0){
         const ten_sv = req.body.ten_sv;
         const khoa = req.body.khoa;
         const lop = req.body.lop;

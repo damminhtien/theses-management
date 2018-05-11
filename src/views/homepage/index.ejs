@@ -3,6 +3,9 @@
 
 <head>
 	<%include layout/header%>
+    <style type="text/css" src="/stylesheets/homepage/index.css"></style>
+    <script async="" src="/assets/js/Chart_files/analytics.js"></script>
+    <script src="/assets/js/Chart_files/Chart.bundle.js"></script>
 </head>
 
 <body>
@@ -17,6 +20,7 @@
                 <%include thongbaomoi%>
                 <%include slide%>
                 <%include noibat%>
+                <%include khampha%>
 			</div>	
 			<!-- your code end-->
 		</div>
@@ -26,7 +30,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 features section-description wow fadeIn">
-                    <h2>About this</h2>
+                    <h2>Về chúng tôi</h2>
                     <div class="divider-1">
                         <div class="line"></div>
                     </div>
@@ -36,10 +40,10 @@
                 <div class="col-sm-6 features-box wow fadeInLeft">
                     <div class="row">
                         <div class="col-sm-3 features-box-icon">
-                            <i class="fa fa-twitter"></i>
+                            <i class="fa fa-android"></i>
                         </div>
                         <div class="col-sm-9">
-                            <h3>Ut wisi enim ad minim</h3>
+                            <h3>Hỗ trợ màn hình di động</h3>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Ut wisi enim ad minim veniam, quis nostrud.
                             </p>
@@ -49,10 +53,10 @@
                 <div class="col-sm-6 features-box wow fadeInLeft">
                     <div class="row">
                         <div class="col-sm-3 features-box-icon">
-                            <i class="fa fa-instagram"></i>
+                            <i class="fa fa-calendar"></i>
                         </div>
                         <div class="col-sm-9">
-                            <h3>Sed do eiusmod tempor</h3>
+                            <h3>Cập nhật dữ liệu liên tục</h3>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Ut wisi enim ad minim veniam, quis nostrud.
                             </p>
@@ -67,7 +71,7 @@
                             <i class="fa fa-magic"></i>
                         </div>
                         <div class="col-sm-9">
-                            <h3>Quis nostrud exerci tat</h3>
+                            <h3>Sử dụng công nghệ tân tiến</h3>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Ut wisi enim ad minim veniam, quis nostrud.
                             </p>
@@ -80,7 +84,7 @@
                             <i class="fa fa-cloud"></i>
                         </div>
                         <div class="col-sm-9">
-                            <h3>Minim veniam quis nostrud</h3>
+                            <h3>Lưu trữ và tìm kiếm nhanh</h3>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Ut wisi enim ad minim veniam, quis nostrud.
                             </p>
@@ -117,6 +121,8 @@
             });
         }
     </script>
+    <script src="/assets/js/Chart_files/utils.js"></script>
+    <script src="/javascripts/homepage/index.js"></script>
 </body>
 
 </html>

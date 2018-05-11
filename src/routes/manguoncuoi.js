@@ -10,7 +10,7 @@ router.use(bodyParser.urlencoded({ extended: false }))
 module.exports = router
 
 router.get('/danhsach', (req, res, next) => {
-  if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+  if(req.isAuthenticated() && req._passport.session.user.id == 0){
     (async() => {
         const client = await pool.connect()
         try {
@@ -24,7 +24,7 @@ router.get('/danhsach', (req, res, next) => {
 })
 
 router.get('/sua/:id', (req, res, next) => {
-  if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+  if(req.isAuthenticated() && req._passport.session.user.id == 0){
     (async() => {
         const client = await pool.connect()
         try {
@@ -38,7 +38,7 @@ router.get('/sua/:id', (req, res, next) => {
 })
 
 router.post('/sua/:id', (req, res, next) => {
-  if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+  if(req.isAuthenticated() && req._passport.session.user.id == 0){
     const che_do = req.body.che_do
     let file = req.files.tep
     let img = req.files.img;  
@@ -120,7 +120,7 @@ function addFile(file){
 }
 
 router.get('/xoa/:id', (req, res, next) => {
-  if(req.isAuthenticated() && req._passport.session.user.id > 100000){
+  if(req.isAuthenticated() && req._passport.session.user.id == 0){
     (async() => {
         const client = await pool.connect()
         try {
