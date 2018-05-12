@@ -15,7 +15,7 @@
                     <li><a href="/sinhvien/doancuatoi/<%=usr.id%>"><span class="glyphicon glyphicon-file"></span> Đồ án của tôi</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="../logout"><span class="glyphicon glyphicon-log-in"></span> Đăng xuất</a></li>
+                    <li><a href="../dangxuat"><span class="glyphicon glyphicon-log-in"></span> Đăng xuất</a></li>
                 </ul>
             </div>
         </div>
@@ -29,6 +29,7 @@
                     <th>Tên đề tài</th>
                     <th>Điểm</th>
                     <th>Giảng viên HD</th>
+                    <th>Xem chi tiết</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,8 +39,8 @@
                         <td><%= da.ten_lda %></td>
                         <td><%= da.ten_de_tai %></td>
                         <td><%= da.diem %></td>
-                        <td><span id='bomon<%=i%>'></span></td>
                         <td><%=da.ten_gv%></h1><span id="giangvienhuongdan<%=i%>"></td>
+                        <td><span class="btn fa fa-eye"></span></td>
                     </tr>
                 <% }) %>
             </tbody>

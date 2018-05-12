@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<%include ../../homepage/layout/header%>
+</head>
+
+<body>
+    <!-- Top menu -->
+    <%include ../../homepage/layout/menu%>
+    <!-- Top content -->
+    <div class="top-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text wow fadeInLeft">
+                    <div id="div_search_tool">
+                        <h1>Trang chủ chia sẻ đồ án</h1>
+                        <form method="post" accept-charset="utf-8" action="/search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Tìm kiếm" id="inputSearch" name="searchterm">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit" id="btnSearch">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-sm-12">
+                            <br>
+                            Viện:
+                            <a href="/khoavien/1"><button class="btn btn-default" style="background: transparent; color:white;">CNPM</button></a>
+                            <a href="/khoavien/2"><button class="btn btn-default" style="background: transparent; color:white;">HTT</button></a>
+                            <a href="/khoavien/3"><button class="btn btn-default" style="background: transparent; color:white;">KHMT</button></a>
+                            <a href="/khoavien/4"><button class="btn btn-default" style="background: transparent; color:white;">KTMT</button></a>
+                            <a href="/khoavien/5"><button class="btn btn-default" style="background: transparent; color:white;">TT&MTT</button></a>
+                            <a href="/khoavien/6"><button class="btn btn-default" style="background: transparent; color:white;">ATTT</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container body">
+      	<div class="main_container">
+			<!-- your code here -->
+    		<div class="right_col" role="main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7 table-responsive">
+                            <%include doandiemcao%>
+                        </div>
+                        <div class="col-md-5 table-responsive">
+                            <%include doanmoinhat%>
+                        </div>
+                        <div class="col-sm-12 table-responsive">
+                            <%include tatcadoan%>
+                        </div>
+                    </div>
+                </div>
+			</div>	
+			<!-- your code end-->
+		</div>
+	</div>
+	<%include ../../homepage/layout/footer%>
+    <%include ../../homepage/layout/script%>
+    <script>
+        function openTab(tabName) {
+            let i, x;
+            x = $(".containerTab");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            $('#'+tabName).fadeIn(1500);
+        }
+    </script>
+</body>
+
+</html>

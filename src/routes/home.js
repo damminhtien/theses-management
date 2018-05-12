@@ -39,7 +39,7 @@ router.post('/search', (req, res, next) => {
     })
 })
 
-router.get('/kv/:id', (req, res, next) => {
+router.get('/khoavien/:id', (req, res, next) => {
     
     (async() => {
         const client = await pool.connect()
