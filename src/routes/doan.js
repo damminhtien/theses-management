@@ -197,7 +197,7 @@ router.get('/:id', (req, res, next) => {
         try {
             const result1 = await client.query('SELECT * FROM khoavien')
             const result2 = await client.query('select * from doan, giangvien, sinhvien, trangthai, loaidoan, khoavien where doan.ma_da='+req.params.id+' and giangvien.ma_kv=khoavien.ma_kv and doan.ma_gv=giangvien.ma_gv and doan.ma_sv = sinhvien.ma_sv and doan.ma_tt= trangthai.ma_tt and doan.ma_lda=loaidoan.ma_lda')
-            const result3 = await client.query('select * from manguoncuoi, doan where doan.ma_da='+req.params.id+' and doan.ma_mnc=manguoncuoi.ma_mnc')
+            const result3 = await client.query('select * from manguoncuoi, doan where doan.ma_da='+req.params.id+' and doan.ma_da=manguoncuoi.ma_da')
             const result4 = await client.query('select * from baocaotuan, doan, trangthai where doan.ma_da='+req.params.id+' and baocaotuan.ma_tt=trangthai.ma_tt and baocaotuan.ma_da=doan.ma_da')
             res.render('./doan/chitiet',{usr: req._passport.session, khoavien: result1.rows, doan: result2.rows[0], manguoncuoi: result3.rows[0], baocaotuan: result4.rows})
         } finally {

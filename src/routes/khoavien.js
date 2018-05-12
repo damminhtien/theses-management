@@ -80,3 +80,19 @@ router.post('/sua/:id', (req, res, next) => {
         })
     } else res.redirect('/dangnhap')
 })
+router.get('/khoavien/:id', (req, res, next) => {
+    
+    (async() => {
+        const client = await pool.connect()
+        try {
+            const result1 = await client.query('SELECT * FROM khoavien')
+            const result2 = await client.query('SELECT * FROM ((doan natural join giangvien) natural join khoavien) INNER JOIN sinhvien using (ma_sv) where ma_kv='+req.params.id)
+            const result3 = await client.query('SELECT * FROM khoavien where ma_kv='+req.params.id)
+            res.render('./khoavien/doan',{usr: req._passport.session, kv: result3.rows[0] , khoavien: result1.rows, doan: result2.rows})   
+        } finally {
+            client.release()
+        }
+    })(req,res).catch((e) => {
+        console.log(e.stack)
+    })
+})

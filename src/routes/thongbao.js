@@ -204,6 +204,22 @@ router.post('/sua/:id', (req, res, next) => {
         })
     } else res.redirect('/dangnhap')
 });
+router.get('/chitiet/:id', (req, res, next) => {
+    if (req.isAuthenticated() && req._passport.session.user.id == 0) {
+        (async() => {
+            const client = await pool.connect()
+            try {
+                const result1 = await client.query('SELECT * FROM khoavien')
+                const result2 = await client.query('SELECT * FROM thongbao WHERE ma_tb='+req.params.id)
+                res.render('./thongbao/chitiet', { usr: req._passport.session, khoavien: result1.rows, thongbao: result2.rows[0] })
+            } finally {
+                client.release()
+            }
+        })().catch(e => console.log(e.stack))
+    } else res.redirect('/dangnhap')
+});
+
+
 
 function addImg(img) {
     let imgName = Date.now() + Math.floor((Math.random() * 100) + 1) + img.name
