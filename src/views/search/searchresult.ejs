@@ -3,10 +3,38 @@
 
 <head>
     <%include ../homepage/layout/header%>
+    <style type="text/css">
+        table{
+            width:100%;
+        }
+        table,th,td{
+            border:1px solid gray;
+            border-collapse: collapse;
+        }
+        th,td{
+            padding:7px 15px;
+            border: 1px solid #ddd;
+        }
+        th{
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            background-color: #6eba3c;
+            color: white;
+        }
+        tr:nth-child(even){
+            background-color: #F0F0F0;
+        }
+        tr:hover{
+            background-color: #ddd;
+        }
+        </style>
+    
 </head>
 
 <body>
     <!-- Top menu -->
+    <%include ../homepage/layout/menu%>
     <!-- Top content -->
     <%include ../homepage/top-content%>
     <div class="container body">
@@ -23,8 +51,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6 features-box wow fadeInDown">
-                            <button class="collapsible active">Các đồ án</button>
+                        <!-- <div class="col-sm-6 features-box wow fadeInDown">
+                            <button class="collapsible active">Các kết quả chính xác với <%= searchterm%></button>
                             <div class="content">
                                 <div class="row">
                                     <div class="col-sm-12 table-responsive">
@@ -39,13 +67,13 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <% if(doan != null){
-                                                    doan.forEach((da,i) =>{%>
+                                                <% if(doan1 != null){
+                                                    doan1.forEach((da1,i) =>{%>
                                                     <tr>
                                                         <td><%= i+1%></td>
-                                                        <td><%-da.ten_de_tai%></td>
-                                                        <td><%=da.ten_sv%></td>
-                                                        <td><%=da.ten_gv%></td>
+                                                        <td><%-da1.ten_de_tai%></td>
+                                                        <td><%=da1.ten_sv%></td>
+                                                        <td><%=da1.ten_gv%></td>
                                                     </tr>
                                                 <%})}%>
                                             </tbody>
@@ -54,8 +82,100 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-6 features-box wow fadeInUp">   
+                            <button class="collapsible active">Kết quả gần đúng với <%= searchterm%></button>
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-sm-12 table-responsive">
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Tên đề tài</th>
+                                                    <th>Sinh viên</th>
+                                                    <th>Giảng viên</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% if(doan2 != null){
+                                                    doan2.forEach((da2,i) =>{%>
+                                                    <tr>
+                                                        <td><%= i+1%></td>
+                                                        <td><%-da2.ten_de_tai%></td>
+                                                        <td><%=da2.ten_sv%></td>
+                                                        <td><%=da2.ten_gv%></td>
+                                                    </tr>
+                                                <%})}%>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="content"> -->
+                            
+                            <% if(doan1.length != 0){%>
+                                <div style="font-size: 32px; text-align: left; margin-bottom: 20px; margin-top: 20px">Kết quả tìm kiếm chính xác với <mark><%= searchterm%></mark></div>
+                                <div class="row">
+                                    <div class="col-sm-12 table-responsive">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Tên đề tài</th>
+                                                    <th>Sinh viên</th>
+                                                    <th>Giảng viên</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% if(doan1 != null){
+                                                    doan1.forEach((da1,i) =>{%>
+                                                    <tr>
+                                                        <td><%= i+1%></td>
+                                                        <td><%-da1.ten_de_tai%></td>
+                                                        <td><%=da1.ten_sv%></td>
+                                                        <td><%=da1.ten_gv%></td>
+                                                    </tr>
+                                                <%})}%>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <% }else{%>
+                                <div style="font-size: 32px; text-align: left; margin-bottom: 20px; margin-top: 30px">Kết quả tìm kiếm gần đúng với <mark><%= searchterm%></mark></div>
+                                <div class="row">
+                                    <div class="col-sm-12 table-responsive">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Tên đề tài</th>
+                                                    <th>Sinh viên</th>
+                                                    <th>Giảng viên</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% if(doan2 != null){
+                                                    doan2.forEach((da2,i) =>{%>
+                                                    <tr>
+                                                        <td><%= i+1%></td>
+                                                        <td><%-da2.ten_de_tai%></td>
+                                                        <td><%=da2.ten_sv%></td>
+                                                        <td><%=da2.ten_gv%></td>
+                                                    </tr>
+                                                <%})}%>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <%}%>
+                         <!--    </div> -->
                     </div>
                 </div>
+            
             </div>  
             <!-- your code end-->
         </div>
@@ -124,7 +244,7 @@
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Ut wisi enim ad minim veniam, quis nostrud.
                             </p>
                         </div>
-                    </div>
+                    </div
                 </div>
             </div>
         </div>
@@ -156,6 +276,9 @@
             });
         }
     </script>
+    
+    
+
 </body>
 
 </html>
