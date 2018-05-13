@@ -26,27 +26,27 @@
                     </div>
                 </div>
             </div>
-            
+            <% if(thongbao.hinh_anh != null){%>
             <div id="container" style="width: 100%;">
                 <img src="/upload/thongbao/hinh_anh/<%=thongbao.hinh_anh%>">
                 <br><br>
             </div>
+            <%}%>
            
         </div>
-        <div id="container" style="width: 100%;">
+        <div style="text-align: left;" id="container" style="width: 100%;">
              <%- thongbao.noi_dung%>
              <br><br>
         </div>
-        
-
+        <%if(thongbao.tep!=null){%>
         <div>
             <h2>File đính kèm</h2>
             <div class="divider-1">
                 <div class="line"></div>
             </div>
+            <embed src="/upload/thongbao/tep/<%=thongbao.tep%>" width="80%" height="500">
         </div>
-        
-       <embed src="/upload/thongbao/tep/<%=thongbao.tep%>" width="80%" height="500">
+        <%}%>
             <!-- your code end-->
         </div>
     </div>
