@@ -257,7 +257,7 @@ router.get("/thongbao=:tb/from=:s/limit=:d", (req, res) => {
                 res.end();
                 return console.error('Error executing query', err.stack)
             }
-            res.json({ thongbao: result.rows.reverse(), usr: req._passport.session });
+            res.json({ thongbao: result.rows.reverse(), usr: req._passport.session});
         })
     })
 });

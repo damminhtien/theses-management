@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%include ../homepage/layout/header%>
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            
+                <!-- your code here -->
+                <div class="right_col" role="main">
+                    <h2 class="text-center">NỘP BÁO CÁO TUẦN</h2>
+                    <form data-parsley-validate class="form-horizontal form-label-left" action="/baocaotuan/nopbai" method="post" accept-charset="utf-8" encType="multipart/form-data">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#doan">Đồ án<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select name="ma_da" class="form-control" id="doan">
+                                    <% doan.forEach((da,i)=>{ %>
+                                        <option value="<%=da.ma_da%>"><%=da.ten_lda%></option>
+                                    <%});%>
+                                </select>
+                            </div>
+                        </div>
+                        <input type="hidden" name="date" id="today">
+
+                        <div class="modal-body row">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#tep">Tệp báo cáo<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="file" id="tep" required="required" class="form-control col-md-7 col-xs-12" name="tep">
+                                </div>
+                            </div>
+                        
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ghi_chu">Ghi chú<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <textarea style="padding: 5px" name="ghi_chu" id="ghi_chu"></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-7"></div>    
+                            <div class="form-group">
+                                <button type="reset" class="btn btn-default">Làm mới</button>
+                                <button type="submit" class="btn btn-primary">Nộp bài</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- your code end-->
+                <%include ../homepage/layout/footer%>
+        </div>
+    </div>
+    <%include ../homepage/layout/script%>
+    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+    <script>
+        let today = new Date().toISOString().substr(0, 10);
+        document.querySelector("#today").value = today;
+    </script>
+    <script type="text/javascript">
+      CKEDITOR.replace('ckeditor', {
+        "extraPlugins" : 'imagebrowser',
+        "imageBrowser_listUrl" : "/files"
+      });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(()=>{
+            CKEDITOR.config.extraPlugins = 'filebrowser';
+            CKEDITOR.config.language = 'en';
+            CKEDITOR.config.fillEmptyBlocks = false;
+            CKEDITOR.replace( 'ghi_chu' , {
+            filebrowserBrowseUrl: '/javascripts/ckeditor/plugins/filemanager/browser/default/browser.html?Connector=/browser/browse',
+            filebrowserUploadUrl: '/uploader/upload?Type=File',
+            filebrowserImageUploadUrl: '/uploader/upload?Type=Image',
+            filebrowserFlashUploadUrl: '/uploader/upload?Type=Flash'
+            });
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#imgPre').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("input[name=img]").change(function(){
+                readURL(this);
+            });
+        })
+    </script>
+</body>
+
+</html>

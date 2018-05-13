@@ -10,7 +10,7 @@ router.use(bodyParser.urlencoded({ extended: false }))
 module.exports = router
 
 router.get('/danhsach', (req, res, next) => {
-	if(req.isAuthenticated() && req._passport.session.user.id == 0){
+	// if(req.isAuthenticated() && req._passport.session.user.id == 0){
 	    (async() => {
 	        const client = await pool.connect()
 	        try {
@@ -20,11 +20,11 @@ router.get('/danhsach', (req, res, next) => {
 	            client.release()
 	        }
 	    })().catch(e => console.log(e.stack))
-	} else res.redirect('/dangnhap')
+	// } else res.redirect('/dangnhap')
 });
 
 router.get('/them', (req, res, next) => {
-	if(req.isAuthenticated() && req._passport.session.user.id == 0){
+	// if(req.isAuthenticated() && req._passport.session.user.id == 0){
 	    (async() => {
 	        const client = await pool.connect()
 	        try {
@@ -36,7 +36,7 @@ router.get('/them', (req, res, next) => {
 	            client.release()
 	        }
 	    })().catch(e => console.log(e.stack))
-    } else res.redirect('/dangnhap')
+    // } else res.redirect('/dangnhap')
 });
 
 router.post('/them', (req, res, next) => {
@@ -126,6 +126,41 @@ router.post('/sua/:id', (req, res, next) => {
 	        req.flash("error", "Sửa thông tin báo cáo tuần thất bại / Lỗi: " + e.stack)
 	    })
     } else res.redirect('/dangnhap')
+});
+router.get('/nopbai', (req, res, next) => {
+    (async() => {
+        const client = await pool.connect()
+        try {
+        	const result = await client.query("SELECT * FROM doan, loaidoan where doan.ma_lda=loaidoan.ma_lda and ma_sv='"+req._passport.session.user.id+"'")
+            res.render('./baocaotuan/nopbai',{usr: req._passport.session, doan: result.rows})
+        } finally {
+            client.release()
+        }
+    })().catch(e => console.log(e.stack))
+});
+router.post('/nopbai', (req, res, next) => {
+	const ma_da = req.body.ma_da
+    const ma_sv = req._passport.session.user.id
+    const date = req.body.date
+    console.log(date)
+    let file = req.files.tep
+    const ghi_chu = req.body.ghi_chu;
+    (async() => {
+        const client = await pool.connect()
+        try {
+        	if(file == undefined){
+        		await client.query("INSERT INTO baocaotuan(ma_da, ma_tt, thoi_gian_upload, ghi_chu, ma_sv) values ('"+ma_da+"',"+4+",'"+date+"','"+ghi_chu+"','"+ma_sv+"')");
+        	}
+            if(file != undefined){
+            	let fileName = addFile(file)
+				await client.query("INSERT INTO baocaotuan(ma_da, ma_tt, thoi_gian_upload, tep, ghi_chu, ma_sv) values ('"+ma_da+"',"+4+",'"+date+"','"+fileName+"','"+ghi_chu+"','"+ma_sv+"')")
+           	}
+            console.log("Thanh cong")
+            res.redirect("/")
+        } finally {
+            client.release()
+        }
+    })().catch(e => console.log(e.stack))
 });
 
 function addFile(file){
