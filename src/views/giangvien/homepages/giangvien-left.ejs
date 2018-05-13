@@ -7,21 +7,15 @@
                 </td>
             </tr>
             <tr>
-                <td><span class="glyphicon glyphicon-education"></span><strong> Lớp</strong></td>
-                <td>
-                    <%=usr.lop %>
-                </td>
-            </tr>
-            <tr>
-                <td><span class="glyphicon glyphicon-heart"></span><strong> Khóa</strong></td>
-                <td>
-                    <%=usr.khoa %>
-                </td>
-            </tr>
-            <tr>
                 <td><span class="glyphicon glyphicon-envelope"></span><strong> Email</strong></td>
                 <td>
                     <%=usr.email %>
+                </td>
+            </tr>
+            <tr>
+                <td><span class="glyphicon glyphicon-envelope"></span><strong> Số điện thoại</strong></td>
+                <td>
+                    <%=usr.sdt %>
                 </td>
             </tr>
             <tr class="theader text-center">
@@ -31,17 +25,17 @@
             </tr>
             <tr>
             	<td colspan="2">
-                    <a href="/sinhvien/nguyenvong/<%=usr.id%>"><span class="glyphicon glyphicon-ok"></span> Nguyện vọng đồ án</a>
+                    <a href="/quanlysinhvien"><span class="glyphicon glyphicon-list-alt"></span> Quản lý sinh viên</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <a href="/chamdiem"><span class="glyphicon glyphicon-list-alt"></span> Chấm điểm</a>
                 </td>
             </tr>
             <tr>
             	<td colspan="2">
-                    <a href="/doanthamkhao"><span class="glyphicon glyphicon-list-alt"></span> Đồ án tham khảo</a>
-                </td>
-            </tr>
-            <tr>
-            	<td colspan="2">
-                    <a href="/sinhvien/doithongtin/<%=usr.ma_sv%>"><span class="glyphicon glyphicon-cog"></span> Cập nhật thông tin cá nhân</a>
+                    <a href="/giangvien/doithongtin/<%=usr.ma_gv%>"><span class="glyphicon glyphicon-cog"></span> Cập nhật thông tin cá nhân</a>
                 </td>
             </tr>
             <tr>

@@ -7,8 +7,8 @@
             </div>
         </div>
     </div>
-    <div class="row wow fadeInRight">
-        <div class="column" onclick="openTab('b1');">
+    <div class="row wow fadeInRight" id="tdthongbao" >
+        <div class="column" onclick="openTab('b1');"  >
             <img src="assets/img/SOICT.jpg">
             <p>Thông báo học bổng k62</p>
         </div>
@@ -22,38 +22,38 @@
         </div>
     </div>
     <div class="row">
-        <div id="b1" class="containerTab fadeInRight">
+        <div id="b1" class="containerTab">
             <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
             <h2>Box 1</h2>
-            <p>Lorem ipsum dolor sit amet, te quo doctus abhorreant, et pri deleniti intellegat, te sanctus inermis ullamcorper nam. Ius error diceret deseruisse ad</p>
+            <p id="box1">Lorem ipsum dolor sit amet, te quo doctus abhorreant, et pri deleniti intellegat, te sanctus inermis ullamcorper nam. Ius error diceret deseruisse ad</p>
         </div>
         <div id="b2" class="containerTab">
             <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
             <h2>Box 2</h2>
-            <p>Lorem ipsum dolor sit amet, te quo doctus abhorreant, et pri deleniti intellegat, te sanctus inermis ullamcorper nam. Ius error diceret deseruisse ad</p>
+            <p id="box2">Lorem ipsum dolor sit amet, te quo doctus abhorreant, et pri deleniti intellegat, te sanctus inermis ullamcorper nam. Ius error diceret deseruisse ad</p>
         </div>
         <div id="b3" class="containerTab">
             <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
             <h2>Box 3</h2>
-            <p>Lorem ipsum dolor sit amet, te quo doctus abhorreant, et pri deleniti intellegat, te sanctus inermis ullamcorper nam. Ius error diceret deseruisse ad</p>
+            <p id="box3">Lorem ipsum dolor sit amet, te quo doctus abhorreant, et pri deleniti intellegat, te sanctus inermis ullamcorper nam. Ius error diceret deseruisse ad</p>
         </div>
     </div>
-    <div class="row wow fadeInRight">
+    <div class="row wow fadeInRight" id="tdthongbaocu">
         <div class="col-sm-3">
             <img src="assets/img/book1.jpg">
-            <p>Thông báo học bổng k62</p>
+            <p><a href="/thongbao/chitiet/<%=thongbao.ma_tb%>">Thông báo học bổng k62</a></p>
         </div>
         <div class="col-sm-3">
             <img src="assets/img/book1.jpg">
-            <p>Thông báo học bổng k62</p>
+            <p><a href="/thongbao/chitiet/<%=thongbao.ma_tb%>">Thông báo học bổng k62</a></p>
         </div>
         <div class="col-sm-3">
             <img src="assets/img/book1.jpg">
-            <p>Thông báo học bổng k62</p>
+            <p><a href="/thongbao/chitiet/<%=thongbao.ma_tb%>">Thông báo học bổng k62</a></p>
         </div>
         <div class="col-sm-3">
             <img src="assets/img/book1.jpg">
-            <p>Thông báo học bổng k62</p>
+            <p><a href="/thongbao/chitiet/<%=thongbao.ma_tb%>">Thông báo học bổng k62</a></p>
         </div>
         <button type="button" id="moreNoti" class="wow fadeInLeft">Xem thêm >>></button>
     </div>

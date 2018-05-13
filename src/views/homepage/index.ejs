@@ -97,6 +97,173 @@
 	<%include layout/footer%>
     <%include layout/script%>
     <script>
+        $('document').ready(()=>{
+            $.ajax({url: "http://localhost:8888/doan/loaidoan=0/khoavien=0/from=0/limit=5", success: function(result){
+                let cnpm;
+                result.doan.forEach((da, i)=>{
+                    cnpm += "<tr>" +
+                                "<td>"+ (i+1) + "</td>" +
+                                "<td>" +da.ten_de_tai+"</td>" +
+                                "<td>"+da.ten_sv+"</td>" +
+                            "</tr>"
+                })
+                console.log('success');
+                $('#cnpm').html(cnpm);
+
+                let httt;
+                result.doan.forEach((da, i)=>{
+                    httt += "<tr>" +
+                                "<td>"+ (i+1) + "</td>" +
+                                "<td>" +da.ten_de_tai+"</td>" +
+                                "<td>"+da.ten_sv+"</td>" +
+                            "</tr>"
+                })
+                console.log('success');
+                $('#httt').html(httt);
+
+                let khmt;
+                result.doan.forEach((da, i)=>{
+                    khmt += "<tr>" +
+                                "<td>"+ (i+1) + "</td>" +
+                                "<td>" +da.ten_de_tai+"</td>" +
+                                "<td>"+da.ten_sv+"</td>" +
+                            "</tr>"
+                })
+                console.log('success');
+                $('#khmt').html(khmt);
+
+                let attt;
+                result.doan.forEach((da, i)=>{
+                    attt += "<tr>" +
+                                "<td>"+ (i+1) + "</td>" +
+                                "<td>" +da.ten_de_tai+"</td>" +
+                                "<td>"+da.ten_sv+"</td>" +
+                            "</tr>"
+                })
+                console.log('success');
+                $('#attt').html(attt);
+
+                let ktmt;
+                result.doan.forEach((da, i)=>{
+                    ktmt += "<tr>" +
+                                "<td>"+ (i+1) + "</td>" +
+                                "<td>" +da.ten_de_tai+"</td>" +
+                                "<td>"+da.ten_sv+"</td>" +
+                            "</tr>"
+                })
+                console.log('success');
+                $('#ktmt').html(ktmt);
+
+                let ttmmt;
+                result.doan.forEach((da, i)=>{
+                    ttmmt += "<tr>" +
+                                "<td>"+ (i+1) + "</td>" +
+                                "<td>" +da.ten_de_tai+"</td>" +
+                                "<td>"+da.ten_sv+"</td>" +
+                            "</tr>"
+                })
+                console.log('success');
+                $('#ttmmt').html(ttmmt);
+
+            }});
+            // $.ajax({url: "http://localhost:8888/doan/loaidoan=0/khoavien=4/from=0/limit=5", success: function(result){
+            //     let html;
+            //     result.doan.forEach((da, i)=>{
+            //         html += "<tr>" +
+            //                     "<td>"+ (i + 1) + "</td>" +
+            //                     "<td>" +da.ten_de_tai+"</td>" +
+            //                     "<td>"+da.ten_sv+"</td>" +
+            //                 "</tr>"
+            //     })
+            //     console.log('success');
+            //     $('#attt').html(html);
+            // }});
+            // $.ajax({url: "http://localhost:8888/doan/loaidoan=0/khoavien=3/from=0/limit=5", success: function(result){
+            //     let html;
+            //     result.doan.forEach((da, i)=>{
+            //         html += "<tr>" +
+            //                     "<td>"+ (i + 1) + "</td>" +
+            //                     "<td>" +da.ten_de_tai+"</td>" +
+            //                     "<td>"+da.ten_sv+"</td>" +
+            //                 "</tr>"
+            //     })
+            //     console.log('success');
+            //     $('#khmt').html(html);
+            // }});
+            // $.ajax({url: "http://localhost:8888/doan/loaidoan=0/khoavien=2/from=0/limit=5", success: function(result){
+            //     let html;
+            //     result.doan.forEach((da, i)=>{
+            //         html += "<tr>" +
+            //                     "<td>"+ (i + 1) + "</td>" +
+            //                     "<td>" +da.ten_de_tai+"</td>" +
+            //                     "<td>"+da.ten_sv+"</td>" +
+            //                 "</tr>"
+            //     })
+            //     console.log('success');
+            //     $('#httt').html(html);
+            // }});
+            // $.ajax({url: "http://localhost:8888/doan/loaidoan=0/khoavien=5/from=0/limit=5", success: function(result){
+            //     let html;
+            //     result.doan.forEach((da, i)=>{
+            //         html += "<tr>" +
+            //                     "<td>"+ (i + 1) + "</td>" +
+            //                     "<td>" +da.ten_de_tai+"</td>" +
+            //                     "<td>"+da.ten_sv+"</td>" +
+            //                 "</tr>"
+            //     })
+            //     console.log('success');
+            //     $('#ktmt').html(html);
+            // }});
+            // $.ajax({url: "http://localhost:8888/doan/loaidoan=0/khoavien=6/from=0/limit=5", success: function(result){
+            //     let html;
+            //     result.doan.forEach((da, i)=>{
+            //         html += "<tr>" +
+            //                     "<td>"+ (i + 1) + "</td>" +
+            //                     "<td>" +da.ten_de_tai+"</td>" +
+            //                     "<td>"+da.ten_sv+"</td>" +
+            //                 "</tr>"
+            //     })
+            //     console.log('success');
+            //     $('#ttmmt').html(html);
+            // }});
+            $.ajax({url: "http://localhost:8888/thongbao/thongbao=0/from=0/limit=3", success: function(result){
+                let html;
+                result.thongbao.forEach((tb, i)=>{
+                    html += "<div class='column' onclick=\"openTab('b"+(i+1)+"');\">"+
+                            "<img src='upload/thongbao/hinh_anh/" +tb.hinh_anh+ "'>" +
+                            "<p>"+ tb.tieu_de+ "</p>" +
+                            "</div>";
+                    $('#box'+(i+1)).html(tb.noi_dung);
+                })
+                console.log('success');
+                $('#tdthongbao').html(html);
+                $('div.column, div.col-sm-3').hover(
+                    function() {
+                        $(this).find("p").css({"height": "100%", "transition": "1.5s" })
+                    }, function() {
+                         $(this).find("p").css({"height": "15%", "transition": "1.5s" })
+                    }
+                );
+            }});
+            $.ajax({url: "http://localhost:8888/thongbao/thongbao=0/from=3/limit=4", success: function(result){
+                let html;
+                result.thongbao.forEach((tb, i)=>{
+                    html += "<div class='col-sm-3'>"+
+                            "<img src='upload/thongbao/hinh_anh/" +tb.hinh_anh+ "'>" +
+                            "<p><a href='/thongbao/chitiet/<%=thongbao.ma_tb%>'>"+ tb.tieu_de+ "</a></p>" +
+                            "</div>"
+                })
+                console.log('success');
+                $('#tdthongbaocu').html(html);
+                $('div.column, div.col-sm-3').hover(
+                    function() {
+                        $(this).find("p").css({"height": "100%", "transition": "1.5s" })
+                    }, function() {
+                         $(this).find("p").css({"height": "15%", "transition": "1.5s" })
+                    }
+                );  
+            }});
+        });
         function openTab(tabName) {
             let i, x;
             x = $(".containerTab");
@@ -124,5 +291,4 @@
     <script src="/assets/js/Chart_files/utils.js"></script>
     <script src="/javascripts/homepage/index.js"></script>
 </body>
-
 </html>

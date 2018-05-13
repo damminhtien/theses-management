@@ -11,8 +11,8 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li><a href="#"><span class="glyphicon glyphicon-certificate"></span> Thông tin đồ án</a></li>
-                    <li><a href="/sinhvien/doancuatoi/<%=usr.id%>"><span class="glyphicon glyphicon-file"></span> Đồ án của tôi</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-certificate"></span> Danh sách sinh viên của tôi</a></li>
+                    <li><a href="/giangvien/detai/<%=usr.id%>"><span class="glyphicon glyphicon-file"></span> Danh sách đề tài của tôi</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="../dangxuat"><span class="glyphicon glyphicon-log-in"></span> Đăng xuất</a></li>
@@ -28,7 +28,7 @@
                     <th>Tên học phần</th>
                     <th>Tên đề tài</th>
                     <th>Điểm</th>
-                    <th>Giảng viên HD</th>
+                    <th>Sinh viên thực hiện</th>
                     <th>Xem chi tiết</th>
                 </tr>
             </thead>
@@ -39,7 +39,7 @@
                         <td><%= da.ten_lda %></td>
                         <td><%= da.ten_de_tai %></td>
                         <td><%= da.diem %></td>
-                        <td><%=da.ten_gv%></h1><span id="giangvienhuongdan<%=i%>"></td>
+                        <td><%=da.ten_sv%></h1><span id="sinhvienthuchien<%=i%>"></td>
                         <td><span class="btn fa fa-eye"></span></td>
                     </tr>
                 <% }) %>

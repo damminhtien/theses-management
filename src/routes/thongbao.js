@@ -210,3 +210,32 @@ function addFile(file){
   })
   return fileName
 }
+
+router.get("/thongbao=:tb/from=:s/limit=:d", (req, res) => {
+    const tb = req.params.tb,
+        s = req.params.s,
+        d = req.params.d;
+    let query;
+    if( tb == 0){
+        query = "SELECT * FROM thongbao"
+    } else {
+        query = "SELECT * FROM thongbao WHERE ma_tb = " + tb
+    }
+    if(d != 0){
+        query += " OFFSET " + s + " LIMIT " + d
+    }
+    console.log(query);
+    pool.connect((err, client, release) => {
+        if (err) {
+            return console.error('Error acquiring client', err.stack);
+        }
+        client.query(query, (err, result) => {
+            release();
+            if (err) {
+                res.end();
+                return console.error('Error executing query', err.stack)
+            }
+            res.json({ thongbao: result.rows.reverse(), usr: req._passport.session });
+        })
+    })
+});
