@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%include ../../homepage/layout/header%>
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+                <!-- your code here -->
+                <div class="right_col" role="main">
+                	<h2 class="text-center">SỬA THÔNG TIN SINH VIÊN <%=usr.ten_sv.toUpperCase()%></h2>
+                    <form data-parsley-validate class="form-horizontal form-label-left" action="/sinhvien/doithongtin/<%=usr.ma_sv%>" method="post" accept-charset="utf-8">
+                        <div class="modal-body row">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ten_sv">Tên Sinh viên<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="ten_sv" required="required" class="form-control col-md-7 col-xs-12" name="ten_sv" value="<%=usr.ten_sv%>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#khoa">Khóa<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="khoa" required="required" class="form-control col-md-7 col-xs-12" name="khoa" value="<%=usr.khoa%>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#lop">Lớp<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="lop" required="required" class="form-control col-md-7 col-xs-12" name="lop" value="<%=usr.lop%>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#email">Email<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="email" id="email" required="required" class="form-control col-md-7 col-xs-12" name="email" value ="<%=usr.email%>">
+                                </div>
+                            </div>
+                            <div class="col-md-7"></div>	
+                            <div class="form-group">
+                            	<button type="reset" class="btn btn-default">Làm mới</button>
+                            	<button type="submit" class="btn btn-primary">Xác nhận</button>
+                        	</div>
+                        </div>
+                    </form>
+                </div>
+                <!-- your code end-->
+                <%include ../../homepage/layout/footer%>
+        </div>
+    </div>
+    <%include ../../homepage/layout/script%>
+</body>
+
+</html>

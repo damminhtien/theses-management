@@ -40,6 +40,7 @@ router.get('/sua/:id', (req, res, next) => {
 router.post('/sua/:id', (req, res, next) => {
   if(req.isAuthenticated() && req._passport.session.user.id == 0){
     const che_do = req.body.che_do
+    const ghi_chu = req.body.ghi_chu
     let file = req.files.tep
     let img = req.files.img;  
     (async() => {
@@ -49,7 +50,7 @@ router.post('/sua/:id', (req, res, next) => {
         hinh_anh = mnc.rows[0].hinh_anh
         try {
           if(file == undefined && img == undefined){
-          await client.query("UPDATE manguoncuoi SET che_do='"+che_do+"' WHERE ma_mnc ="+req.params.id)
+          await client.query("UPDATE manguoncuoi SET che_do='"+che_do+"', ghi_chu ='"+ghi_chu+"' WHERE ma_mnc ="+req.params.id)
         }
         if(file == undefined && img != undefined){
           if(hinh_anh != null){
@@ -59,7 +60,7 @@ router.post('/sua/:id', (req, res, next) => {
             });
           }
           let imgName = addImg(img)
-          await client.query("UPDATE manguoncuoi SET che_do='"+che_do+"', hinh_anh='"+imgName+"' WHERE ma_mnc ="+req.params.id)
+          await client.query("UPDATE manguoncuoi SET che_do='"+che_do+"', hinh_anh='"+imgName+"', ghi_chu ='"+ghi_chu+"' WHERE ma_mnc ="+req.params.id)
         }
         if(file != undefined && img == undefined){
           if(tep != null){
@@ -69,7 +70,7 @@ router.post('/sua/:id', (req, res, next) => {
             });
           }
           let fileName = addFile(file)
-          await client.query("UPDATE manguoncuoi SET che_do='"+che_do+"', tep='"+fileName+"' WHERE ma_mnc ="+req.params.id)
+          await client.query("UPDATE manguoncuoi SET che_do='"+che_do+"', tep='"+fileName+"', ghi_chu ='"+ghi_chu+"' WHERE ma_mnc ="+req.params.id)
         }
         if(file != undefined && img != undefined){
           if(tep != null){
@@ -86,7 +87,7 @@ router.post('/sua/:id', (req, res, next) => {
           }
           let imgName = addImg(img)
           let fileName = addFile(file)
-          await client.query("UPDATE manguoncuoi SET tep='"+fileName+"', che_do='"+che_do+"', hinh_anh='"+imgName+"' WHERE ma_mnc ="+req.params.id)
+          await client.query("UPDATE manguoncuoi SET tep='"+fileName+"', che_do='"+che_do+"', hinh_anh='"+imgName+"', ghi_chu ='"+ghi_chu+"' WHERE ma_mnc ="+req.params.id)
         }
             req.flash("success", "Sửa thông tin mã nguồn cuối thành công")
             res.redirect("/manguoncuoi/danhsach")

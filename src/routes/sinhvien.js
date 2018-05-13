@@ -134,3 +134,79 @@ router.post('/sua/:id', (req, res, next) => {
         })
     } else res.redirect('/dangnhap')
 })
+
+router.get('/doithongtin/:id', (req, res, next) => {
+    if(req.isAuthenticated() && req._passport.session.user.id >=  20000000){
+        (async() => {
+            const client = await pool.connect()
+            try {
+                const result2 = await client.query("SELECT * FROM sinhvien WHERE ma_sv='"+req.params.id+"'")
+                res.render('./sinhvien/homepages/doithongtin',{usr: result2.rows[0]})
+            } finally {
+                client.release()
+            }
+        })().catch(e => console.log(e.stack))
+    } else res.redirect('/dangnhap')
+})
+
+router.post('/doithongtin/:id', (req, res, next) => {
+    if(req.isAuthenticated() && req._passport.session.user.id >=  20000000){
+        const ten_sv = req.body.ten_sv;
+        const khoa = req.body.khoa;
+        const lop = req.body.lop;
+        const email = req.body.email;
+
+        console.log(req.body);
+        (async() => {
+            const client = await pool.connect()
+            try {
+                await client.query("UPDATE sinhvien SET ten_sv='"+ten_sv +"', khoa='"+khoa+"', lop='"+lop+"', mat_khau='"+md5(email)+"', email='"+email+"' WHERE ma_sv ='"+req.params.id+"'")       
+                req.flash("success", "Sửa thông tin sinh viên "+ten_sv+" thành công")
+                res.redirect("/sinhvien");
+            } finally {
+                client.release()
+            }
+        })(req).catch((e,req) => {
+            console.log(e.stack)
+            req.flash("error", "Sửa thông tin sinh viên thất bại / Lỗi: " + e.stack)
+        })
+    } else res.redirect('/dangnhap')
+})
+
+// router.get('/doithongtin', (req, res, next) => {
+//     if(req.isAuthenticated() && req._passport.session.user.id >=  20000000){
+//         (async() => {
+//             const client = await pool.connect()
+//             try {
+//                 const result2 = await client.query("SELECT * FROM sinhvien WHERE ma_sv='"+req.params.id+"'")
+//                 res.render('./sinhvien/sua',{sinhvien: result2.rows[0]})
+//             } finally {
+//                 client.release()
+//             }
+//         })().catch(e => console.log(e.stack))
+//     } else res.redirect('/dangnhap')
+// })
+
+// router.post('/doithongtin', (req, res, next) => {
+//     if(req.isAuthenticated() && req._passport.session.user.id >=  20000000){
+//         const ten_sv = req.body.ten_sv;
+//         const khoa = req.body.khoa;
+//         const lop = req.body.lop;
+//         const email = req.body.email;
+
+//         console.log(req.body);
+//         (async() => {
+//             const client = await pool.connect()
+//             try {
+//                 await client.query("UPDATE sinhvien SET ten_sv='"+ten_sv +"', khoa='"+khoa+"', lop='"+lop+"', mat_khau='"+md5(email)+"', email='"+email+"' WHERE ma_sv ='"+req.params.id+"'")       
+//                 req.flash("success", "Sửa thông tin sinh viên "+ten_sv+" thành công")
+//                 res.redirect("/sinhvien/homepages/sinhvien");
+//             } finally {
+//                 client.release()
+//             }
+//         })(req).catch((e,req) => {
+//             console.log(e.stack)
+//             req.flash("error", "Sửa thông tin sinh viên thất bại / Lỗi: " + e.stack)
+//         })
+//     } else res.redirect('/dangnhap')
+// })

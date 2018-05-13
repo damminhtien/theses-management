@@ -11,7 +11,7 @@
             <%include ../admin/layout/menu%>
                 <!-- your code here -->
                 <div class="right_col" role="main">
-                	<h2 class="text-center">SỬA THÔNG TIN ĐỒ ÁN <%=doan.ma_da%></h2>
+                    <h2 class="text-center">SỬA THÔNG TIN ĐỒ ÁN <%=doan.ma_da%></h2>
                     <form data-parsley-validate class="form-horizontal form-label-left" action="/doan/sua/<%=doan.ma_da%>" method="post" accept-charset="utf-8" encType="multipart/form-data">
                         <div class="modal-body row">
                             <div class="form-group">
@@ -69,24 +69,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#manguoncuoi">Mã nguồn cuối<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select name="ma_mnc" class="form-control" id="manguoncuoi">
-                                        <% for(let i=0; i<manguoncuoi.length; i++){
-                                            if(doan.ma_mnc === manguoncuoi[i].ma_mnc){
-                                                ma_mnc = manguoncuoi[i].ma_mnc;
-                                                break;
-                                            }
-                                        }%>
-                                        <option value="<%=doan.ma_mnc%>"><%=ma_mnc%></option>
-                                        <% manguoncuoi.forEach((mnc,i)=>{ %>
-                                            <option value="<%=mnc.ma_mnc%>"><%=mnc.ma_mnc%></option>
-                                        <%});%>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ten_de_tai">Tên đề tài<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -113,14 +95,14 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ghi_chu_sv">Ghi chú sinh viên<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="ghi_chu_sv" required="required" class="form-control col-md-7 col-xs-12" name="ghi_chu_sv" value="<%=doan.ghi_chu_sv%>">
+                                    <textarea name="ghi_chu_sv" id="ghi_chu_sv"><%=doan.ghi_chu_sv%></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ghi_chu_gv">Ghi chú giảng viên<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="ghi_chu_gv" required="required" class="form-control col-md-7 col-xs-12" name="ghi_chu_gv" value="<%=doan.ghi_chu_gv%>">
+                                    <textarea name="ghi_chu_gv" id="ghi_chu_gv"><%=doan.ghi_chu_gv%></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -135,9 +117,9 @@
                                             }
                                         }%>
                                         <option value="<%=doan.ma_lda%>"><%=ten_lda%></option>
-                                    	<% loaidoan.forEach((lda,i)=>{ %>
-                                    	   <option value="<%=lda.ma_lda%>"><%=lda.ten_lda%></option>
-                                    	<%});%>
+                                        <% loaidoan.forEach((lda,i)=>{ %>
+                                           <option value="<%=lda.ma_lda%>"><%=lda.ten_lda%></option>
+                                        <%});%>
                                     </select>
                                 </div>
                             </div>
@@ -148,11 +130,11 @@
                                     <input type="text" id="diem" required="required" class="form-control col-md-7 col-xs-12" name="diem" value="<%=doan.diem%>">
                                 </div>
                             </div>
-                            <div class="col-md-7"></div>	
+                            <div class="col-md-7"></div>    
                             <div class="form-group">
-                            	<button type="reset" class="btn btn-default">Làm mới</button>
-                            	<button type="submit" class="btn btn-primary">Xác nhận</button>
-                        	</div>
+                                <button type="reset" class="btn btn-default">Làm mới</button>
+                                <button type="submit" class="btn btn-primary">Xác nhận</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -161,6 +143,69 @@
         </div>
     </div>
     <%include ../admin/layout/script%>
+    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+      CKEDITOR.replace('ckeditor', {
+        "extraPlugins" : 'imagebrowser',
+        "imageBrowser_listUrl" : "/files"
+      });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(()=>{
+            CKEDITOR.config.extraPlugins = 'filebrowser';
+            CKEDITOR.config.language = 'en';
+            CKEDITOR.config.fillEmptyBlocks = false;
+            CKEDITOR.replace( 'ghi_chu_sv' , {
+            filebrowserBrowseUrl: '/javascripts/ckeditor/plugins/filemanager/browser/default/browser.html?Connector=/browser/browse',
+            filebrowserUploadUrl: '/uploader/upload?Type=File',
+            filebrowserImageUploadUrl: '/uploader/upload?Type=Image',
+            filebrowserFlashUploadUrl: '/uploader/upload?Type=Flash'
+            });
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#imgPre').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("input[name=img]").change(function(){
+                readURL(this);
+            });
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(()=>{
+            CKEDITOR.config.extraPlugins = 'filebrowser';
+            CKEDITOR.config.language = 'en';
+            CKEDITOR.config.fillEmptyBlocks = false;
+            CKEDITOR.replace( 'ghi_chu_gv' , {
+            filebrowserBrowseUrl: '/javascripts/ckeditor/plugins/filemanager/browser/default/browser.html?Connector=/browser/browse',
+            filebrowserUploadUrl: '/uploader/upload?Type=File',
+            filebrowserImageUploadUrl: '/uploader/upload?Type=Image',
+            filebrowserFlashUploadUrl: '/uploader/upload?Type=Flash'
+            });
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#imgPre').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("input[name=img]").change(function(){
+                readURL(this);
+            });
+        })
+    </script>
 </body>
 
 </html>
