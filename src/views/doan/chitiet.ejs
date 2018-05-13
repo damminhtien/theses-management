@@ -39,23 +39,19 @@
                     			<p><%=doan.ten_sv%></p>
 
                     			<li><h3>Ghi chú sinh viên</h3></li>
-                    			<p><%= doan.ghi_chu_sv%></p>
+                    			<p><%-doan.ghi_chu_sv%></p>
 
                     			<li><h3>Giảng viên hướng dẫn</h3></li>
                     			<p><%=doan.ten_gv%></p>
 
                     			<li><h3>Ghi chú giảng viên</h3></li>
-                    			<p><%= doan.ghi_chu_sv%></p>
+                    			<p><%-doan.ghi_chu_sv%></p>
 
                     			<li><h3>Kì học</h3></li>
                     			<p><%=doan.ki_hoc%></p>
 
                     			<li><h3>Trạng thái:</h3></li>
                     			<p><%= doan.ten_tt%></p>
-
-                    			<li><h3>Tệp báo cáo</h3></li>
-                    			<div> <a href="/upload/tep_bao_cao/<%=doan.tep_bao_cao%>" download> Nhấp vào đây để tải về </a></div>
-
                     			<% if(manguoncuoi != null){%>
                     				<li><h3>Mã nguồn cuối</h3></li>
                     				<%if(manguoncuoi.che_do==1){ %>
@@ -87,6 +83,11 @@
                     					</ul>
                     			<%})}%>
                     	</div>
+                        <div class="col-sm-6 features-box-wow fadeInUp">
+                            <h3>Tệp báo cáo</h3>
+                            <iframe src="/upload/tep_bao_cao/<%=doan.tep_bao_cao%>" style="width: 100%; height: 100vh"></iframe>
+                            <div> <a href="/upload/tep_bao_cao/<%=doan.tep_bao_cao%>" download> Nhấp vào đây để tải về </a></div>
+                        </div>
                     </div>
                  
                 </div>

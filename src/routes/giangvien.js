@@ -171,3 +171,35 @@ router.post('/doithongtin/:id', (req, res, next) => {
     } else res.redirect('/dangnhap')
 })
 
+router.get('/quanlysinhvien', (req, res, next) => {
+    if(req.isAuthenticated() && req._passport.session.user.id >= 1 && req._passport.session.user.id < 20000000){
+        (async() => {
+            const client = await pool.connect()
+            try {
+                const nv = await client.query('SELECT * FROM nguyenvong WHERE ma_gv=' + req._passport.session.user.id)
+                res.render('./giangvien/quanlysinhvien',{usr: req._passport.session, nguyenvong: nv.rows})
+            } finally {
+                client.release()
+            }
+        })().catch(e => console.log(e.stack))
+    } else res.redirect('/dangnhap')
+})
+
+router.get('/quanlynv/:ma_nv/:code', (req, res, next) => {
+    const ma_nv = req.params.ma_nv;
+    const code = req.params.code;
+    if(req.isAuthenticated() && req._passport.session.user.id >= 1 && req._passport.session.user.id < 20000000){
+        (async() => {
+            const client = await pool.connect()
+            try {
+                if(code == 1){
+                    await client.query("UPDATE doan SET ma_gv="+req._passport.session.user.id+" WHERE ma_da=(SELECT ma_da FROM nguyenvong WHERE ma_nv="+ma_nv+")")
+                }
+                await client.query("DELETE FROM nguyenvong WHERE ma_nv="+ma_nv) 
+                res.redirect('/giangvien/quanlysinhvien')
+            } finally {
+                client.release()
+            }
+        })().catch(e => console.log(e.stack))
+    } else res.redirect('/dangnhap')
+})

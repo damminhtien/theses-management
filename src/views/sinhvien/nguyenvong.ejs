@@ -14,7 +14,7 @@
 			<h3>Sinh viên <%=usr.ten_sv%></h3>
 			<h5>Đăng ký nguyện vọng đồ án <%=doan[0].ten_lda%></h5>
 			<p>Sinh viên đăng ký nguyện vọng chọn giảng viên hướng dẫn. Lưu ý: Không được lựa chọn lại khi đã đăng ký</p>
-			<form data-parsley-validate class="form-horizontal form-label-left" action="/thongbao/them" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+			<form data-parsley-validate class="form-horizontal form-label-left" method="post" accept-charset="utf-8" enctype="multipart/form-data">
                 <input type="hidden" name="ma_sv" value="<%=usr.user.id%>">
                 <input type="hidden" name="ma_da" value="<%=doan[0].ma_da%>">
 	            <div class="form-group">

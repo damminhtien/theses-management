@@ -161,7 +161,7 @@ router.post('/nguyenvong', (req, res, next) => {
         (async() => {
             const client = await pool.connect()
             try {
-                await client.query("INSERT nguyenvong SET ma_sv='"+ma_sv +"', ma_gv='"+ma_gv+"', ma_da='"+ma_da+"', ghi_chu='"+ghi_chu+"';")       
+                await client.query("INSERT INTO nguyenvong(ma_sv, ma_gv, ma_da, ghi_chu) VALUES ('"+ma_sv+"',"+ma_gv+","+ma_da+",'"+ghi_chu+"');")       
                 req.flash("success", "Đăng ký nguyện vọng thành công. Hãy đợi")
                 res.redirect("/sinhvien/");
             } finally {
