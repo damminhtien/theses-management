@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<%include ../homepage/layout/header%>
+</head>
+
+<body>
+    <!-- Top menu -->
+    <%include ../homepage/layout/menu%>
+    <!-- Top content -->
+    <%include ../homepage/top-content%>
+    <div class="container body">
+        <div class="main_container">
+            <!-- your code here -->
+            <div class="right_col" role="main">
+                <div class="row main">
+                    <div class="row">
+                        <div class="col-sm-12 features section-description wow fadeIn">
+                            <h2><strong><%= thongbao.tieu_de%></strong></h2>
+                            <h3><%= thongbao.ngay_dang%></h3>
+                            <div class="divider-1">
+                                <div class="line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="container" style="width: 100%;">
+                <img src="/upload/thongbao/hinh_anh/<%=thongbao.hinh_anh%>">
+                <br><br>
+            </div>
+           
+        </div>
+        <div id="container" style="width: 100%;">
+             <%- thongbao.noi_dung%>
+             <br><br>
+        </div>
+        
+
+        <div>
+            <h2>File đính kèm</h2>
+            <div class="divider-1">
+                <div class="line"></div>
+            </div>
+        </div>
+        
+       <embed src="/upload/thongbao/tep/<%=thongbao.tep%>" width="80%" height="500">
+            <!-- your code end-->
+        </div>
+    </div>
+    <!-- Features -->
+    <div class="features-container section-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 features section-description wow fadeIn">
+                    <h2>About this</h2>
+                    <div class="divider-1">
+                        <div class="line"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 features-box wow fadeInLeft">
+                    <div class="row">
+                        <div class="col-sm-3 features-box-icon">
+                            <i class="fa fa-twitter"></i>
+                        </div>
+                        <div class="col-sm-9">
+                            <h3>Ut wisi enim ad minim</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Ut wisi enim ad minim veniam, quis nostrud.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 features-box wow fadeInLeft">
+                    <div class="row">
+                        <div class="col-sm-3 features-box-icon">
+                            <i class="fa fa-instagram"></i>
+                        </div>
+                        <div class="col-sm-9">
+                            <h3>Sed do eiusmod tempor</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Ut wisi enim ad minim veniam, quis nostrud.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 features-box wow fadeInLeft">
+                    <div class="row">
+                        <div class="col-sm-3 features-box-icon">
+                            <i class="fa fa-magic"></i>
+                        </div>
+                        <div class="col-sm-9">
+                            <h3>Quis nostrud exerci tat</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Ut wisi enim ad minim veniam, quis nostrud.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 features-box wow fadeInLeft">
+                    <div class="row">
+                        <div class="col-sm-3 features-box-icon">
+                            <i class="fa fa-cloud"></i>
+                        </div>
+                        <div class="col-sm-9">
+                            <h3>Minim veniam quis nostrud</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. Ut wisi enim ad minim veniam, quis nostrud.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<%include ../homepage/layout/footer%>
+        <!-- Javascript -->
+    <%include ../homepage/layout/script%>
+
+<!--[if lt IE 10]>
+    <script src="assets/js/placeholder.js"></script>
+<![endif]-->
+    <script>
+        function openTab(tabName) {
+            let i, x;
+            x = $(".containerTab");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            $('#'+tabName).fadeIn(1500);
+        }
+    </script>
+</body>
+
+</html>
