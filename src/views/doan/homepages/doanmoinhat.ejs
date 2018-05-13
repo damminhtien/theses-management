@@ -4,18 +4,16 @@
         <tr>
             <th>Tên đề tài</th>
             <th>Sinh viên</th>
-            <th>Giảng viên</th>
-            <th>Kỳ học</th>
             <th>Chi tiết</th>
         </tr>
     </thead>
     <tbody>
         <% doanmoinhat.forEach((data)=>{ %>
-            <td><%=data.ten_de_tai%></td>
-            <td><%=data.ten_sv%></td>
-            <td><%=data.ten_gv%></td>
-            <td><%=data.kyhoc%></td>
-            <td><a href="" title="Xem chi tiết"><span class="btn fa fa-eye"></span></a></td>
+            <tr>
+                <td><%=data.ten_de_tai%></td>
+                <td><%=data.ten_sv%></td>
+                <td><a href="" title="Xem chi tiết"><span class="btn fa fa-eye"></span></a></td>
+            </tr>
         <% }) %>
     </tbody>
 </table>

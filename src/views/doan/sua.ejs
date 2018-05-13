@@ -69,24 +69,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#manguoncuoi">Mã nguồn cuối<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select name="ma_mnc" class="form-control" id="manguoncuoi">
-                                        <% for(let i=0; i<manguoncuoi.length; i++){
-                                            if(doan.ma_mnc === manguoncuoi[i].ma_mnc){
-                                                ma_mnc = manguoncuoi[i].ma_mnc;
-                                                break;
-                                            }
-                                        }%>
-                                        <option value="<%=doan.ma_mnc%>"><%=ma_mnc%></option>
-                                        <% manguoncuoi.forEach((mnc,i)=>{ %>
-                                            <option value="<%=mnc.ma_mnc%>"><%=mnc.ma_mnc%></option>
-                                        <%});%>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ten_de_tai">Tên đề tài<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
