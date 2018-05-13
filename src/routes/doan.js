@@ -229,7 +229,7 @@ router.get("/loaidoan=:lda/khoavien=:kv/from=:s/limit=:d", (req, res) => {
             query = "SELECT * FROM doan, sinhvien, giangvien WHERE doan.ma_sv = sinhvien.ma_sv AND doan.ma_tt = 1 AND doan.ma_gv = giangvien.ma_gv AND doan.ma_lda = " + lda + " AND giangvien.ma_kv = '" + kv + "'"
     }
     if(d != 0){
-        query += " OFFSET " + s + " LIMIT " + d
+        query += " ORDER BY ma_da DESC OFFSET " + s + " LIMIT " + d 
     }
     console.log(query);
     pool.connect((err, client, release) => {
