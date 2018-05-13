@@ -7,19 +7,19 @@
             <th>Sinh viên thực hiện</th>
             <th>Giảng viên hướng dẫn</th>
             <th>Điểm</th>
-            <th>Kỳ học</th>
             <th>Chi tiết</th>
         </tr>
     </thead>
     <tbody>
         <% doandiemcao.forEach((data, index)=>{ %>
-            <td><%=index+1%></td>
-            <td><%=data.ten_de_tai%></td>
-            <td><%=data.ten_sv%></td>
-            <td><%=data.ten_gv%></td>
-            <td><%=data.diem%></td>
-            <td><%=data.kyhoc%></td>
-            <td><a href="" title="Xem chi tiết"><span class="btn fa fa-eye"></span></a></td>
+            <tr>
+                <td><%=index+1%></td>
+                <td><%=data.ten_de_tai%></td>
+                <td><%=data.ten_sv%></td>
+                <td><%=data.ten_gv%></td>
+                <td><%=data.diem%></td>
+                <td><a href="/doan/<%=data.ma_da%>" title="Xem chi tiết"><span class="btn fa fa-eye"></span></a></td>
+            </tr>
         <% }) %>
     </tbody>
 </table>

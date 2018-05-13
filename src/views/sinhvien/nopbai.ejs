@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%include ../homepage/layout/header%>
+</head>
+
+<body>
+	<%include ../homepage/top-content%>
+	<div class="container">
+		<div class="row">
+			<h1>Trang nộp đồ án sinhviên</h1>
+			<h3>Sinh viên <%=usr.ten_sv%></h3>
+			<h5>Nộp đồ án </h5>
+			<form data-parsley-validate class="form-horizontal form-label-left" action="/sinhvien/nopbai" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#doan">Đồ án<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select name="ma_da" class="form-control" id="doan">
+                            <% doan.forEach((da,i)=>{ %>
+                                <option value="<%=da.ma_da%>"><%=da.ten_lda%></option>
+                            <%});%>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#che_do">Chế độ<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" name="che_do">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#tep_bao_cao">Tệp báo cáo<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="file" id="tep_bao_cao" class="form-control col-md-7 col-xs-12" name="tep_bao_cao">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#tep">Tệp<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <input type="file" class="form-control" name="tep">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#hinh_anh">Hình ảnh<span class="required">*</span></label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <input type="file" class="form-control" name="hinh_anh">
+                        </div>
+                        <img id="imgPre" width="200px auto">
+                    </div>
+                </div>
+	            <div class="form-group">
+	                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ghi_chu">Ghi chú
+	                </label>
+	                <div class="col-md-6 col-sm-6 col-xs-12">
+	                    <textarea name="ghi_chu" id="ghi_chu"></textarea>
+	                </div>
+	            </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ghi_chu_sv">Ghi chú sinh viên
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <textarea name="ghi_chu_sv" id="ghi_chu_sv"></textarea>
+                    </div>
+                </div>
+	            <div class="form-group col-md-9">
+                	<button type="reset" class="btn btn-default" style="float: right">Làm mới</button>
+                	<button type="submit" class="btn btn-primary" style="float: right">Xác nhận</button>
+            	</div>
+	        </form>
+		</div>
+	</div>
+	<%include ../homepage/layout/footer%>
+    <%include ../homepage/layout/script%>
+    <script type="text/javascript">
+        $(document).ready(()=>{
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#imgPre').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("input[name=img]").change(function(){
+                readURL(this);
+            });
+        })
+    </script>
+ 	<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+      CKEDITOR.replace('ckeditor', {
+        "extraPlugins" : 'imagebrowser',
+        "imageBrowser_listUrl" : "/files"
+      });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(()=>{
+            CKEDITOR.config.extraPlugins = 'filebrowser';
+            CKEDITOR.config.language = 'en';
+            CKEDITOR.config.fillEmptyBlocks = false;
+            CKEDITOR.replace( 'ghi_chu' , {
+            filebrowserBrowseUrl: '/javascripts/ckeditor/plugins/filema nager/browser/default/browser.html?Connector=/browser/browse',
+            filebrowserUploadUrl: '/uploader/upload?Type=File',
+            filebrowserImageUploadUrl: '/uploader/upload?Type=Image',
+            filebrowserFlashUploadUrl: '/uploader/upload?Type=Flash'
+            });
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#imgPre').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("input[name=img]").change(function(){
+                readURL(this);
+            });
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(()=>{
+            CKEDITOR.config.extraPlugins = 'filebrowser';
+            CKEDITOR.config.language = 'en';
+            CKEDITOR.config.fillEmptyBlocks = false;
+            CKEDITOR.replace( 'ghi_chu_sv' , {
+            filebrowserBrowseUrl: '/javascripts/ckeditor/plugins/filema nager/browser/default/browser.html?Connector=/browser/browse',
+            filebrowserUploadUrl: '/uploader/upload?Type=File',
+            filebrowserImageUploadUrl: '/uploader/upload?Type=Image',
+            filebrowserFlashUploadUrl: '/uploader/upload?Type=Flash'
+            });
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#imgPre').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("input[name=img]").change(function(){
+                readURL(this);
+            });
+        })
+    </script>
+</body>
+</html>

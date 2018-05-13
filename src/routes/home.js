@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
     (async() => {
         const client = await pool.connect()
         try {
-            const result = await client.query("Select * from khoavien ");  
+            const result = await client.query("Select * from khoavien ");
             res.render('./homepage/index', {usr: req._passport.session, khoavien: result.rows })  
         } finally {
             client.release()

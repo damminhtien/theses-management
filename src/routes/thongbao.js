@@ -158,8 +158,7 @@ router.post('/sua/:id', (req, res, next) => {
                 if (file == undefined && img != undefined) {
                     if (hinh_anh != null) {
                         fs.unlink('./public/upload/thongbao/hinh_anh/' + hinh_anh, (err) => {
-                            if (err) throw err;
-                            console.log('successfully deleted');
+                            if (err) console.log(err);
                         });
                     }
                     let imgName = addImg(img)
@@ -168,8 +167,7 @@ router.post('/sua/:id', (req, res, next) => {
                 if (file != undefined && img == undefined) {
                     if (tep != null) {
                         fs.unlink('./public/upload/thongbao/tep/' + tep, (err) => {
-                            if (err) throw err;
-                            console.log('successfully deleted');
+                            if (err) console.log(err);
                         });
                     }
                     let fileName = addFile(file)
@@ -178,14 +176,12 @@ router.post('/sua/:id', (req, res, next) => {
                 if (file != undefined && img != undefined) {
                     if (tep != null) {
                         fs.unlink('./public/upload/thongbao/tep/' + tep, (err) => {
-                            if (err) throw err;
-                            console.log('successfully deleted');
+                            if (err) console.log(err)
                         });
                     }
                     if (hinh_anh != null) {
                         fs.unlink('./public/upload/thongbao/hinh_anh/' + hinh_anh, (err) => {
-                            if (err) throw err;
-                            console.log('successfully deleted');
+                            if (err) console.log(err);
                         });
                     }
                     let imgName = addImg(img);
@@ -261,7 +257,7 @@ router.get("/thongbao=:tb/from=:s/limit=:d", (req, res) => {
                 res.end();
                 return console.error('Error executing query', err.stack)
             }
-            res.json({ thongbao: result.rows.reverse(), usr: req._passport.session });
+            res.json({ thongbao: result.rows.reverse(), usr: req._passport.session});
         })
     })
 });

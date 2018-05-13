@@ -14,9 +14,9 @@ router.get('/', (req, res, next) => {
     (async() => {
         const client = await pool.connect()
         try {
-            const doan = await client.query('SELECT * FROM doan, giangvien, sinhvien, loaidoan, trangthai, manguoncuoi WHERE (doan.ma_gv = giangvien.ma_gv) AND (doan.ma_sv = sinhvien.ma_sv) AND (doan.ma_lda = loaidoan.ma_lda) AND (doan.ma_tt = trangthai.ma_tt) AND trangthai.ma_tt = 1 AND manguoncuoi.ma_da = doan.ma_da AND manguoncuoi.che_do = 1')
-            const doandiemcao = await client.query('SELECT * FROM doan, giangvien, sinhvien, loaidoan, trangthai, manguoncuoi WHERE (doan.ma_gv = giangvien.ma_gv) AND (doan.ma_sv = sinhvien.ma_sv) AND (doan.ma_lda = loaidoan.ma_lda) AND (doan.ma_tt = trangthai.ma_tt) AND trangthai.ma_tt = 1 AND manguoncuoi.ma_da = doan.ma_da AND manguoncuoi.che_do = 1 ORDER BY doan.diem DESC LIMIT 10')
-            const doanmoinhat = await client.query('SELECT * FROM doan, giangvien, sinhvien, loaidoan, trangthai, manguoncuoi WHERE (doan.ma_gv = giangvien.ma_gv) AND (doan.ma_sv = sinhvien.ma_sv) AND (doan.ma_lda = loaidoan.ma_lda) AND (doan.ma_tt = trangthai.ma_tt) AND trangthai.ma_tt = 1 AND manguoncuoi.ma_da = doan.ma_da AND manguoncuoi.che_do = 1 ORDER BY doan.ma_da DESC LIMIT 10')
+            const doan = await client.query('SELECT * FROM doan, giangvien, sinhvien, loaidoan, trangthai WHERE (doan.ma_gv = giangvien.ma_gv) AND (doan.ma_sv = sinhvien.ma_sv) AND (doan.ma_lda = loaidoan.ma_lda) AND (doan.ma_tt = trangthai.ma_tt) AND trangthai.ma_tt = 1')
+            const doandiemcao = await client.query('SELECT * FROM doan, giangvien, sinhvien, loaidoan, trangthai WHERE (doan.ma_gv = giangvien.ma_gv) AND (doan.ma_sv = sinhvien.ma_sv) AND (doan.ma_lda = loaidoan.ma_lda) AND (doan.ma_tt = trangthai.ma_tt) AND trangthai.ma_tt = 1 ORDER BY doan.diem DESC LIMIT 10')
+            const doanmoinhat = await client.query('SELECT * FROM doan, giangvien, sinhvien, loaidoan, trangthai WHERE (doan.ma_gv = giangvien.ma_gv) AND (doan.ma_sv = sinhvien.ma_sv) AND (doan.ma_lda = loaidoan.ma_lda) AND (doan.ma_tt = trangthai.ma_tt) AND trangthai.ma_tt = 1 ORDER BY doan.ma_da DESC LIMIT 10')
             const khoavien = await client.query('SELECT * FROM khoavien')
             res.render('./doan/homepages/index', { doan: doan.rows, doandiemcao: doandiemcao.rows, doanmoinhat: doanmoinhat.rows, khoavien: khoavien.rows, usr: req._passport.session })
         } finally {
@@ -229,7 +229,7 @@ router.get("/loaidoan=:lda/khoavien=:kv/from=:s/limit=:d", (req, res) => {
             query = "SELECT * FROM doan, sinhvien, giangvien WHERE doan.ma_sv = sinhvien.ma_sv AND doan.ma_tt = 1 AND doan.ma_gv = giangvien.ma_gv AND doan.ma_lda = " + lda + " AND giangvien.ma_kv = '" + kv + "'"
     }
     if(d != 0){
-        query += " OFFSET " + s + " LIMIT " + d
+        query += " ORDER BY ma_da DESC OFFSET " + s + " LIMIT " + d 
     }
     console.log(query);
     pool.connect((err, client, release) => {
