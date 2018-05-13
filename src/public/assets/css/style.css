@@ -264,7 +264,8 @@ only screen and (                min-resolution: 2dppx) {
     background: rgb(0, 0, 0, 0.7);
     position: absolute;
     font-size: 15px;
-    height: 15%;
+    height: 20%;
+    line-height: 17px;
 }
 
 .col-sm-3 {
@@ -288,7 +289,8 @@ only screen and (                min-resolution: 2dppx) {
     background: rgb(0, 0, 0, 0.7);
     position: absolute;
     font-size: 15px;
-    height: 18%;
+    height: 30%;
+    line-height: 17px;
 }
 
 .containerTab {
