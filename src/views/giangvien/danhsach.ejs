@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<%include ../admin/layout/header%>
+	<link href="/template/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+	<%include ../admin/layout/style_dbtable%>
+</head>
+<body class="nav-md">
+    <div class="container body">
+      	<div class="main_container">
+			<%include ../admin/layout/menu%>
+			<!-- your code here -->
+			<div class="right_col" role="main">
+	            <div class="col-md-12 col-sm-12 col-xs-12">
+                	<div class="x_panel">
+                  		<div class="x_title">
+                    		<h1 class="label label-success">Giảng viên</h1>
+                    		<div class="clearfix"></div>
+                  		</div>
+             		 	<div class="x_content">
+            				<table id="datatable-buttons" class="table table-striped table-hover table-bordered">
+                      			<thead>
+                        			<tr>
+                          				<th class="alert-success"><h3>STT</h3></th>
+				                        <th class="alert-success"><h3>Tên Giảng viên</h3></th>
+				                        <th class="alert-success"><h3>Số điện thoại</h3></th>
+				                        <th class="alert-success"><h3>Email</h3></th>
+				                        <th class="alert-success"><h3>Mật khẩu</h3></th>
+				                        <th class="alert-success"><h3>Tên khoa viện</h3></th>
+				                        <th class="alert-success"><h3>Địa chỉ</h3></th>
+				                        <th class="alert-success"><h3>Sửa / Xóa</h3></th>
+                        			</tr>
+                      			</thead>
+                      			<tbody>
+                        			<% if(giangvien != null ){ 
+										giangvien.forEach((gv,i)=>{%>
+										<tr>
+											<td><button class="btn btn-primary btn-round btn-xs"><%=i + 1%></button>
+											</td>
+											<td><h2><%=gv.ten_gv%></h2></td>
+											<td><h2><%=gv.sdt%></h2></td>
+											<td><h2><%=gv.email%></h2></td>
+											<td><h2><%=gv.mat_khau%></h2></td>
+											<td><h2><%=gv.ten_kv%></h2></td>
+											<td><h2><%=gv.dia_chi%></h2></td>
+											<td class="text-center">
+												<a href="/giangvien/sua/<%=gv.ma_gv%>" title="Sửa <%=gv.ten_gv%>"><button class="btn btn-warning btn-xs"><span class="fa fa-pencil"></span></button></a>	
+												<a href="/giangvien/xoa/<%=gv.ma_gv%>"><button class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></button></a>
+											</td>
+										</tr>
+									<%})}%>
+                      			</tbody>
+                    		</table>
+                    		<a href="/giangvien/them" title="Thêm giảng viên"><button class="btn btn-info btn-lg btn-round" style="z-index: 99; right: 2%; bottom: 2%; position: fixed; width: 60px; height: 60px;"><span class="fa fa-plus"></span></button></a>
+                  		</div>
+                	</div>
+              	</div>
+			</div>	
+			<!-- your code end-->
+			<%include ../admin/layout/footer%>
+		</div>
+	</div>
+	<%include ../admin/layout/script%>
+	<%include ../admin/layout/script_dbtable%>
+	<!-- pnotify -->
+	<script src="/template/vendors/pnotify/dist/pnotify.js"></script>
+    <script src="/template/vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="/template/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+	<script>
+	   	$('document').ready(function (){
+	       $('.ui-pnotify').remove();
+	       <%- include ../flash_message %>
+	   	});
+	</script>
+</body>
+</html>

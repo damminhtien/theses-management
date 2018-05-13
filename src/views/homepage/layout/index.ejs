@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<%include header%>
+    <style type="text/css" src="/stylesheets/homepage/index.css"></style>
+</head>
+
+<body>
+    <!-- Top menu -->
+    <%include menu%>
+    <!-- Top content -->
+    <%include top-content%>
+    <div class="container body">
+      	<div class="main_container">
+			<!-- your code here -->
+    		<div class="right_col" role="main">
+                <%include ../thongbaomoi%>
+                <%include ../noibat%>
+			</div>	
+			<!-- your code end-->
+		</div>
+	</div>
+	<%include footer%>
+    <%include script%>
+    <script>
+        function openTab(tabName) {
+            let i, x;
+            x = $(".containerTab");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            $('#'+tabName).fadeIn(1500);
+        }
+    </script>
+</body>
+
+</html>

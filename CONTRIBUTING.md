@@ -1,2 +1,2 @@
 # To CONTRIBUTING please contact us: 
-damminhtienchl@gmail.com
+mailto:damminhtienchl@gmail.com

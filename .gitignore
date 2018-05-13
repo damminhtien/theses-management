@@ -28,3 +28,10 @@
 
 # Debug log from npm
 /src/npm-debug.log
+
+/src/.vs
+/src/public/upload/baocaotuan/*
+/src/public/upload/manguoncuoi/tep/*
+/src/public/upload/manguoncuoi/tep_bao_cao/*
+/src/public/upload/manguoncuoi/thongbao/tep/*
+/src/public/upload/manguoncuoi/thongbao/hinhanh/*

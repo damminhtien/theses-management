@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<%include layout/header%>
+    <style type="text/css" src="/stylesheets/homepage/index.css"></style>
+    <script async="" src="/assets/js/Chart_files/analytics.js"></script>
+    <script src="/assets/js/Chart_files/Chart.bundle.js"></script>
+</head>
+
+<body>
+    <!-- Top menu -->
+    <%include layout/menu%>
+    <!-- Top content -->
+    <%include top-content%>
+    <div class="container body">
+      	<div class="main_container">
+			<!-- your code here -->
+    		<div class="right_col" role="main">
+                <%include thongbaomoi%>
+                <%include slide%>
+                <%include noibat%>
+                <%include khampha%>
+			</div>	
+			<!-- your code end-->
+		</div>
+	</div>
+    <!-- Features -->
+    <%include features%>
+	<%include layout/footer%>
+    <%include layout/script%>
+    <script>
+        $('document').ready(()=>{
+            $.ajax({url: "http://localhost:8888/doan/loaidoan=0/khoavien=1/from=0/limit=5", success: function(result){
+                let html ="";
+                result.doan.forEach((da, i)=>{
+                    html += "<tr>" +
+                                "<td>"+ (i+1) + "</td>" +
+                                "<td>" +da.ten_de_tai+"</td>" +
+                                "<td>"+da.ten_sv+"</td>" +
+                            "</tr>"
+                })
+                console.log('success');
+                $('#cnpm').html(html);
+            }});
+            $.ajax({url: "http://localhost:8888/doan/loaidoan=0/khoavien=4/from=0/limit=5", success: function(result){
+                let html="";
+                result.doan.forEach((da, i)=>{
+                    html += "<tr>" +
+                                "<td>"+ (i + 1) + "</td>" +
+                                "<td>" +da.ten_de_tai+"</td>" +
+                                "<td>"+da.ten_sv+"</td>" +
+                            "</tr>"
+                })
+                console.log('success');
+                $('#attt').html(html);
+            }});
+            $.ajax({url: "http://localhost:8888/doan/loaidoan=0/khoavien=3/from=0/limit=5", success: function(result){
+                let html ="";
+                result.doan.forEach((da, i)=>{
+                    html += "<tr>" +
+                                "<td>"+ (i + 1) + "</td>" +
+                                "<td>" +da.ten_de_tai+"</td>" +
+                                "<td>"+da.ten_sv+"</td>" +
+                            "</tr>"
+                })
+                console.log('success');
+                $('#khmt').html(html);
+            }});
+            $.ajax({url: "http://localhost:8888/doan/loaidoan=0/khoavien=2/from=0/limit=5", success: function(result){
+                let html="";
+                result.doan.forEach((da, i)=>{
+                    html += "<tr>" +
+                                "<td>"+ (i + 1) + "</td>" +
+                                "<td>" +da.ten_de_tai+"</td>" +
+                                "<td>"+da.ten_sv+"</td>" +
+                            "</tr>"
+                })
+                console.log('success');
+                $('#httt').html(html);
+            }});
+            $.ajax({url: "http://localhost:8888/doan/loaidoan=0/khoavien=5/from=0/limit=5", success: function(result){
+                let html ="";
+                result.doan.forEach((da, i)=>{
+                    html += "<tr>" +
+                                "<td>"+ (i + 1) + "</td>" +
+                                "<td>" +da.ten_de_tai+"</td>" +
+                                "<td>"+da.ten_sv+"</td>" +
+                            "</tr>"
+                })
+                console.log('success');
+                $('#ktmt').html(html);
+            }});
+            $.ajax({url: "http://localhost:8888/doan/loaidoan=0/khoavien=6/from=0/limit=5", success: function(result){
+                let html ="";
+                result.doan.forEach((da, i)=>{
+                    html += "<tr>" +
+                                "<td>"+ (i + 1) + "</td>" +
+                                "<td>" +da.ten_de_tai+"</td>" +
+                                "<td>"+da.ten_sv+"</td>" +
+                            "</tr>"
+                })
+                console.log('success');
+                $('#ttmmt').html(html);
+            }});
+            $.ajax({url: "http://localhost:8888/thongbao/thongbao=0/from=0/limit=3", success: function(result){
+                let html = "";
+                console.log(result);
+                result.thongbao.forEach((tb, i)=>{
+                    html += "<div class='column' onclick=\"openTab('b"+(i+1)+"');\">"+
+                            "<img src='upload/thongbao/hinh_anh/" +tb.hinh_anh+ "'>" +
+                            "<p>"+ tb.tieu_de+ "</p>" +
+                            "</div>";
+                    $('#box'+(i+1)).html(tb.noi_dung);
+                })
+                console.log('success');
+                $('#tdthongbao').html(html);
+                $('div.column, div.col-sm-3').hover(
+                    function() {
+                        $(this).find("p").css({"height": "100%", "transition": "1.5s" })
+                    }, function() {
+                         $(this).find("p").css({"height": "30%", "transition": "1.5s" })
+                    }
+                );
+            }});
+            $.ajax({url: "http://localhost:8888/thongbao/thongbao=0/from=3/limit=4", success: function(result){
+                let html ="";
+                result.thongbao.forEach((tb, i)=>{
+                    html += "<div class='col-sm-3'>"+
+                            "<img src='upload/thongbao/hinh_anh/" +tb.hinh_anh+ "'>" +
+                            "<p><a href='"+ "/thongbao/chitiet/" + tb.ma_tb + "'>"+ tb.tieu_de+ "</a></p>" +
+                            "</div>"
+                })
+                console.log('success');
+                $('#tdthongbaocu').html(html);
+                $('div.column, div.col-sm-3').hover(
+                    function() {
+                        $(this).find("p").css({"height": "100%", "transition": "1.5s" })
+                    }, function() {
+                         $(this).find("p").css({"height": "30%", "transition": "1.5s" })
+                    }
+                );  
+            }});
+        });
+        function openTab(tabName) {
+            let i, x;
+            x = $(".containerTab");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            $('#'+tabName).fadeIn(1500);
+        }
+        let coll = $(".collapsible");
+        let i;
+        coll[0].nextElementSibling.style.maxHeight = coll[0].nextElementSibling.scrollHeight + "px";
+        coll[3].nextElementSibling.style.maxHeight = coll[3].nextElementSibling.scrollHeight + "px";
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                let content = this.nextElementSibling;
+                if (content.style.maxHeight){
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } 
+            });
+        }
+    </script>
+    <script src="/assets/js/Chart_files/utils.js"></script>
+    <script src="/javascripts/homepage/index.js"></script>
+</body>
+</html>

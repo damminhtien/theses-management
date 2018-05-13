@@ -1,0 +1,48 @@
+<div class="col-md-3 table-responsive" id="table-left">
+    <table class="table animated rollIn">
+        <tbody>
+            <tr class="theader text-center">
+                <td colspan="2">
+                    <h4>THÔNG TIN CÁ NHÂN</h4>
+                </td>
+            </tr>
+            <tr>
+                <td><span class="glyphicon glyphicon-envelope"></span><strong> Email</strong></td>
+                <td>
+                    <%=usr.email %>
+                </td>
+            </tr>
+            <tr>
+                <td><span class="glyphicon glyphicon-envelope"></span><strong> Số điện thoại</strong></td>
+                <td>
+                    <%=usr.sdt %>
+                </td>
+            </tr>
+            <tr class="theader text-center">
+                <td colspan="2">
+                    <h4>THAO TÁC HỆ THỐNG</h4>
+                </td>
+            </tr>
+            <tr>
+            	<td colspan="2">
+                    <a href="/quanlysinhvien"><span class="glyphicon glyphicon-list-alt"></span> Quản lý sinh viên</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <a href="/chamdiem"><span class="glyphicon glyphicon-list-alt"></span> Chấm điểm</a>
+                </td>
+            </tr>
+            <tr>
+            	<td colspan="2">
+                    <a href="/giangvien/doithongtin/<%=usr.ma_gv%>"><span class="glyphicon glyphicon-cog"></span> Cập nhật thông tin cá nhân</a>
+                </td>
+            </tr>
+            <tr>
+            	<td colspan="2">
+                    <a href="/doimatkhau/<%=usr.id%>"><span class="glyphicon glyphicon-cog"></span> Đổi mật khẩu</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

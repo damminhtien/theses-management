@@ -1,0 +1,54 @@
+<nav class="navbar navbar-fixed-top navbar-no-bg" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+                <span class="sr-only">H2T</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hệ thống quản lý đồ án</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="top-navbar-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Trang chủ</a></li>
+                <li class="dropdown"><a href="#" data-toggle="dropdown">Khoa viện</a>
+                        
+                    <ul class="dropdown-menu">
+                        <% if(khoavien != null ){ 
+                        khoavien.forEach((kv,i)=>{%>
+                            <li><a href="/khoavien/<%=kv.ma_kv%>" class="btn text-info" style="color: black;float: left;"></span><%=kv.ten_kv%></a></li>
+                        <%})}%>
+                    
+                    </ul>
+                            
+                </li>
+                    
+                <li><a href="/doan">Đồ án</a></li>
+                <li><a href="/thongbao">Thông báo</a></li>
+                <li><a href="https://github.com/damminhtien/project_management/issues">Faq</a></li>
+                <% if (usr == null) { -%>
+                    <li><a class="btn btn-link-3" href="/dangnhap">Đăng nhập</a></li>
+                <% } else { -%>
+                <li>
+                    <div class="dropdown">
+                        <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown"><%=usr.user.ten%><span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <% if (usr.user.id > 20000000) { -%>
+                                <li><a href="/sinhvien" class="btn"  style="color: black;float: left;"><span class="glyphicon glyphicon-user"></span> Cá nhân</li>
+                            <% } else if (usr.user.id == 0      ) { -%>
+                                <li><a href="/admin" class="btn text-info" style="color: black;float: left;"><span class="glyphicon glyphicon-user"></span> Cá nhân</a></li>
+                            <% } else { -%>
+                                <li><a href="/giangvien" class="btn text-info" style="color: black;float: left;"><span class="glyphicon glyphicon-user"></span> Cá nhân</a></li>
+                            <% } -%>
+                                <li><a href="/dangxuat" class="btn text-info" style="color: black;float: left;"><span class="glyphicon glyphicon-off"></span> Đăng xuất</a></li>
+                            <% } -%>
+                        </ul>
+                    </div>    
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
