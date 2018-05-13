@@ -204,6 +204,20 @@ router.post('/sua/:id', (req, res, next) => {
         })
     } else res.redirect('/dangnhap')
 });
+router.get('/chitiet/:id', (req, res, next) => {
+        (async() => {
+            const client = await pool.connect()
+            try {
+                const result1 = await client.query('SELECT * FROM khoavien')
+                const result2 = await client.query('SELECT * FROM thongbao WHERE ma_tb='+req.params.id)
+                res.render('./thongbao/chitiet', { usr: req._passport.session, khoavien: result1.rows, thongbao: result2.rows[0] })
+            } finally {
+                client.release()
+            }
+        })().catch(e => console.log(e.stack))
+});
+
+
 
 function addImg(img) {
     let imgName = Date.now() + Math.floor((Math.random() * 100) + 1) + img.name
@@ -222,3 +236,32 @@ function addFile(file){
   })
   return fileName
 }
+
+router.get("/thongbao=:tb/from=:s/limit=:d", (req, res) => {
+    const tb = req.params.tb,
+        s = req.params.s,
+        d = req.params.d;
+    let query;
+    if( tb == 0){
+        query = "SELECT * FROM thongbao"
+    } else {
+        query = "SELECT * FROM thongbao WHERE ma_tb = " + tb
+    }
+    if(d != 0){
+        query += " OFFSET " + s + " LIMIT " + d
+    }
+    console.log(query);
+    pool.connect((err, client, release) => {
+        if (err) {
+            return console.error('Error acquiring client', err.stack);
+        }
+        client.query(query, (err, result) => {
+            release();
+            if (err) {
+                res.end();
+                return console.error('Error executing query', err.stack)
+            }
+            res.json({ thongbao: result.rows.reverse(), usr: req._passport.session });
+        })
+    })
+});

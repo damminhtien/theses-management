@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%include ../../homepage/layout/header%>
+    <link rel="stylesheet" type="text/css" href="./stylesheets/giangvien_homepages.css">
+</head>
+
+<body>
+    <div class="container animated fadeInDown" id="wallpaper">
+        <div class="row">
+            <img src="/images/ava1.jpg" alt="ava" id="ava" class="img-circle img-responsive">
+            <h1 class="text-center"><%= usr.ten_gv%></h1>
+            <h4 class="text-center"><i>TS - Bộ môn Hệ thống thông tin</i></h4>
+        </div>
+    </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <% include giangvien-left %>
+            <% include giangvien-right %>
+        </div>
+    </div>
+    <%include ../../homepage/layout/footer%>
+    <%include ../../homepage/layout/script%>
+    <script src="./javascripts/giangvien_homepages.js"></script>
+</body>
+

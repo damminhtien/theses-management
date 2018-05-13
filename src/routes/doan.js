@@ -49,8 +49,7 @@ router.get('/them', (req, res, next) => {
                 const sv = await client.query('SELECT ma_sv, ten_sv FROM sinhvien')
                 const tt = await client.query('SELECT * FROM trangthai')
                 const lda = await client.query('SELECT * FROM loaidoan')
-                const mnc = await client.query('SELECT ma_mnc FROM manguoncuoi')
-                res.render('./doan/them', { giangvien: gv.rows, sinhvien: sv.rows, trangthai: tt.rows, loaidoan: lda.rows, manguoncuoi: mnc.rows })
+                res.render('./doan/them', { giangvien: gv.rows, sinhvien: sv.rows, trangthai: tt.rows, loaidoan: lda.rows})
             } finally {
                 client.release()
             }
@@ -102,9 +101,8 @@ router.get('/sua/:id', (req, res, next) => {
                 const sv = await client.query('SELECT ma_sv, ten_sv FROM sinhvien')
                 const tt = await client.query('SELECT * FROM trangthai')
                 const lda = await client.query('SELECT * FROM loaidoan')
-                const mnc = await client.query('SELECT ma_mnc FROM manguoncuoi')
                 const da = await client.query('SELECT * FROM doan WHERE ma_da=' + req.params.id)
-                res.render('./doan/sua', { doan: da.rows[0], giangvien: gv.rows, sinhvien: sv.rows, trangthai: tt.rows, loaidoan: lda.rows, manguoncuoi: mnc.rows })
+                res.render('./doan/sua', { doan: da.rows[0], giangvien: gv.rows, sinhvien: sv.rows, trangthai: tt.rows, loaidoan: lda.rows})
             } finally {
                 client.release()
             }
@@ -117,7 +115,6 @@ router.post('/sua/:id', (req, res, next) => {
         const ma_gv = req.body.ma_gv
         const ma_sv = req.body.ma_sv
         const ma_tt = req.body.ma_tt
-        const ma_mnc = req.body.ma_mnc
         const ten_de_tai = req.body.ten_de_tai
         const ki_hoc = req.body.ki_hoc
         let file = req.files.tep_bao_cao
@@ -129,7 +126,7 @@ router.post('/sua/:id', (req, res, next) => {
             const client = await pool.connect()
             try {
                 if (file == undefined) {
-                    await client.query("UPDATE doan SET ma_gv='" + ma_gv + "',ma_sv='" + ma_sv + "',ma_tt='" + ma_tt + "',ma_mnc='" + ma_mnc + "',ten_de_tai='" + ten_de_tai + "',ki_hoc='" + ki_hoc + "',ghi_chu_sv='" + ghi_chu_sv + "', ghi_chu_gv='" + ghi_chu_gv + "',ma_lda='" + ma_lda + "', diem='" + diem + "' WHERE ma_da =" + req.params.id)
+                    await client.query("UPDATE doan SET ma_gv='" + ma_gv + "',ma_sv='" + ma_sv + "',ma_tt='" + ma_tt + "',ten_de_tai='" + ten_de_tai + "',ki_hoc='" + ki_hoc + "',ghi_chu_sv='" + ghi_chu_sv + "', ghi_chu_gv='" + ghi_chu_gv + "',ma_lda='" + ma_lda + "', diem='" + diem + "' WHERE ma_da =" + req.params.id)
                 }
                 if (file != undefined) {
                     const da = await client.query('SELECT tep_bao_cao FROM doan WHERE ma_da=' + req.params.id)
@@ -141,7 +138,7 @@ router.post('/sua/:id', (req, res, next) => {
                         });
                     }
                     let fileName = addFile(file)
-                    await client.query("UPDATE doan SET ma_gv='" + ma_gv + "',ma_sv='" + ma_sv + "',ma_tt='" + ma_tt + "',ma_mnc='" + ma_mnc + "',ten_de_tai='" + ten_de_tai + "',ki_hoc='" + ki_hoc + "',tep_bao_cao='" + fileName + "',ghi_chu_sv='" + ghi_chu_sv + "', ghi_chu_gv='" + ghi_chu_gv + "',ma_lda='" + ma_lda + "', diem='" + diem + "' WHERE ma_da =" + req.params.id)
+                    await client.query("UPDATE doan SET ma_gv='" + ma_gv + "',ma_sv='" + ma_sv + "',ma_tt='" + ma_tt + "',ten_de_tai='" + ten_de_tai + "',ki_hoc='" + ki_hoc + "',tep_bao_cao='" + fileName + "',ghi_chu_sv='" + ghi_chu_sv + "', ghi_chu_gv='" + ghi_chu_gv + "',ma_lda='" + ma_lda + "', diem='" + diem + "' WHERE ma_da =" + req.params.id)
                 }
                 req.flash("success", "Sửa thông tin đồ án thành công")
                 res.redirect("/doan/danhsach")
@@ -173,7 +170,7 @@ router.get('/xoa/:id', (req, res, next) => {
                 const da = await client.query('SELECT tep_bao_cao FROM doan WHERE ma_da=' + req.params.id)
                 tep_bao_cao = da.rows[0].tep_bao_cao
                 if (tep_bao_cao != null) {
-                    fs.unlink('./public/upload/tep_bao_cao' + tep_bao_cao, (err) => {
+                    fs.unlink('./public/upload/tep_bao_cao/' + tep_bao_cao, (err) => {
                         if (err) throw err;
                         console.log('successfully deleted');
                     });
@@ -197,7 +194,7 @@ router.get('/:id', (req, res, next) => {
         try {
             const result1 = await client.query('SELECT * FROM khoavien')
             const result2 = await client.query('select * from doan, giangvien, sinhvien, trangthai, loaidoan, khoavien where doan.ma_da='+req.params.id+' and giangvien.ma_kv=khoavien.ma_kv and doan.ma_gv=giangvien.ma_gv and doan.ma_sv = sinhvien.ma_sv and doan.ma_tt= trangthai.ma_tt and doan.ma_lda=loaidoan.ma_lda')
-            const result3 = await client.query('select * from manguoncuoi, doan where doan.ma_da='+req.params.id+' and doan.ma_mnc=manguoncuoi.ma_mnc')
+            const result3 = await client.query('select * from manguoncuoi, doan where doan.ma_da='+req.params.id+' and doan.ma_da=manguoncuoi.ma_da')
             const result4 = await client.query('select * from baocaotuan, doan, trangthai where doan.ma_da='+req.params.id+' and baocaotuan.ma_tt=trangthai.ma_tt and baocaotuan.ma_da=doan.ma_da')
             res.render('./doan/chitiet',{usr: req._passport.session, khoavien: result1.rows, doan: result2.rows[0], manguoncuoi: result3.rows[0], baocaotuan: result4.rows})
         } finally {

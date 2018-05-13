@@ -11,7 +11,7 @@
             <%include ../admin/layout/menu%>
                 <!-- your code here -->
                 <div class="right_col" role="main">
-                	<h2 class="text-center">THÊM BÁO CÁO TUẦN</h2>
+                    <h2 class="text-center">THÊM BÁO CÁO TUẦN</h2>
                     <form data-parsley-validate class="form-horizontal form-label-left" action="/baocaotuan/them" method="post" accept-charset="utf-8" encType="multipart/form-data">
                         <div class="modal-body row">
                             
@@ -66,7 +66,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="#ghi_chu">Ghi chú<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" id="ghi_chu" required="required" class="form-control col-md-7 col-xs-12" name="ghi_chu">
+                                    <textarea style="padding: 5px" name="ghi_chu" id="ghi_chu"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -76,11 +76,11 @@
                                     <input type="text" id="diem" required="required" class="form-control col-md-7 col-xs-12" name="diem">
                                 </div>
                             </div>
-                            <div class="col-md-7"></div>	
+                            <div class="col-md-7"></div>    
                             <div class="form-group">
-                            	<button type="reset" class="btn btn-default">Làm mới</button>
-                            	<button type="submit" class="btn btn-primary">Xác nhận</button>
-                        	</div>
+                                <button type="reset" class="btn btn-default">Làm mới</button>
+                                <button type="submit" class="btn btn-primary">Xác nhận</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -89,6 +89,41 @@
         </div>
     </div>
     <%include ../admin/layout/script%>
+    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+      CKEDITOR.replace('ckeditor', {
+        "extraPlugins" : 'imagebrowser',
+        "imageBrowser_listUrl" : "/files"
+      });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(()=>{
+            CKEDITOR.config.extraPlugins = 'filebrowser';
+            CKEDITOR.config.language = 'en';
+            CKEDITOR.config.fillEmptyBlocks = false;
+            CKEDITOR.replace( 'ghi_chu' , {
+            filebrowserBrowseUrl: '/javascripts/ckeditor/plugins/filemanager/browser/default/browser.html?Connector=/browser/browse',
+            filebrowserUploadUrl: '/uploader/upload?Type=File',
+            filebrowserImageUploadUrl: '/uploader/upload?Type=Image',
+            filebrowserFlashUploadUrl: '/uploader/upload?Type=Flash'
+            });
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#imgPre').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("input[name=img]").change(function(){
+                readURL(this);
+            });
+        })
+    </script>
 </body>
 
 </html>
