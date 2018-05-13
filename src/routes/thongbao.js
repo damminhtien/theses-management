@@ -205,7 +205,7 @@ router.post('/sua/:id', (req, res, next) => {
     } else res.redirect('/dangnhap')
 });
 router.get('/chitiet/:id', (req, res, next) => {
-    if (req.isAuthenticated() && req._passport.session.user.id == 0) {
+    // if (req.isAuthenticated() && req._passport.session.user.id == 0) {
         (async() => {
             const client = await pool.connect()
             try {
@@ -216,7 +216,7 @@ router.get('/chitiet/:id', (req, res, next) => {
                 client.release()
             }
         })().catch(e => console.log(e.stack))
-    } else res.redirect('/dangnhap')
+    // } else res.redirect('/dangnhap')
 });
 
 
