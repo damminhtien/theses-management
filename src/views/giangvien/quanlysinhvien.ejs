@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%include ../homepage/layout/header%>
+</head>
+
+<body>
+    <%include ../homepage/top-content%>
+    <div class="container">
+        <div class="row">
+            <h1>Trang quản lý nguyện vọng đồ án sinhviên</h1>
+            <p>Giảng viên lựa chọn sinh viên</p>
+            <div class="col-md-12 table-responsive">
+                <%nguyenvong.forEach((nv, i)=>{%>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Sinh viên</th>
+                                <th class="text-center">Ghi chú</th>
+                                <th class="text-center">Chấp nhận</th>
+                                <th class="text-center">Từ chối</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><%=nv.ma_sv%></td>
+                                <td><%-nv.ghi_chu%></td>
+                                <td><a href="/giangvien/quanlynv/<%=nv.ma_nv%>/1"><button class="btn btn-success">C</button></a></td>
+                                <td><a href="/giangvien/quanlynv/<%=nv.ma_nv%>/0"><button class="btn btn-danger">T</button></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                <%})%>
+            </div>
+        </div>
+    </div>
+    <%include ../homepage/layout/footer%>
+    <%include ../homepage/layout/script%>
+    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+      CKEDITOR.replace('ckeditor', {
+        "extraPlugins" : 'imagebrowser',
+        "imageBrowser_listUrl" : "/files"
+      });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(()=>{
+            CKEDITOR.config.extraPlugins = 'filebrowser';
+            CKEDITOR.config.language = 'en';
+            CKEDITOR.config.fillEmptyBlocks = false;
+            CKEDITOR.replace( 'productContentEditor' , {
+            filebrowserBrowseUrl: '/javascripts/ckeditor/plugins/filema nager/browser/default/browser.html?Connector=/browser/browse',
+            filebrowserUploadUrl: '/uploader/upload?Type=File',
+            filebrowserImageUploadUrl: '/uploader/upload?Type=Image',
+            filebrowserFlashUploadUrl: '/uploader/upload?Type=Flash'
+            });
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#imgPre').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("input[name=img]").change(function(){
+                readURL(this);
+            });
+        })
+    </script>
+</body>
