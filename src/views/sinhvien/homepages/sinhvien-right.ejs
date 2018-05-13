@@ -1,0 +1,49 @@
+<div class="col-md-9">
+    <nav class="navbar navbar-inverse animated fadeInRight">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../"><span class="glyphicon glyphicon-home"></span> Trang chủ</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="#"><span class="glyphicon glyphicon-certificate"></span> Thông tin đồ án</a></li>
+                    <li><a href="/sinhvien/doancuatoi/<%=usr.id%>"><span class="glyphicon glyphicon-file"></span> Đồ án của tôi</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../dangxuat"><span class="glyphicon glyphicon-log-in"></span> Đăng xuất</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="table-right" class="table-responsive animated bounceInUp">
+        <table class="table table-bordered" id="thongtindoan">
+            <thead>
+                <tr>
+                    <th>Kỳ</th>
+                    <th>Tên học phần</th>
+                    <th>Tên đề tài</th>
+                    <th>Điểm</th>
+                    <th>Giảng viên HD</th>
+                    <th>Xem chi tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% doan.forEach(function(da,i){ %>
+                    <tr>
+                        <td><%=da.ki_hoc%></td>
+                        <td><%= da.ten_lda %></td>
+                        <td><%= da.ten_de_tai %></td>
+                        <td><%= da.diem %></td>
+                        <td><%=da.ten_gv%></h1><span id="giangvienhuongdan<%=i%>"></td>
+                        <td><a href="/doan/<%=da.ma_da%>"><span class="btn fa fa-eye"></span></a></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+*{
+	padding: 0;
+	margin: 0;
+}	
+
+.text-center{
+	margin: 20px;
+}
+
+#wallpaper{
+	width: 100%;
+	background-color: grey;
+	color: white;
+	background: url('/images/star.gif');
+	background-size: cover;
+}
+
+
+
+#ava{
+	padding-top: 10px;
+	display: block;
+    margin: 0 auto;
+    height: 25vmin;
+    width: 25vmin;
+}
+
+.container{
+	padding: 0;
+	margin: auto;
+	width: 100%;
+}
+
+.col-md-3{
+	background-size: cover;
+	padding: 0;
+	padding-left: 15px;
+	background-color: #ccc;
+	height: 100%;
+}
+
+.col-md-9{
+	background-color: #fff;
+	padding: 0;
+	color: #000;
+	font-size: 14px;
+	letter-spacing: 1px;
+}
+
+nav.navbar.navbar-inverse{
+	margin: 0;
+}
+
+.container-fluid{
+	margin: 0;	
+}
+
+table{
+	width: auto;	
+}
+
+#table-left .theader{
+	background-color: #999;
+	color: white;
+}

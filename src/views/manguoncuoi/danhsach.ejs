@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<%include ../admin/layout/header%>
+	<link href="/template/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+	<%include ../admin/layout/style_dbtable%>
+</head>
+<body class="nav-md">
+    <div class="container body">
+      	<div class="main_container">
+			<%include ../admin/layout/menu%>
+			<!-- your code here -->
+			<div class="right_col" role="main">
+	            <div class="col-md-12 col-sm-12 col-xs-12">
+                	<div class="x_panel">
+                  		<div class="x_title">
+                    		<h1 class="label label-success">Mã nguồn cuối</h1>
+                    		<div class="clearfix"></div>
+                  		</div>
+             		 	<div class="x_content">
+            				<table id="datatable-buttons" class="table table-striped table-hover table-bordered">
+                      			<thead>
+                        			<tr>
+                          				<th class="alert-success"><h3>STT</h3></th>
+				                        <th class="alert-success"><h3>Chế độ</h3></th>
+				                        <th class="alert-success"><h3>Ghi chú</h3></th>
+				                        <th class="alert-success"><h3>Hình ảnh</h3></th>
+				                        <th class="alert-success"><h3>Sửa / Xóa</h3></th>
+                        			</tr>
+                      			</thead>
+                      			<tbody>
+                        			<% if(manguoncuoi!= null ){ 
+										manguoncuoi.forEach((mnc,i)=>{%>
+										<tr>
+											<td><button class="btn btn-primary btn-round btn-xs"><%=i + 1%></button>
+											</td>
+											<td><h2><%=mnc.che_do%></h2></td>
+											<td><h2><%=mnc.ghi_chu%></h2></td>
+											<td><img src="/upload/manguoncuoi/hinh_anh/<%=mnc.hinh_anh%>" style="width:100px;"></td>
+											<td class="text-center">
+												<a href="/manguoncuoi/sua/<%=mnc.ma_mnc%>"><button class="btn btn-warning btn-xs"><span class="fa fa-pencil"></span></button></a>
+												<a href="/manguoncuoi/xoa/<%=mnc.ma_mnc%>"><button class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></button></a>
+											</td>
+										</tr>
+									<%})}%>
+                      			</tbody>
+                    		</table>
+                  		</div>
+                	</div>
+              	</div>
+			</div>	
+			<!-- your code end-->
+			<%include ../admin/layout/footer%>
+		</div>
+	</div>
+	<%include ../admin/layout/script%>
+	<%include ../admin/layout/script_dbtable%>
+	<!-- pnotify -->
+	<script src="/template/vendors/pnotify/dist/pnotify.js"></script>
+    <script src="/template/vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="/template/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+	<script>
+	   	$('document').ready(function (){
+	       $('.ui-pnotify').remove();
+	       <%- include ../flash_message %>
+	   	});
+	</script>
+</body>
+</html>
