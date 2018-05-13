@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
         (async() => {
             const client = await pool.connect()
             try {
-                const doan = await client.query("SELECT * FROM sinhvien as sv, doan as da, giangvien as gv, trangthai as tt, loaidoan as lda WHERE da.ma_sv=sv.ma_sv AND da.ma_gv=gv.ma_gv AND da.ma_tt = tt.ma_tt AND da.ma_lda=lda.ma_lda AND da.ma_sv='"+req._passport.session.user.id+"'")
+                const doan = await client.query("SELECT * FROM doan as da LEFT JOIN sinhvien as sv ON da.ma_sv=sv.ma_sv LEFT JOIN giangvien as gv ON da.ma_gv=gv.ma_gv LEFT JOIN trangthai as tt ON da.ma_tt = tt.ma_tt LEFT JOIN loaidoan as lda ON da.ma_lda=lda.ma_lda WHERE da.ma_sv='"+req._passport.session.user.id+"'")
                 const sv = await client.query("SELECT * FROM sinhvien WHERE ma_sv='"+req._passport.session.user.id+"'")
                 console.log({doan: doan.rows, usr: sv.rows[0]})
                 res.render('./sinhvien/homepages/sinhvien',{doan: doan.rows, usr: sv.rows[0]})
@@ -117,7 +117,6 @@ router.post('/sua/:id', (req, res, next) => {
         const khoa = req.body.khoa;
         const lop = req.body.lop;
         const email = req.body.email;
-
         console.log(req.body);
         (async() => {
             const client = await pool.connect()
@@ -125,6 +124,84 @@ router.post('/sua/:id', (req, res, next) => {
                 await client.query("UPDATE sinhvien SET ten_sv='"+ten_sv +"', khoa='"+khoa+"', lop='"+lop+"', mat_khau='"+md5(email)+"', email='"+email+"' WHERE ma_sv ='"+req.params.id+"'")       
                 req.flash("success", "Sửa thông tin sinh viên "+ten_sv+" thành công")
                 res.redirect("/sinhvien/danhsach");
+            } finally {
+                client.release()
+            }
+        })(req).catch((e,req) => {
+            console.log(e.stack)
+            req.flash("error", "Sửa thông tin sinh viên thất bại / Lỗi: " + e.stack)
+        })
+    } else res.redirect('/dangnhap')
+})
+
+router.get('/nguyenvong', (req, res, next) => {
+    if(req.isAuthenticated() && req._passport.session.user.id >=  20000000){
+        (async() => {
+            const client = await pool.connect()
+            try {
+                const doan = await client.query("SELECT * FROM doan, loaidoan WHERE doan.ma_lda=loaidoan.ma_lda AND ma_gv IS NULL AND ma_sv='"+req._passport.session.user.id+"'")
+                const sv = await client.query("SELECT * FROM sinhvien WHERE ma_sv='"+req._passport.session.user.id+"'")
+                const gv = await client.query("SELECT * FROM giangvien")
+                const kv = await client.query("SELECT * FROM khoavien")
+                console.dir(doan.rows);
+                res.render('./sinhvien/nguyenvong',{doan: doan.rows, usr: req._passport.session, giangvien: gv.rows, khoavien: kv.rows})
+            } finally {
+                client.release()
+            }
+        })().catch(e => console.log(e.stack))
+    } else res.redirect('/dangnhap')
+})
+
+router.post('/nguyenvong', (req, res, next) => {
+    if(req.isAuthenticated() && req._passport.session.user.id >= 20000000){
+        const ma_sv = req.body.ma_sv;
+        const ma_gv = req.body.ma_gv;
+        const ma_da = req.body.ma_da;
+        const ghi_chu = req.body.ghi_chu;
+        (async() => {
+            const client = await pool.connect()
+            try {
+                await client.query("INSERT nguyenvong SET ma_sv='"+ma_sv +"', ma_gv='"+ma_gv+"', ma_da='"+ma_da+"', ghi_chu='"+ghi_chu+"';")       
+                req.flash("success", "Đăng ký nguyện vọng thành công. Hãy đợi")
+                res.redirect("/sinhvien/");
+            } finally {
+                client.release()
+            }
+        })(req).catch((e,req) => {
+            console.log(e.stack)
+            req.flash("error", "Sửa thông tin sinh viên thất bại / Lỗi: " + e.stack)
+        })
+    } else res.redirect('/dangnhap')
+})
+
+router.get('/doithongtin/:id', (req, res, next) => {
+    if(req.isAuthenticated() && req._passport.session.user.id >=  20000000){
+        (async() => {
+            const client = await pool.connect()
+            try {
+                const result2 = await client.query("SELECT * FROM sinhvien WHERE ma_sv='"+req.params.id+"'")
+                res.render('./sinhvien/homepages/doithongtin',{usr: result2.rows[0]})
+            } finally {
+                client.release()
+            }
+        })().catch(e => console.log(e.stack))
+    } else res.redirect('/dangnhap')
+})
+
+router.post('/doithongtin/:id', (req, res, next) => {
+    if(req.isAuthenticated() && req._passport.session.user.id >=  20000000){
+        const ten_sv = req.body.ten_sv;
+        const khoa = req.body.khoa;
+        const lop = req.body.lop;
+        const email = req.body.email;
+
+        console.log(req.body);
+        (async() => {
+            const client = await pool.connect()
+            try {
+                await client.query("UPDATE sinhvien SET ten_sv='"+ten_sv +"', khoa='"+khoa+"', lop='"+lop+"', mat_khau='"+md5(email)+"', email='"+email+"' WHERE ma_sv ='"+req.params.id+"'")       
+                req.flash("success", "Sửa thông tin sinh viên "+ten_sv+" thành công")
+                res.redirect("/sinhvien");
             } finally {
                 client.release()
             }

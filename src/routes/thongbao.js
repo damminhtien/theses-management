@@ -205,7 +205,6 @@ router.post('/sua/:id', (req, res, next) => {
     } else res.redirect('/dangnhap')
 });
 router.get('/chitiet/:id', (req, res, next) => {
-    // if (req.isAuthenticated() && req._passport.session.user.id == 0) {
         (async() => {
             const client = await pool.connect()
             try {
@@ -216,7 +215,6 @@ router.get('/chitiet/:id', (req, res, next) => {
                 client.release()
             }
         })().catch(e => console.log(e.stack))
-    // } else res.redirect('/dangnhap')
 });
 
 
@@ -238,3 +236,32 @@ function addFile(file){
   })
   return fileName
 }
+
+router.get("/thongbao=:tb/from=:s/limit=:d", (req, res) => {
+    const tb = req.params.tb,
+        s = req.params.s,
+        d = req.params.d;
+    let query;
+    if( tb == 0){
+        query = "SELECT * FROM thongbao"
+    } else {
+        query = "SELECT * FROM thongbao WHERE ma_tb = " + tb
+    }
+    if(d != 0){
+        query += " OFFSET " + s + " LIMIT " + d
+    }
+    console.log(query);
+    pool.connect((err, client, release) => {
+        if (err) {
+            return console.error('Error acquiring client', err.stack);
+        }
+        client.query(query, (err, result) => {
+            release();
+            if (err) {
+                res.end();
+                return console.error('Error executing query', err.stack)
+            }
+            res.json({ thongbao: result.rows.reverse(), usr: req._passport.session });
+        })
+    })
+});
