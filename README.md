@@ -1,7 +1,5 @@
 # Project management 
 ## Description 
-<p align="justify">In the world as well as in Vietnam, information technology has become a cutting edge technology. The development of the information technology industry is a matter of great concern for the science, education, economics, etc., the application of information technology to the field must be effective. , the choice and use of software to match and achieve good results.
-</p>
 <p align="justify">In the field of education, for the universities in general and the Hanoi University of Technology in particular, the management of the project is essential and very important. To begin with and then to finish the project is a small, multi-stage process where a teacher guides many students, so to manage the best, most effective and accurate project. Mostly, a system needs to be implemented instead of manual. Recognizing that the problem mentioned above is very necessary, with this large assignment, we decided to do analysis, design and construction project management system.
 In this exercise, we use node-based technology to write server, postgre as database management system.
 </p>
