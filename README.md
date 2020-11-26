@@ -25,4 +25,4 @@ In this exercise, we use node-based technology to write server, postgre as datab
 * huongmeo https://github.com/HuongMeo
 * huyenngau https://github.com/huyenngau
 
-# Made by :heart: of HUST
+Made by :heart: of HUST
