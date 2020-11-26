@@ -1,7 +1,4 @@
 # Project management 
-
-<p align="center"><img src="http://chemeng.hust.edu.vn/rcche2015/images/Conference/logo/hust.png" /></p>
-
 ## Description 
 <p align="justify">In the world as well as in Vietnam, information technology has become a cutting edge technology. The development of the information technology industry is a matter of great concern for the science, education, economics, etc., the application of information technology to the field must be effective. , the choice and use of software to match and achieve good results.
 </p>
@@ -23,11 +20,9 @@ In this exercise, we use node-based technology to write server, postgre as datab
 * EJS: http://ejs.co/ (Effective JavaScript templating) 
 * Body-parser: https://www.npmjs.com/package/body-parser
 
-## Our team
-<p align="center"><img src="https://raw.githubusercontent.com/damminhtien/project_management/master/src/public/images/ava.png" /></p>
-
+## Contributor
 * damminhtien https://github.com/damminhtien
 * huongmeo https://github.com/HuongMeo
 * huyenngau https://github.com/huyenngau
 
-## Made by love of HUST <3
+# Made by :heart: of HUST
